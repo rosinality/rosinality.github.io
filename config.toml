@@ -1,0 +1,18 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Nondifferentiable Log"
+
+[[menu.main]]
+  weight = 0
+  identifier = "home"
+  name = "Home"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-home\"></i>"
+  url = "/"
+
+[params]
+  sidebarBehavior = 5
+
+[author]
+  name = "Kim Seonghyeon"
+  location = "Korea, Republic of"
+  twitter = "rosinality"

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 body,
 h1,
@@ -10,7 +10,7 @@ h4,
 h5,
 h6,
 html {
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
 }
 
 table td,
@@ -62,14 +62,14 @@ blockquote {
 }
 
 @font-face {
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
     font-style: normal;
     font-weight: 400;
     src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3SZ2oysoEQEeKwjgmXLRnTc.ttf) format("truetype")
 }
 
 @font-face {
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
     font-style: normal;
     font-weight: 700;
     src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzJS3E-kSBmtLoNJPDtbj2Pk.ttf) format("truetype")
@@ -836,7 +836,7 @@ blockquote>p:first-child {
 }
 
 #sidebar {
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
     height: 100%;
     position: fixed;
     top: 0;
@@ -1932,7 +1932,7 @@ figure.highlight .gutter {
 
 .caption {
     display: block;
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
     font-size: 1.3rem;
     color: #81929d;
     text-align: center;
@@ -2249,7 +2249,7 @@ figure.highlight .line {
     position: absolute;
     bottom: 0;
     width: calc(100% - (1.5em) * 2);
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
     font-style: italic;
     background: rgba(0, 0, 0, .75);
     font-size: 1.3rem;
@@ -2345,8 +2345,8 @@ a.fancybox {
     display: block;
     max-width: 750px;
     margin: 0 auto;
-    padding-right: 20px;
-    padding-left: 20px
+    padding-right: 25px;
+    padding-left: 25px
 }
 
 @media only screen and (min-width:1024px) {
@@ -2546,7 +2546,7 @@ a.fancybox {
 
 .post .post-meta {
     line-height: 1.5em;
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
     font-size: 1.3rem;
     font-weight: 400;
     color: #9eabb3
@@ -2559,7 +2559,7 @@ a.fancybox {
 .post .post-content {
     text-rendering: optimizelegibility;
     letter-spacing: -.3px;
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
     color: #5d686f;
     margin-top: 20px;
     font-weight: 400;
@@ -2603,7 +2603,8 @@ a.fancybox {
 
 @media only screen and (min-width:768px) {
     .post-content {
-        font-size: 1.7rem
+        font-size: 2.1rem;
+        line-height: 1.9em;
     }
 }
 
@@ -2732,7 +2733,7 @@ a.fancybox {
 
 .post-header-cover .post-header .post-meta {
     max-width: 750px;
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
     font-size: 1.6rem;
     color: #fff!important;
     font-weight: 400;
@@ -2928,7 +2929,7 @@ a.fancybox {
 .postShorten .postShorten-excerpt_link,
 .postShorten .postShorten-meta,
 .postShorten .postShorten-readingtime {
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
     font-size: 1.3rem;
     font-weight: 400
 }
@@ -2937,7 +2938,7 @@ a.fancybox {
 .postShorten .postShorten-excerpt {
     text-rendering: optimizelegibility;
     letter-spacing: -.3px;
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
     color: #5d686f;
     font-weight: 400;
     overflow: hidden;
@@ -3271,7 +3272,7 @@ a.tag--small {
 }
 
 .font-merryweather {
-    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Sans-serif';
 }
 
 .tooltip,

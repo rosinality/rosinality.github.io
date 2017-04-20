@@ -1,6 +1,6 @@
 +++
-date = "2017-04-20T10:03:20+09:00"
-draft = true
+date = "2017-04-20T14:04:32+09:00"
+draft = false
 title = "신호 탐지 이론"
 isCJKLanguage = true
 categories = ["sorta informative"]

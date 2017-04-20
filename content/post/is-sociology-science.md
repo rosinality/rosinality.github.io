@@ -1,6 +1,6 @@
 +++
-date = "2017-04-20T10:01:15+09:00"
-draft = true
+date = "2017-04-20T14:04:42+09:00"
+draft = false
 title = "사회학은 과학인가?"
 isCJKLanguage = true
 categories = ["thoughts"]

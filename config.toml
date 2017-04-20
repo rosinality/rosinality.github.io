@@ -4,10 +4,16 @@ title = "Nondifferentiable Log"
 
 [params]
   sidebarBehavior = 5
+  coverImage = "stair.jpg"
+  autoThumbnailImage = true
+  thumbnailImagePosition = "left"
+  thumbnailImage = true
 
 [author]
   name = "Kim Seonghyeon"
   location = "Korea, Republic of"
+  bio = "Graduate student in HCCLab at Seoul National University"
+  gravatarEmail = "kim.seonghyeon@snu.ac.kr"
   twitter = "rosinality"
 
 [[menu.main]]

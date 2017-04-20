@@ -5,6 +5,10 @@ hasMath = true
 isCJKLanguage = true
 tags = ["dlib"]
 title = "중도층 공략 전략"
+coverImage = "/covers/sign.jpg"
+coverSize = "partial"
+autoThumbnailImage = true
+thumbnailImagePosition = "left"
 
 +++
 

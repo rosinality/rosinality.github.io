@@ -4,6 +4,10 @@ draft = false
 title = "사회학은 과학인가?"
 isCJKLanguage = true
 categories = ["thoughts"]
+coverImage = "/covers/cover02.jpg"
+coverSize = "partial"
+autoThumbnailImage = true
+thumbnailImagePosition = "left"
 
 +++
 

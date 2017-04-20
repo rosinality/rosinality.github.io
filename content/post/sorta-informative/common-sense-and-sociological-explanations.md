@@ -5,6 +5,10 @@ hasMath = false
 isCJKLanguage = true
 tags = ["sociology"]
 title = "상식과 사회학적 설명"
+coverImage = "/covers/cover03.jpg"
+coverSize = "partial"
+autoThumbnailImage = true
+thumbnailImagePosition = "left"
 
 +++
 

@@ -5,6 +5,10 @@ hasMath = true
 isCJKLanguage = true
 tags = ["neural network", "rnn"]
 title = "Sequence to Sequence 모형"
+thumbnailImage = "/seq2seq/basic_seq2seq.png"
+coverSize = "partial"
+autoThumbnailImage = true
+thumbnailImagePosition = "left"
 
 +++
 

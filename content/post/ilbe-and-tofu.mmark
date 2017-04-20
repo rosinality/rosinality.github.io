@@ -5,6 +5,10 @@ hasMath = true
 isCJKLanguage = true
 tags = ["dlib"]
 title = "일베와 두부"
+coverImage = "/covers/tofu.jpg"
+coverSize = "partial"
+autoThumbnailImage = true
+thumbnailImagePosition = "left"
 
 +++
 

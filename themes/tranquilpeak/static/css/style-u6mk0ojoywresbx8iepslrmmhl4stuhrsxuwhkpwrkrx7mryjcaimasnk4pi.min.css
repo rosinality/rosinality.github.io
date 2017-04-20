@@ -585,7 +585,7 @@ blockquote>p:first-child {
 #cover {
     position: fixed;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     z-index: -1
 }
 
@@ -860,7 +860,8 @@ blockquote>p:first-child {
 
 #sidebar .sidebar-profile .sidebar-profile-name {
     font-size: 1.1em;
-    color: #ebebeb
+    /*color: #777*/
+    color: #ebebeb;
 }
 
 #sidebar ul.sidebar-buttons {
@@ -876,8 +877,8 @@ blockquote>p:first-child {
 }
 
 #sidebar ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
-    /*color: #ebebeb;*/
-    color: #777;
+    /*color: #777;*/
+    color: #ebebeb;
     display: block;
     height: 100%
 }
@@ -885,8 +886,8 @@ blockquote>p:first-child {
 #sidebar ul.sidebar-buttons li.sidebar-button .sidebar-button-link:active,
 #sidebar ul.sidebar-buttons li.sidebar-button .sidebar-button-link:hover {
     text-decoration: none;
-    /* color: #fff */
-    color: #999;
+    /* color: #999 */
+    color: #fff;
 }
 
 #sidebar ul.sidebar-buttons:first-child {
@@ -2343,10 +2344,10 @@ a.fancybox {
 
 .main-content-wrap {
     display: block;
-    max-width: 750px;
+    max-width: 700px;
     margin: 0 auto;
-    padding-right: 25px;
-    padding-left: 25px
+    padding-right: 20px;
+    padding-left: 20px
 }
 
 @media only screen and (min-width:1024px) {
@@ -2728,7 +2729,8 @@ a.fancybox {
     max-width: 750px;
     margin: 0 auto 20px;
     color: #fff;
-    text-shadow: 0 2px 0 rgba(0, 0, 0, .9)
+    /*text-shadow: 0 2px 0 rgba(0, 0, 0, .9)*/
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, .9)
 }
 
 .post-header-cover .post-header .post-meta {
@@ -2738,7 +2740,7 @@ a.fancybox {
     color: #fff!important;
     font-weight: 400;
     letter-spacing: .05em;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, .9);
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, .9);
     margin: 0 auto
 }
 

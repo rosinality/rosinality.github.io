@@ -4,6 +4,10 @@ draft = false
 title = "시작"
 isCJKLanguage = true
 categories = ["daily life"]
+coverImage = "/covers/start.jpg"
+coverSize = "partial"
+autoThumbnailImage = true
+thumbnailImagePosition = "left"
 
 +++
 

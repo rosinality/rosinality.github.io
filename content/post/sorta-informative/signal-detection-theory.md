@@ -4,6 +4,8 @@ draft = false
 title = "신호 탐지 이론"
 isCJKLanguage = true
 categories = ["sorta informative"]
+thumbnailImage = "/sdt/index8.png"
+thumbnailImagePosition = "left"
 hasMath = true
 
 +++

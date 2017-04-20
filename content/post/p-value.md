@@ -5,6 +5,10 @@ hasMath = false
 isCJKLanguage = true
 tags = ["statistics"]
 title = "p-값"
+coverImage = "/covers/dice.jpg"
+coverSize = "partial"
+autoThumbnailImage = true
+thumbnailImagePosition = "left"
 
 +++
 

@@ -1,5 +1,5 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
+baseURL = "http://rosinality.github.io/"
+languageCode = "ko-kr"
 title = "Nondifferentiable Log"
 
 [[menu.main]]

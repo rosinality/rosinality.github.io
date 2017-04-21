@@ -1,14 +1,14 @@
 +++
 autoThumbnailImage = true
 categories = ["sorta informative"]
-coverImage = "http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/road.jpg"
+coverImage = "http://res.cloudinary.com/rosinality/image/upload/c_fill,g_north,h_180,w_700/v1492734051/covers/road.jpg"
 coverSize = "partial"
 date = "2017-04-21T11:03:26+09:00"
 hasMath = false
 isCJKLanguage = true
 keywords = ["sociology", "explanation", "prediction"]
 tags = ["sociology", "explanation", "prediction"]
-thumbnailImagePosition = "left"
+thumbnailImagePosition = "top"
 title = "상식과 사회학적 설명 2"
 
 +++

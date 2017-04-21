@@ -5,10 +5,10 @@ hasMath = false
 isCJKLanguage = true
 tags = ["neural network", "deep learning", "batch normalization"]
 title = "배치 정규화"
-coverImage = "http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/cover10.jpg"
+coverImage = "http://res.cloudinary.com/rosinality/image/upload/c_fill,h_180,w_700/v1492734051/covers/cover10.jpg"
 coverSize = "partial"
 autoThumbnailImage = true
-thumbnailImagePosition = "left"
+thumbnailImagePosition = "top"
 
 +++
 

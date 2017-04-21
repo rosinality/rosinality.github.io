@@ -2710,7 +2710,7 @@ a.fancybox {
     position: relative;
     top: 0;
     left: 0;
-    background-size: cover;
+    background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
@@ -2749,7 +2749,7 @@ a.fancybox {
 }
 
 .post-header-cover.post-header-cover--partial {
-    height: 60%
+    height: 30%
 }
 
 .post-header-cover-caption {

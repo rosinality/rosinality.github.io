@@ -5,10 +5,10 @@ hasMath = true
 isCJKLanguage = true
 tags = ["neural network", "rnn"]
 title = "Sequence to Sequence 모형"
-thumbnailImage = "http://res.cloudinary.com/rosinality/image/upload/v1492734059/seq2seq/basic_seq2seq.png"
+thumbnailImage = "http://res.cloudinary.com/rosinality/image/upload/c_pad,h_180,w_700/v1492734160/seq2seq/basic_seq2seq.png"
 coverSize = "partial"
 autoThumbnailImage = true
-thumbnailImagePosition = "left"
+thumbnailImagePosition = "top"
 
 +++
 
@@ -55,7 +55,7 @@ $$
 
 
 ![Basic Seq2Seq](http://res.cloudinary.com/rosinality/image/upload/v1492734059/seq2seq/basic_seq2seq.png)
-Sequence to Sequence (출처: [[https://www.tensorflow.org]])
+Sequence to Sequence (출처: https://www.tensorflow.org)
 
 [Google’s AI translation tool seems to have invented its own secret internal language](https://techcrunch.com/2016/11/22/googles-ai-translation-tool-seems-to-have-invented-its-own-secret-internal-language)
 

@@ -4,8 +4,8 @@ draft = false
 title = "신호 탐지 이론"
 isCJKLanguage = true
 categories = ["sorta informative"]
-thumbnailImage = "http://res.cloudinary.com/rosinality/image/upload/v1492734059/sdt/index8.png"
-thumbnailImagePosition = "left"
+thumbnailImage = "http://res.cloudinary.com/rosinality/image/upload/c_pad,h_180,w_703/v1492734059/sdt/index8.png"
+thumbnailImagePosition = "top"
 hasMath = true
 
 +++

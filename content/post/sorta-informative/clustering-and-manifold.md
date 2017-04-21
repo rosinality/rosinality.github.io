@@ -1,14 +1,14 @@
 +++
 autoThumbnailImage = true
 categories = ["sorta informative"]
-coverImage = "http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/klein.jpg"
+coverImage = "http://res.cloudinary.com/rosinality/image/upload/c_crop,h_180,w_700/v1492742893/covers/red-rose2.jpg"
 coverSize = "partial"
 date = "2017-04-21T10:40:59+09:00"
 hasMath = false
 isCJKLanguage = true
 keywords = ["clustering", "manifold", "topology", "high dimensional structure"]
 tags = ["clustering", "manifold", "topology", "high dimensional structure"]
-thumbnailImagePosition = "left"
+thumbnailImagePosition = "top"
 title = "클러스터링과 매니폴드"
 
 +++

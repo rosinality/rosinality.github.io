@@ -3008,13 +3008,14 @@ a.fancybox {
     }
     .postShorten.postShorten--thumbnailimg-top .postShorten-thumbnailimg {
         margin-top: 5px;
-        height: 188px;
+        height: 245px;
+        margin-bottom: 10px;
         overflow: hidden;
         position: relative;
     }
 
     .postShorten.postShorten--thumbnailimg-top .postShorten-thumbnailimg img {
-        width: 100%;
+        min-width: 100%;
         position: absolute;
         top: -100%;
         bottom: -100%;

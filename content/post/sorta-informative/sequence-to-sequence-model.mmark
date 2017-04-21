@@ -5,7 +5,7 @@ hasMath = true
 isCJKLanguage = true
 tags = ["neural network", "rnn"]
 title = "Sequence to Sequence 모형"
-thumbnailImage = "/seq2seq/basic_seq2seq.png"
+thumbnailImage = "http://res.cloudinary.com/rosinality/image/upload/v1492734059/seq2seq/basic_seq2seq.png"
 coverSize = "partial"
 autoThumbnailImage = true
 thumbnailImagePosition = "left"
@@ -54,14 +54,14 @@ $$
 가변 길이 문장을 제한된 크기의 상태로 인코딩한다는 것이 사실상 불가능하기 때문에 실제로 사용되는 모형에서는 주의(Attention) 같은 메커니즘을 도입한다. 하지만 입력 문장을 어떤 상태로 인코딩해서, 인코딩된 상태를 다시 디코딩하는 방식으로 동작한다는 작동 방식은 기본적으로 동일하다. 인코더-디코더가 이런 식으로 연결된 모델을 Sequence to Sequence 모델이라고 부르며 GNMT는 사실상 이 모델을 충분히 크고 정교하게 만든 것이라고 볼 수 있다.
 
 
-![Basic Seq2Seq](/seq2seq/basic_seq2seq.png)
+![Basic Seq2Seq](http://res.cloudinary.com/rosinality/image/upload/v1492734059/seq2seq/basic_seq2seq.png)
 Sequence to Sequence (출처: [[https://www.tensorflow.org]])
 
 [Google’s AI translation tool seems to have invented its own secret internal language](https://techcrunch.com/2016/11/22/googles-ai-translation-tool-seems-to-have-invented-its-own-secret-internal-language)
 
 그렇다면 위의 글에서 뉴럴넷이 내부 언어를 만들어냈다는 것의 의미는 무엇일까? 구글은 최근 GNMT를 단순히 영어-한국어 같은 두 언어 페어 사이의 번역 대신 하나의 모델로 영어, 일본어, 한국어 등 다양한 언어 사이의 번역이 가능하도록 확장했다. 논문은 [[https://arxiv.org/abs/1611.04558]]에 있다. 어떻게 했냐면 인코더에 입력을 주면서 어떤 언어로 번역해야 할지를 같이 입력으로 준 것이다. 예를 들면 "<영어로> 뉴럴넷은 위대하다"라고 입력한 것이다. 그랬더니 다양한 언어 사이의 번역이 가능해졌다. 단순하지 않은가? 뉴럴넷 연구자인 Andrej Karpathy도 이 아이디어가 당황스러웠던 모양이다.
 
-![Karpathy](/seq2seq/karpathy.png) (출처: https://twitter.com/karpathy/status/798806811360960512)
+![Karpathy](http://res.cloudinary.com/rosinality/image/upload/v1492734059/seq2seq/karpathy.png) (출처: https://twitter.com/karpathy/status/798806811360960512)
 
 이런 식으로 뉴럴넷을 학습시켰더니 놀랍게도 일본어를 영어로 번역하는 방법을 학습하고, 영어를 한국어로 번역하는 방법을 학습했더니 일본어를 한국어로 번역하는 방법은 학습하지 않았는데도 번역할 수 있게 된 것이다. 대체 어떻게?
 
@@ -71,10 +71,10 @@ Sequence to Sequence (출처: [[https://www.tensorflow.org]])
 
 또 다양한 언어에 대해 학습시켰기 때문에 이런 것도 가능하다.
 
-![Mixing Translation 1](/seq2seq/translate1.png)
+![Mixing Translation 1](http://res.cloudinary.com/rosinality/image/upload/v1492734059/seq2seq/translate1.png)
 
 늘 잘 되는 건 아니라지만 입력 언어를 섞어도 번역을 해낼 수 있다는 것이다. 하다가 생각이 났는지 다음과 같은 장난(?)도 했다.
 
-![Mixing Translation 2](/seq2seq/translate2.png)
+![Mixing Translation 2](http://res.cloudinary.com/rosinality/image/upload/v1492734059/seq2seq/translate2.png)
 
 <일본어로> 혹은 <한국어로> 대신 0.3<일본어로> + 0.7<한국어로>라고 입력해서 번역 결과를 출력한 것이다. 저자들은 일본어와 한국어를 섞은 중간 언어가 튀어나오길 기대했으나 그렇지는 않아서 아쉽다(?)고 말하고 있다. 그렇지만 뭔가 뉘앙스의 차이는 있는 것 같고 그게 일본어와 한국어를 섞는 과정에서 발생한 것일 수도 있다.

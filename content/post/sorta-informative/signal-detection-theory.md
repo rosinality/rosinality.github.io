@@ -4,7 +4,7 @@ draft = false
 title = "신호 탐지 이론"
 isCJKLanguage = true
 categories = ["sorta informative"]
-thumbnailImage = "/sdt/index8.png"
+thumbnailImage = "http://res.cloudinary.com/rosinality/image/upload/v1492734059/sdt/index8.png"
 thumbnailImagePosition = "left"
 hasMath = true
 
@@ -29,23 +29,23 @@ hasMath = true
 
 왜 그런지 궁금하니 우리 불쌍한 레이더 관측명의 머리 속을 들여다보자.
 
-{{< image src="/sdt/index.png" >}}
+{{< image src="http://res.cloudinary.com/rosinality/image/upload/v1492734059/sdt/index.png" >}}
 
 뭔가 재수없는 정규분포가 두 개 튀어나왔다. X축은 레이더 관측병이 느끼는 감각의 강도라고 보면 된다. 그래프를 아주 쉽게 설명하자면, 노이즈만 있을 때는 관측병이 느끼는 감각의 강도가 대충 파란 그래프의 봉우리 근처에서 왔다갔다 한다고 보면 되고, 신호와 노이즈가 섞여 있을 때는 감각의 강도가 빨간 그래프의 봉우리 근처에서 왔다갔다 한다고 보면 된다. 여기서부터 벌써 몇 가지 중요한 사실을 알 수 있다. 노이즈 없이 신호만 있는 경우는 세상에 없고 또 노이즈(어떤 경우에는 자극이 없는 경우에도) 사람은 뭔가 있다고 느낀다는 것이다. 왜 그런지 궁금하면 눈을 한 번 감아보라. 눈 앞에 뭔가 어른거리지 않는가?
 
 자, 레이더 관측병의 감각 구조가 대충 이렇다고 하면, 레이더 관측병은 이런 감각을 느꼈을 때 보고를 할 지 하지 않을지 어떻게 결정할까? 아주 간단하게 표현하면 다음과 같을 것이다:
 
-{{< image src="/sdt/index2.png" >}}
+{{< image src="http://res.cloudinary.com/rosinality/image/upload/v1492734059/sdt/index2.png" >}}
 
 녹색 선이 추가됐다. 녹색 선을 기준으로 해서 녹색 선보다 감각의 강도가 세면 적기다!라고 소리치고, 약하면 새가 날아다니는가보다 뭐 그렇게 생각하고 말자, 이렇게 결정할 수 있다. 이 녹색 선의 위치를 베타$\beta$라고 한다.
 
 자, 이 그래프를 통해서 Miss와 False Alarm이 어떻게 발생하는지 알아보자.
 
-{{< image src="/sdt/index3.png" >}}
+{{< image src="http://res.cloudinary.com/rosinality/image/upload/v1492734059/sdt/index3.png" >}}
 
 이 그래프도 특별히 어려운 내용은 아니다. 신호가 있을 때(즉 적기가 나타났을 때) 적기가 나타났다고 하면 Hit이고 별 것 아니라고 레이더 화면을 보면서 다시 졸기 시작하면 그건 Miss다.
 
-{{< image src="/sdt/index4.png" >}}
+{{< image src="http://res.cloudinary.com/rosinality/image/upload/v1492734059/sdt/index4.png" >}}
 
 이 그래프도 마찬가지다. 노이즈일 때(그러니까 실제로는 적기가 아닐 때) 적기가 나타났다고 하면 False Alarm이고 그냥 화면이 지직거리는 거라는 옳은 판단을 하면 그건 Correct Rejection이다.
 
@@ -53,21 +53,21 @@ hasMath = true
 
 시도때도 없이 난리치지 말라거나, 혹은 정신 똑바로 차리고 화면을 보라거나 하는 식으로 갈구면 베타가 이동한다는 것이 연구를 통해 알려져 있다. 이렇게 겹쳐있는 분포에서 베타가 움직인다는 것은 무슨 의미일까?
 
-{{< image src="/sdt/index5.png" >}}
+{{< image src="http://res.cloudinary.com/rosinality/image/upload/v1492734059/sdt/index5.png" >}}
 
 적기를 놓치면 죽는다고 좀 갈궈줬다. 그래서 레이더 관측병의 베타는 왼쪽으로 이동했다. 베타가 왼쪽으로 이동한다는 건 감각의 강도가 약해도 적기가 나타났다고 보고한다는 것이다. 따라서 Hit이 높아지고 Miss는 낮아진다. 그런데 그러면 동시에 False Alarm이 높아지고 Correct Rejection이 낮아진다.
 
-{{< image src="/sdt/index6.png" >}}
+{{< image src="http://res.cloudinary.com/rosinality/image/upload/v1492734059/sdt/index6.png" >}}
 
 귀찮으니까 시도때도 없이 보고하지 말라고 좀 갈궈줬다. 그러면 레이더 관측병의 베타는 오른쪽으로 이동한다. 베타가 오른쪽으로 이동한다는 건 감각의 강도가 웬만큼 강하지 않은 이상 보고하지 않는다는 의미다. 지휘관이 원했던 것처럼 False Alarm이 줄어들고 Correct Rejection이 높아졌다. 이제 지휘관의 숙면이 방해받지 않을 가능성이 높아졌다! 그렇지만 Miss가 높아지고 Hit이 낮아져 난데없는 폭탄에 비명횡사할 가능성은 높아졌다.
 
 이제 분포가 겹쳐져 있기에 베타를 움직이는 것 가지고는 Miss와 False Alarm을 동시에 줄일 수 없다는 것을 알 수 있다. 그러면 어떻게 해야 할까? 분포가 덜 겹쳐지도록 만들면 된다!
 
-{{< image src="/sdt/index7.png" >}}
+{{< image src="http://res.cloudinary.com/rosinality/image/upload/v1492734059/sdt/index7.png" >}}
 
 두 분포가 멀리 떨어지니 Miss와 False Alarm의 비율이 낮아졌다! 이게 바로 원하는 결과다. 그래서 두 분포 사이의 거리를 측정하는 기준을 만들었다. 그것이 민감도sensitivity $d'$다.
 
-{{< image src="/sdt/index8.png" >}}
+{{< image src="http://res.cloudinary.com/rosinality/image/upload/v1492734059/sdt/index8.png" >}}
 
 좀 수학적으로 표현하면
 $$d'=\frac{\mu_S-\mu_N}{\sqrt{\frac{1}{2}(\sigma_S^2+\sigma_N^2)}}$$

@@ -1,7 +1,7 @@
 +++
 autoThumbnailImage = true
 categories = ["sorta informative"]
-coverImage = "http://res.cloudinary.com/rosinality/image/upload/c_fill,g_north,h_180,w_700/v1492734051/covers/road.jpg"
+coverImage = "https://res.cloudinary.com/rosinality/image/upload/c_crop,g_north,h_253,w_490/v1492734051/covers/road.jpg"
 coverSize = "partial"
 date = "2017-04-21T11:03:26+09:00"
 hasMath = false

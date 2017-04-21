@@ -8,7 +8,7 @@ title = "상식과 사회학적 설명"
 coverImage = "http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/cover03.jpg"
 coverSize = "partial"
 autoThumbnailImage = true
-thumbnailImagePosition = "left"
+thumbnailImagePosition = "top"
 
 +++
 

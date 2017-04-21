@@ -1,7 +1,7 @@
 +++
 autoThumbnailImage = true
 categories = ["sorta informative"]
-coverImage = "https://res.cloudinary.com/rosinality/image/upload/c_crop,h_180,w_1280/v1492740759/covers/earthmover.jpg"
+coverImage = "https://res.cloudinary.com/rosinality/image/upload/v1492740759/covers/earthmover.jpg"
 coverSize = "partial"
 date = "2017-04-21T11:12:59+09:00"
 hasMath = true

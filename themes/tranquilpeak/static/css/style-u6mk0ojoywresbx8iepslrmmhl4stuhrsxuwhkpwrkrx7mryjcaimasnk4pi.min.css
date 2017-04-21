@@ -2725,6 +2725,10 @@ a.fancybox {
     vertical-align: middle
 }
 
+.post-header {
+    padding-top: 40px;
+}
+
 .post-header-cover .post-header .post-title {
     max-width: 750px;
     margin: 0 auto 20px;
@@ -2905,7 +2909,7 @@ a.fancybox {
 }
 
 .postShorten .postShorten-thumbnailimg {
-    overflow: hidden
+    overflow: hidden;
 }
 
 .postShorten .postShorten-header .postShorten-title {
@@ -3003,8 +3007,20 @@ a.fancybox {
         width: calc(100% - 140px - 20px)
     }
     .postShorten.postShorten--thumbnailimg-top .postShorten-thumbnailimg {
-        margin-top: 5px
+        margin-top: 5px;
+        height: 188px;
+        overflow: hidden;
+        position: relative;
     }
+
+    .postShorten.postShorten--thumbnailimg-top .postShorten-thumbnailimg img {
+        width: 100%;
+        position: absolute;
+        top: -100%;
+        bottom: -100%;
+        margin: auto;
+    }
+
     .postShorten.postShorten--thumbnailimg-bottom .postShorten-wrap {
         display: block;
         width: 100%

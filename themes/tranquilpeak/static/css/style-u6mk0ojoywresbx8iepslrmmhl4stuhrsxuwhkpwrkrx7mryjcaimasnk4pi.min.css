@@ -2717,6 +2717,7 @@ a.fancybox {
     padding: calc(55px + 30px) 0 30px;
     height: 100%;
     z-index: 15;
+    background-color: #fff;
     -webkit-transition: -webkit-transform .25s ease-in-out
 }
 

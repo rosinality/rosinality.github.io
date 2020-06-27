@@ -1,0 +1,51 @@
++++
+categories = ["joke"]
+date = "2017-04-20T21:37:20+09:00"
+hasMath = true
+isCJKLanguage = true
+tags = ["dlib"]
+title = "일베와 두부"
+coverImage = "http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/tofu.jpg"
+coverSize = "partial"
+autoThumbnailImage = true
+thumbnailImagePosition = "left"
+
++++
+
+잘 아는 배우는 아니지만 얼핏 TV에서 본 듯한 배우가 돌바닥 사진을 뒤집어놓고 두부 심부름을 운운한 것 때문에 열성 일베 유저로 몰린 것 같다. 그 배우가 일베러인지 아닌지는 뭐 그 배우와 법정만 알 것 같고, 이 글은 꽤 많은 사람들이 일베와 두부 사이의 관계를 놓고 확률을 논하는 것이 흥미로워서 쓰기 시작했다. (고소방지바람)
+
+일단 '돌바닥 사진을 돌려 두부 심부름을 운운함'(이하 두부)을 $\textbf{두부}$라고 하고 '일베러임'(이하 일베)을 $\textbf{일베}$라고 하자. 그러면 우리가 궁금한 건 두부일 때 일베일 확률이다. 일베인지 아닌지는 우리가 모르는 것이고 두부인지 아닌지는 우리가 알고 있는 것이니까. 그러면 두부일 때 일베일 확률은 다음 조건부확률과 같다.
+
+$$
+\operatorname{P}(\textbf{일베}|\textbf{두부})
+$$
+
+그런데 두부일 때 일베일 확률을 우리가 알고 있나? 두부이니 일베라고 최초로 주장한 사람도 이 확률을 알지는 않았을 것이다. 그 사람 또한 일베가 두부와 절벽을가지고 괴상한 소리를 하는 경향이 높으니 일베일 것이라고 추정한 것이다. 즉 일베일 때 두부일 확률이 높다는 것이다. 이 확률은 다음과 같다.
+
+$$
+\operatorname{P}(\textbf{두부}|\textbf{일베})
+$$
+
+그러면 이 두 확률 사이에는 무슨 관계가 있는가? 그 관계는 다음과 같다:
+
+$$
+\operatorname{P}(\textbf{일베}|\textbf{두부}) = \frac{\operatorname{P}(\textbf{일베})\operatorname{P}(\textbf{두부}|\textbf{일베})}{\operatorname{P}(\textbf{두부})}
+$$
+
+재미있는 건 $\operatorname{P}(\textbf{일베}|\textbf{두부})$가 $\operatorname{P}(\textbf{두부}|\textbf{일베})$ 뿐만 아니라 $\operatorname{P}(\textbf{일베})$와 $\operatorname{P}(\textbf{두부})$와도 관계가 있다는 것이다. 그러니까 어떤 사람이 돌바닥 사진을 돌려놓고 거기다 두부 심부름을 운운할 확률이 낮을수록, 어떤 사람이 일베일 확률이 높을수록 두부일 때 일베일 확률이 높아지는 것이다.
+
+일베일 확률은 얼마나 될까? 뭐 성별이라거나 연령 같은 걸 고려해볼 수도 있겠지만 그런 걸 다 빼고 인구 분에 일베 유저로 하면, 인구 오천 만에 일베 유저가 대충 200만 명 정도 된다는 것 같으니 0.04라고 할 수 있을 것이다. $\operatorname{P}(\textbf{두부}|\textbf{일베})$는 꽤 높다고 보고, 이제 $\operatorname{P}(\textbf{두부})$를 알아야 한다. 구하기 어렵지만, 사람들은 이 확률이 상당히 혹은 매우 낮다고 보고 있다. 그러니까 돌바닥 사진에다 두부 심부름을 끌어다 붙일 확률이 낮다는 것이다. 그러니 $\operatorname{P}(\textbf{일베}|\textbf{두부})$ 확률은 많은 사람들 마음 속에서 꽤 높아진 것이다.
+
+그런데 어떤 사람들은 이런 주장을 하기도 한다:
+
+> 일베 유저가 아닌데 두부 운운할 확률이 얼마나 되겠나? 그러니 일베 유저이다.
+
+비슷해보이면서도 위와는 다른 주장이라는 것을 알 수 있다. 그러니까 다음과 같다:
+
+$$
+\operatorname{P}(\textbf{두부}|\textbf{일베}) > \operatorname{P}(\textbf{두부}|\textbf{일베 아님})
+$$
+
+이것도 꽤 그럴듯하지 않은가? 거기다 대부분의 사람들이 위의 관계에 대해서는 동의하는 것 같다. $\frac{\operatorname{P}(\textbf{일베})}{\operatorname{P}(\textbf{두부})}$라는 비율이 너무 작지만 않다고 하면 이런 추론도 충분히 괜찮을 것이다. $\operatorname{P}(\textbf{일베})$와 $\operatorname{P}(\textbf{두부})$에 대해서 알기가 너무 어렵다면, 아니면 생각하고 싶지 않다면 이런 추론이 유일한 방법일 수도 있다.
+
+정확한 비유는 아니지만 이런 두 가지 추론의 방식을 가지고 통계학자들은 대충 100년 정도 싸워왔다.

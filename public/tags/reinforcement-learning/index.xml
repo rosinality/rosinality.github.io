@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Reinforcement Learning on Nondifferentiable Log</title>
+    <title>reinforcement learning on Nondifferentiable Log</title>
     <link>http://rosinality.github.io/tags/reinforcement-learning/</link>
-    <description>Recent content in Reinforcement Learning on Nondifferentiable Log</description>
+    <description>Recent content in reinforcement learning on Nondifferentiable Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
     <lastBuildDate>Sun, 21 May 2017 00:01:52 +0900</lastBuildDate>

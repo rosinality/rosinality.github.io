@@ -21,7 +21,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.40.1">
+    <meta name="generator" content="Hugo 0.73.0">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
     <title>인과적 구조</title>
     <meta name="author" content="Kim Seonghyeon">
@@ -227,15 +227,10 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>유디 펄(Judea Pearl)이 어디 초청받아 강연을 하러 가보니까 강연을 주최한 기관 이름이 데이터 사이언스 및 엔지니어링 연구소였다고 한다. 유디 펄이 이게 마음에 안 들었는지 우리가 필요로하는 것이 데이터의 과학인가 아니면 데이터를 생성하는 실제에 대한 과학인가? 라고 물었단다. 하여간 이 양반도 참 까다로운 양반이다.</p>
-
 <p>이 질문의 요지는 우리가 인과적 관계를 어떻게 발견할 수 있는가 하는 문제와 관련되어 있다. 유디 펄이 꾸준히 강조해온 것은 인과적 구조는 데이터에서 뽑아낼 수 없다는 것이다. 인과적 구조를 다루는 것은 이론이 해야 할 일이고 이론을 통해 데이터의 인과적 구조, 즉 데이터를 생성하는 자연과 세상의 메커니즘을 기반으로 모델이 구성되었을 때 그 모델을 통해 인과적 추론을 수행할 수 있다는 것이다. 유디 펄은 이 문제를 가지고 앤드류 겔만과 한 판 붙은 적도 있는데 자세한 내용은 앤드류 겔만의 블로그를 참조하면 된다. (<a href="http://andrewgelman.com/2014/07/03/great-advantage-model-based-ad-hoc-ap-proach-seems-given-time-know/">http://andrewgelman.com/2014/07/03/great-advantage-model-based-ad-hoc-ap-proach-seems-given-time-know/</a>) 하여간 인과적 정보를 데이터를 통해서 추론할 수 없다는 것은 메커니즘 기반 설명을 지지하는 학자들도 공통적으로 동의하는 부분이고 이와 관련된 논의는 Hedstrom의 디쎅팅 더 소샬 같은 것에 잘 정리되어 있다. 방법론 공부를 하려고 계량경제학 책만 보던 불쌍한 사회학도들이 사회학자가 쓴 책으로 공부할 수 있게 해준 Morgan &amp; Winship 같은 경우에도 실용적인 측면에서 이런 시각에 대해 소개하고 있다.</p>
-
 <p>그런데 문제는 데이터를 본다고 데이터 생성 과정을 알 수 있는 것도 아닌데 어떻게 데이터 생성 과정에 대한 이론을 만들 수 있는가? 하는 것이다. 그럴 듯한 인과적 구조가 한둘 밖에 없으면 좋겠지만 사회 현상이라는 게 그렇질 않다. 일찌기 Stinchcombe이 이르길 상관관계를 보고 최소 3개 정도의 그럴 듯한 설명을 만들어낼 수 없는 학생은 사회학자 말고 다른 직업을 알아보는 것이 좋다고 했다. 여튼 인간이 그럴 듯하다고 생각하는 인과 메커니즘은 수도 없이 많은데다 끊임없이 새로 생겨나기까지 한다. 물론 데이터를 통해 인과 메커니즘을 테스트하는 것은 할 수 있으니 이론과 실증이 서로 피드백하며 잘 하다보면 발전할 수 있다는 이런 쪽 학자들이 딱히 할 말이 없으면 하는 말 정도는 할 수 있겠지만.</p>
-
 <p>그러면 모델에 인과적 구조를 잘못 기술하면 어떻게 되는가? 물론 추론이 무너지고 설명이 무너지고 예측이 황폐화된다. 반대로 이론적으론 꼭 집어넣어야 하는 변수인데 데이터가 없는 경우도 흔하다. 몇 가지 경우에는 인과 그래프 모형의 특성을 이용해 인과성의 존재 여부를 테스트할 수는 있는데 이러면 효과 크기를 추정하는 것이 불가능해진다. 인과관계가 있는지 없는지도 몰라서 문제인데 효과 크기까지 따지는 건 과욕이긴 하겠다.</p>
-
 <p>그래서 Breiman 같은 경우엔 자연이 니들 생각처럼 간단한 메커니즘을 가지고 있을 거라는 기대를 버리고 그냥 블랙박스 취급하는 것이 나을 수 있다는 이야기까지 하게 된 것이다.</p>
-
 <p>하여간 사회현상에 대한 인과적 설명을 신뢰롭게 한다는 것은 정말 어려운 일이고 많은 사람들이 관심 있어하는 문제에 대해서 사회과학이 그런 수준까지 도달하는 것이 가능하긴 한지 하는 생각이 들 때가 있는 것이다.</p>
 
               
@@ -334,7 +329,7 @@
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2019 Kim Seonghyeon. 
+    &copy; 2020 Kim Seonghyeon. 
   </span>
 </footer>
 
@@ -413,6 +408,40 @@
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2020/06/the-last-of-us-part-ii-%EC%8A%A4%ED%8F%AC%EC%9D%BC%EB%9F%AC-%ED%8F%AC%ED%95%A8/">
+                <h3 class="media-heading">The Last of Us Part II [스포일러 포함]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">과연 라스트 오브 어스 2는 증오와 적대에 대한 게임이다. (인터뷰) 게임에서 싸우는 것이 일상이고 증오와 적대가 게임에 등장하는 것이야 대수로운 일도 아니지 않을까</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="http://rosinality.github.io/2019/08/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">
                 <h3 class="media-heading">머신러닝 파이프라인 만들기</h3>
               </a>
@@ -421,7 +450,7 @@
                   Aug 8, 2019
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘feature extractor을 데이터를 통해 학습한다는 것이었다.</div>
+              <div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘(Feature extractor)을 데이터를 통해 학습한다는 것이었</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -546,40 +575,6 @@
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://rosinality.github.io/2017/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D%EA%B3%BC-%EC%82%AC%ED%9A%8C-%EA%B3%BC%ED%95%99/">
-                <h3 class="media-heading">머신 러닝과 사회 과학</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  May 5, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">머신 러닝이 사회과학 연구에 어떤 도움이 될까? 머신 러닝 알고리즘 중에는 사회과학에서 흔히 쓰이던 방법과 거의 동일한 작업을 수행할 수 있으면서 많은 경우에 더 강력한</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://rosinality.github.io/2017/05/%ED%8A%B9%EC%A7%95-%EC%B6%94%EC%B6%9Cfeature-extraction%EA%B3%BC-%EB%94%A5-%EB%9F%AC%EB%8B%9D/">
-                <h3 class="media-heading">특징 추출(Feature Extraction)과 딥 러닝</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  May 5, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">https://sinews.siam.org/Details-Page/deep-deep-trouble 뉴럴넷 연구를 하던 사람들이 오랜 겨울을 지나왔던 것처럼 이미지 처리에서, 이젠 전통적인 방법이라고 불리는 방법들을 연구하던 사람들의 고민이 깊은 모양이다. 뉴</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -587,7 +582,7 @@
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         51 posts found
+         52 posts found
       </p>
     </div>
   </div>
@@ -600,6 +595,16 @@
 
 
     
+<script>
+  (function (d) {
+    var config = {
+      kitId: 'vld6lxf',
+      scriptTimeout: 3000,
+      async: true
+    },
+      h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+  })(document);
+</script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
@@ -610,49 +615,50 @@
 <script src="/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
 
 <script>
-$(document).ready(function() {
-  hljs.configure({ classPrefix: '', useBR: false });
-  $('pre.code-highlight').each(function(i, block) {
-    var code = "";
-    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
-      code += "<span class=\"line\">" + line + "</span><br>";
+  $(document).ready(function () {
+    hljs.configure({ classPrefix: '', useBR: false });
+    $('pre.code-highlight').each(function (i, block) {
+      var code = "";
+      hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function (line) {
+        code += "<span class=\"line\">" + line + "</span><br>";
+      });
+      if (code.length > 0) {
+        block.innerHTML = code;
+      }
     });
-    if (code.length > 0) {
-      block.innerHTML = code;  
-    }
+    $('pre > code').each(function (i, block) {
+      $(this).addClass('codeblock');
+      hljs.highlightBlock(block);
+    });
   });
-  $('pre > code').each(function(i, block) {
-    $(this).addClass('codeblock');
-    hljs.highlightBlock(block);
-  });
-});
 </script>
 
-  
-    
-      <script>
-        var disqus_config = function () {
-          this.page.url = 'http:\/\/rosinality.github.io\/2017\/04\/%EC%9D%B8%EA%B3%BC%EC%A0%81-%EA%B5%AC%EC%A1%B0\/';
-          
-            this.page.identifier = '\/2017\/04\/%EC%9D%B8%EA%B3%BC%EC%A0%81-%EA%B5%AC%EC%A1%B0\/'
-          
-        };
-        (function() {
-          
-          
-          if (window.location.hostname == "localhost") {
-            return;
-          }
-          var d = document, s = d.createElement('script');
-          var disqus_shortname = 'rosinality';
-          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      </script>
+
+<script>
+  var disqus_config = function () {
+    this.page.url = 'http:\/\/rosinality.github.io\/2017\/04\/%EC%9D%B8%EA%B3%BC%EC%A0%81-%EA%B5%AC%EC%A1%B0\/';
+    { { if .Params.disqusIdentifier } }
+    this.page.identifier = '';
+    { { else } }
+    this.page.identifier = '\/2017\/04\/%EC%9D%B8%EA%B3%BC%EC%A0%81-%EA%B5%AC%EC%A1%B0\/'
+    { { end } }
+  };
+  (function () {
     
-  
+    
+    if (window.location.hostname == "localhost") {
+      return;
+    }
+    var d = document, s = d.createElement('script');
+    var disqus_shortname = 'rosinality';
+    s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
 
 
 

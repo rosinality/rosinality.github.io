@@ -21,7 +21,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.40.1">
+    <meta name="generator" content="Hugo 0.73.0">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
     <title>Caffe2에 대해</title>
     <meta name="author" content="Kim Seonghyeon">
@@ -227,13 +227,9 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>PyTorch랑 장기적으로 백엔드를 통합한다니까 관심이 생겨서 Caffe2를 좀 들여다봤음. Caffe를 써본 적은 없음. protocol buffer 파일을 만들어서 돌린다는 것만 아는 정도? 가장 먼저 써봤던 프레임워크는 Torch였고 그 이후에 TensorFlow가 나와서 그걸 써왔기 때문에&hellip;</p>
-
 <p>보니까 Caffe와 동일하게 Caffe2도 파이썬 라이브러리는 protocol buffer를 생성하기 위한 라이브러리임. 물론 텐서플로와 같은 경우에도 파이썬은 거의 그래프를 만들기 위한 것이기 때문에 비슷하다고 할 수 있을 것 같긴 한데. 어쨌든 파이썬으로 protobuf를 생성하고(문자열로 찍어볼 수도 있음) 그걸 C++로 만들어진 백엔드에 입력해서 실제 실행은 백엔드에서 돌아가는 구조. 이런 형태의 정적 그래프를 쓰는 프레임워크들의 본래 목표이자 특징이기도 하지만 입력이 정해진 형식의 그래프로 한정되어 있기 때문에 최적화와 분산 처리가 쉽고(쉽다고 할 수 있고) 입력은 protobuf로 제한되어 있으니 파이썬으로 인한 오버헤드를 제거할 수 있다는 것이 장점일 것.</p>
-
 <p>이런 구조라는 걸 보니까 PyTorch하고 통합하는 것도 생각보다 매끄러울 수 있겠다는 생각도 듦. PyTorch로 디버깅, 테스팅하고 그래프를 정적으로 고정하고 나면 그걸 protobuf로 번역해서 Caffe2 백엔드로 넘겨 트레이닝하거나 배포하는 것도 가능할 듯. 좀 더 interop이 잘 되면 텐서를 공유하면서 동적인 처리는 PyTorch에서 한다거나 하는 것도 가능할 것 같음.</p>
-
 <p>약간 두 가지를 잘 하는 도구 하나보다는 한 가지를 잘 하는 도구 두 개가 낫다는 발상이긴 함. 물론 두 접근 다 장단점이 있긴 하지만. 어쨌든 PyTorch에 빠진 입장에서는 Caffe2가 PyTorch로 만든 모델을 배포할 수 있는 도구가 될 수 있다면 긍정적이라고 봄.</p>
-
 <p>여담이지만 PyTorch/Caffe2나 TensorFlow를 보면 구글과 페이스북의 개발 스타일의 차이가 좀 드러나는 것이 아닌가 하는 생각도 함.</p>
 
               
@@ -332,7 +328,7 @@
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2019 Kim Seonghyeon. 
+    &copy; 2020 Kim Seonghyeon. 
   </span>
 </footer>
 
@@ -411,6 +407,40 @@
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2020/06/the-last-of-us-part-ii-%EC%8A%A4%ED%8F%AC%EC%9D%BC%EB%9F%AC-%ED%8F%AC%ED%95%A8/">
+                <h3 class="media-heading">The Last of Us Part II [스포일러 포함]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">과연 라스트 오브 어스 2는 증오와 적대에 대한 게임이다. (인터뷰) 게임에서 싸우는 것이 일상이고 증오와 적대가 게임에 등장하는 것이야 대수로운 일도 아니지 않을까</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="http://rosinality.github.io/2019/08/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">
                 <h3 class="media-heading">머신러닝 파이프라인 만들기</h3>
               </a>
@@ -419,7 +449,7 @@
                   Aug 8, 2019
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘feature extractor을 데이터를 통해 학습한다는 것이었다.</div>
+              <div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘(Feature extractor)을 데이터를 통해 학습한다는 것이었</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -544,40 +574,6 @@
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://rosinality.github.io/2017/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D%EA%B3%BC-%EC%82%AC%ED%9A%8C-%EA%B3%BC%ED%95%99/">
-                <h3 class="media-heading">머신 러닝과 사회 과학</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  May 5, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">머신 러닝이 사회과학 연구에 어떤 도움이 될까? 머신 러닝 알고리즘 중에는 사회과학에서 흔히 쓰이던 방법과 거의 동일한 작업을 수행할 수 있으면서 많은 경우에 더 강력한</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://rosinality.github.io/2017/05/%ED%8A%B9%EC%A7%95-%EC%B6%94%EC%B6%9Cfeature-extraction%EA%B3%BC-%EB%94%A5-%EB%9F%AC%EB%8B%9D/">
-                <h3 class="media-heading">특징 추출(Feature Extraction)과 딥 러닝</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  May 5, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">https://sinews.siam.org/Details-Page/deep-deep-trouble 뉴럴넷 연구를 하던 사람들이 오랜 겨울을 지나왔던 것처럼 이미지 처리에서, 이젠 전통적인 방법이라고 불리는 방법들을 연구하던 사람들의 고민이 깊은 모양이다. 뉴</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -585,7 +581,7 @@
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         51 posts found
+         52 posts found
       </p>
     </div>
   </div>
@@ -598,6 +594,16 @@
 
 
     
+<script>
+  (function (d) {
+    var config = {
+      kitId: 'vld6lxf',
+      scriptTimeout: 3000,
+      async: true
+    },
+      h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+  })(document);
+</script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
@@ -608,49 +614,50 @@
 <script src="/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
 
 <script>
-$(document).ready(function() {
-  hljs.configure({ classPrefix: '', useBR: false });
-  $('pre.code-highlight').each(function(i, block) {
-    var code = "";
-    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
-      code += "<span class=\"line\">" + line + "</span><br>";
+  $(document).ready(function () {
+    hljs.configure({ classPrefix: '', useBR: false });
+    $('pre.code-highlight').each(function (i, block) {
+      var code = "";
+      hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function (line) {
+        code += "<span class=\"line\">" + line + "</span><br>";
+      });
+      if (code.length > 0) {
+        block.innerHTML = code;
+      }
     });
-    if (code.length > 0) {
-      block.innerHTML = code;  
-    }
+    $('pre > code').each(function (i, block) {
+      $(this).addClass('codeblock');
+      hljs.highlightBlock(block);
+    });
   });
-  $('pre > code').each(function(i, block) {
-    $(this).addClass('codeblock');
-    hljs.highlightBlock(block);
-  });
-});
 </script>
 
-  
-    
-      <script>
-        var disqus_config = function () {
-          this.page.url = 'http:\/\/rosinality.github.io\/2017\/04\/caffe2%EC%97%90-%EB%8C%80%ED%95%B4\/';
-          
-            this.page.identifier = '\/2017\/04\/caffe2%EC%97%90-%EB%8C%80%ED%95%B4\/'
-          
-        };
-        (function() {
-          
-          
-          if (window.location.hostname == "localhost") {
-            return;
-          }
-          var d = document, s = d.createElement('script');
-          var disqus_shortname = 'rosinality';
-          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      </script>
+
+<script>
+  var disqus_config = function () {
+    this.page.url = 'http:\/\/rosinality.github.io\/2017\/04\/caffe2%EC%97%90-%EB%8C%80%ED%95%B4\/';
+    { { if .Params.disqusIdentifier } }
+    this.page.identifier = '';
+    { { else } }
+    this.page.identifier = '\/2017\/04\/caffe2%EC%97%90-%EB%8C%80%ED%95%B4\/'
+    { { end } }
+  };
+  (function () {
     
-  
+    
+    if (window.location.hostname == "localhost") {
+      return;
+    }
+    var d = document, s = d.createElement('script');
+    var disqus_shortname = 'rosinality';
+    s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
 
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Nondifferentiable Log</title>
@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Nondifferentiable Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Wed, 14 Aug 2019 13:26:39 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jun 2020 14:35:00 +0900</lastBuildDate>
     
 	<atom:link href="http://rosinality.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Last of Us Part II [스포일러 포함]</title>
+      <link>http://rosinality.github.io/2020/06/the-last-of-us-part-ii-%EC%8A%A4%ED%8F%AC%EC%9D%BC%EB%9F%AC-%ED%8F%AC%ED%95%A8/</link>
+      <pubDate>Sat, 27 Jun 2020 14:35:00 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2020/06/the-last-of-us-part-ii-%EC%8A%A4%ED%8F%AC%EC%9D%BC%EB%9F%AC-%ED%8F%AC%ED%95%A8/</guid>
+      <description>과연 라스트 오브 어스 2는 증오와 적대에 대한 게임이다. (인터뷰) 게임에서 싸우는 것이 일상이고 증오와 적대가 게임에 등장하는 것이야 대수로운 일도 아니지 않을까</description>
+    </item>
     
     <item>
       <title>머신러닝 파이프라인 만들기</title>
@@ -17,7 +26,7 @@
       <pubDate>Wed, 14 Aug 2019 13:26:39 +0900</pubDate>
       
       <guid>http://rosinality.github.io/2019/08/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/</guid>
-      <description>딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘feature extractor을 데이터를 통해 학습한다는 것이었다.</description>
+      <description>딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘(Feature extractor)을 데이터를 통해 학습한다는 것이었</description>
     </item>
     
     <item>
@@ -206,7 +215,7 @@
       <pubDate>Fri, 21 Apr 2017 16:13:20 +0900</pubDate>
       
       <guid>http://rosinality.github.io/2017/04/%EB%B9%84%ED%8B%80%EC%A6%88%EA%B0%80-%EC%84%B1%EA%B3%B5%ED%95%9C-%EC%9D%B4%EC%9C%A0/</guid>
-      <description>Watts가 Turco &amp;amp; Zuckerman이 쓴 비판에 대한 대응으로 쓴 Response to Turco and Zuckerman&amp;rsquo;s &amp;ldquo;Versthen for Sociology&amp;rdquo;라는 글에서 나온 예시 중에 이런 게 있음. 비</description>
+      <description>Watts가 Turco &amp;amp; Zuckerman이 쓴 비판에 대한 대응으로 쓴 Response to Turco and Zuckerman&amp;rsquo;s &amp;ldquo;Versthen for Sociology&amp;quot;라는 글에서 나온 예시 중에 이런 게 있음. 비틀</description>
     </item>
     
     <item>

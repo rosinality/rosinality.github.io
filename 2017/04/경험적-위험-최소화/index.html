@@ -21,7 +21,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.40.1">
+    <meta name="generator" content="Hugo 0.73.0">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
     <title>경험적 위험 최소화</title>
     <meta name="author" content="Kim Seonghyeon">
@@ -227,15 +227,10 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>Breiman이 Statistical Modeling: The Two Cultures에서 보여줬던 것처럼 통계적 모델링에는 대체로 두 가지 경로가 있다. 하나는 데이터의 생성 과정을 기술하여 데이터를 모델링하고 동시에 모델의 설계자가 관심을 가지고 있었던 모형 내의 확률 변수와 파라미터를 분석하는 것에 집중하는 접근. 다른 하나는 예측 성능 등을 최대화하는 것에 방점을 데이터를 모델링하는 접근.</p>
-
 <p>예측 성능을 최대화하는 것에 집중하는 접근은 세련된 데이터 생성 과정에 대한 모형과 비교하면 좀 무식한 함수 최적화에 가깝게 보이는 경향이 있다. 예를 들어 Kaggle맨들의 영원한 사랑 GBDT 같은 경우엔 loss의 n-1번째 트리까지의 합에 대한 그래디언트, 일종의 잔차에 피팅한 n번째 트리를 더하는 방식으로 트레이닝한다. 간단하게 표현하면 회귀 모형을 피팅한 다음에 남은 잔차에 다시 회귀 모형을 피팅해서 이전 모형에 합치는 것이다. 데이터 생성 모형에 비하면 우아한 맛이 떨어진다면 떨어질 수 있겠다.</p>
-
 <p>이런 무식한(?) 함수 최적화를 정당화하는 논리가 Empirical Risk Minimization이다. 목표는 정확도를 높이는 것이다. 그런데 정확도는 최적화하기 어렵거나 불가능한 목표다. 그러니까 여기서도 정확도 혹은 그에 준하는 loss를 직접 사용하는 대신 최적화가 용이한 loss 함수를 사용한다. loss는 학습할 함수 f(x)와 예측하려는 결과 y 사이의 차이에 대한 함수다. 따라서 데이터 생성 분포 p(x, y)에 대해 loss(f(x), y)의 기대값을 최소화하는 것으로 정확도를 높일 수 있다는 것이다.</p>
-
 <p>물론 p(x, y)에 대해 기대값을 구한다는 것은 불가능하다. 그러나 p(x, y)에 의해 샘플링된 데이터들을 통해 경험적 분포empirical distribution에 대해 기대값을 구한다는 것은 가능하다. 그러니까 결국 데이터에 대해 loss를 최소화하도록 함수를 최적화하면, 데이터에 잘 맞는 함수를 구하면 된다는 것으로 돌아온다.</p>
-
 <p>그렇지만 단순히 이런 함수를 구한다는 것만으로는 일반화를 할 수 있다는 보장이 없다. 데이터에 대해 loss를 최소화하는 가장 쉬운 방법은 데이터를 함수에 모두 저장해놓는 것이다. 물론 전혀 일반화를 할 수 없는 방법이다. 따라서 loss를 최소화하되 또 적당히(?) 일반화할 수 있는 방식으로 최적화를 해야 하는 것이다.</p>
-
 <p>데이터 생성 모형과 예측 성능에 집중하는 모형을 딱 구분하기는 어렵지만, 일단 소위 블랙박스 모형으로 한정한다고 하면 대체로 예측 성능에 집중하는 모형이 예측 성능에는 일반적으로 더 뛰어나다(물론 당연한 소리다). 이걸 어떻게 봐야할 것인가는 여전히 다들 생각이 다른 듯 하다. 해석의 용이성을 높게 치는 쪽이 있고 예측의 정확성을 더 높게 치는 쪽이 있고. 나는 일단 후자가 더 나은, 또는 더 안전한 접근이라고 본다. 예컨대 y에 대해 x와 z1, z2, &hellip; 사이에 상호작용이 있다고 하자. 그 상호작용의 양상에 대해서 모르는 상황에선 데이터 생성 모형이나 예측 모형이나 상호작용에 대해서 파악할 수 없다는 것은 마찬가지다. 그러나 데이터 생성 모형에서 상호작용이 빠지면 y에 대한 x의 관계는 다른 변수와의 상호작용이 배제된 상태에서의 관계가 나타나게 된다. 그러나 상호작용을 자동으로 발견하는 예측 모형에서라면, 상호작용에 대해서 파악하지 못하고 있는 상태에서도 y에 대한 x의 관계는 상호작용이 포함된 상태에서의 관계가 나타나게 된다. 상호작용이 많은 경우에 y에 대한 x의 관계를 크게 변화시킨다는 것을 고려할 때 이런 특성은 y와 x의 관계를 오인하지 않는데 도움이 될 수도 있다.</p>
 
               
@@ -332,7 +327,7 @@
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2019 Kim Seonghyeon. 
+    &copy; 2020 Kim Seonghyeon. 
   </span>
 </footer>
 
@@ -411,6 +406,40 @@
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2020/06/the-last-of-us-part-ii-%EC%8A%A4%ED%8F%AC%EC%9D%BC%EB%9F%AC-%ED%8F%AC%ED%95%A8/">
+                <h3 class="media-heading">The Last of Us Part II [스포일러 포함]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">과연 라스트 오브 어스 2는 증오와 적대에 대한 게임이다. (인터뷰) 게임에서 싸우는 것이 일상이고 증오와 적대가 게임에 등장하는 것이야 대수로운 일도 아니지 않을까</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="http://rosinality.github.io/2019/08/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">
                 <h3 class="media-heading">머신러닝 파이프라인 만들기</h3>
               </a>
@@ -419,7 +448,7 @@
                   Aug 8, 2019
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘feature extractor을 데이터를 통해 학습한다는 것이었다.</div>
+              <div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘(Feature extractor)을 데이터를 통해 학습한다는 것이었</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -544,40 +573,6 @@
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://rosinality.github.io/2017/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D%EA%B3%BC-%EC%82%AC%ED%9A%8C-%EA%B3%BC%ED%95%99/">
-                <h3 class="media-heading">머신 러닝과 사회 과학</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  May 5, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">머신 러닝이 사회과학 연구에 어떤 도움이 될까? 머신 러닝 알고리즘 중에는 사회과학에서 흔히 쓰이던 방법과 거의 동일한 작업을 수행할 수 있으면서 많은 경우에 더 강력한</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://rosinality.github.io/2017/05/%ED%8A%B9%EC%A7%95-%EC%B6%94%EC%B6%9Cfeature-extraction%EA%B3%BC-%EB%94%A5-%EB%9F%AC%EB%8B%9D/">
-                <h3 class="media-heading">특징 추출(Feature Extraction)과 딥 러닝</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  May 5, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">https://sinews.siam.org/Details-Page/deep-deep-trouble 뉴럴넷 연구를 하던 사람들이 오랜 겨울을 지나왔던 것처럼 이미지 처리에서, 이젠 전통적인 방법이라고 불리는 방법들을 연구하던 사람들의 고민이 깊은 모양이다. 뉴</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -585,7 +580,7 @@
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         51 posts found
+         52 posts found
       </p>
     </div>
   </div>
@@ -598,6 +593,16 @@
 
 
     
+<script>
+  (function (d) {
+    var config = {
+      kitId: 'vld6lxf',
+      scriptTimeout: 3000,
+      async: true
+    },
+      h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+  })(document);
+</script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
@@ -608,49 +613,50 @@
 <script src="/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
 
 <script>
-$(document).ready(function() {
-  hljs.configure({ classPrefix: '', useBR: false });
-  $('pre.code-highlight').each(function(i, block) {
-    var code = "";
-    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
-      code += "<span class=\"line\">" + line + "</span><br>";
+  $(document).ready(function () {
+    hljs.configure({ classPrefix: '', useBR: false });
+    $('pre.code-highlight').each(function (i, block) {
+      var code = "";
+      hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function (line) {
+        code += "<span class=\"line\">" + line + "</span><br>";
+      });
+      if (code.length > 0) {
+        block.innerHTML = code;
+      }
     });
-    if (code.length > 0) {
-      block.innerHTML = code;  
-    }
+    $('pre > code').each(function (i, block) {
+      $(this).addClass('codeblock');
+      hljs.highlightBlock(block);
+    });
   });
-  $('pre > code').each(function(i, block) {
-    $(this).addClass('codeblock');
-    hljs.highlightBlock(block);
-  });
-});
 </script>
 
-  
-    
-      <script>
-        var disqus_config = function () {
-          this.page.url = 'http:\/\/rosinality.github.io\/2017\/04\/%EA%B2%BD%ED%97%98%EC%A0%81-%EC%9C%84%ED%97%98-%EC%B5%9C%EC%86%8C%ED%99%94\/';
-          
-            this.page.identifier = '\/2017\/04\/%EA%B2%BD%ED%97%98%EC%A0%81-%EC%9C%84%ED%97%98-%EC%B5%9C%EC%86%8C%ED%99%94\/'
-          
-        };
-        (function() {
-          
-          
-          if (window.location.hostname == "localhost") {
-            return;
-          }
-          var d = document, s = d.createElement('script');
-          var disqus_shortname = 'rosinality';
-          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      </script>
+
+<script>
+  var disqus_config = function () {
+    this.page.url = 'http:\/\/rosinality.github.io\/2017\/04\/%EA%B2%BD%ED%97%98%EC%A0%81-%EC%9C%84%ED%97%98-%EC%B5%9C%EC%86%8C%ED%99%94\/';
+    { { if .Params.disqusIdentifier } }
+    this.page.identifier = '';
+    { { else } }
+    this.page.identifier = '\/2017\/04\/%EA%B2%BD%ED%97%98%EC%A0%81-%EC%9C%84%ED%97%98-%EC%B5%9C%EC%86%8C%ED%99%94\/'
+    { { end } }
+  };
+  (function () {
     
-  
+    
+    if (window.location.hostname == "localhost") {
+      return;
+    }
+    var d = document, s = d.createElement('script');
+    var disqus_shortname = 'rosinality';
+    s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
 
 
 

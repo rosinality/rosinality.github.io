@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bayesian Inference on Nondifferentiable Log</title>
+    <title>bayesian inference on Nondifferentiable Log</title>
     <link>http://rosinality.github.io/tags/bayesian-inference/</link>
-    <description>Recent content in Bayesian Inference on Nondifferentiable Log</description>
+    <description>Recent content in bayesian inference on Nondifferentiable Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
     <lastBuildDate>Fri, 21 Apr 2017 10:35:56 +0900</lastBuildDate>

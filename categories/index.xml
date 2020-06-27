@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Nondifferentiable Log</title>
@@ -6,30 +6,22 @@
     <description>Recent content in Categories on Nondifferentiable Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
+    <lastBuildDate>Sat, 27 Jun 2020 14:35:00 +0900</lastBuildDate>
     
 	<atom:link href="http://rosinality.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Daily Life</title>
-      <link>http://rosinality.github.io/categories/daily-life/</link>
-      <pubDate>Thu, 20 Apr 2017 14:04:26 +0900</pubDate>
+      <title>thoughts</title>
+      <link>http://rosinality.github.io/categories/thoughts/</link>
+      <pubDate>Sat, 27 Jun 2020 14:35:00 +0900</pubDate>
       
-      <guid>http://rosinality.github.io/categories/daily-life/</guid>
+      <guid>http://rosinality.github.io/categories/thoughts/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Joke</title>
-      <link>http://rosinality.github.io/categories/joke/</link>
-      <pubDate>Thu, 20 Apr 2017 21:45:43 +0900</pubDate>
-      
-      <guid>http://rosinality.github.io/categories/joke/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sorta Informative</title>
+      <title>sorta informative</title>
       <link>http://rosinality.github.io/categories/sorta-informative/</link>
       <pubDate>Wed, 14 Aug 2019 13:26:39 +0900</pubDate>
       
@@ -38,11 +30,20 @@
     </item>
     
     <item>
-      <title>Thoughts</title>
-      <link>http://rosinality.github.io/categories/thoughts/</link>
-      <pubDate>Mon, 21 May 2018 10:03:59 +0900</pubDate>
+      <title>joke</title>
+      <link>http://rosinality.github.io/categories/joke/</link>
+      <pubDate>Thu, 20 Apr 2017 21:45:43 +0900</pubDate>
       
-      <guid>http://rosinality.github.io/categories/thoughts/</guid>
+      <guid>http://rosinality.github.io/categories/joke/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>daily life</title>
+      <link>http://rosinality.github.io/categories/daily-life/</link>
+      <pubDate>Thu, 20 Apr 2017 14:04:26 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/categories/daily-life/</guid>
       <description></description>
     </item>
     

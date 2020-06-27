@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rnn on Nondifferentiable Log</title>
+    <title>rnn on Nondifferentiable Log</title>
     <link>http://rosinality.github.io/tags/rnn/</link>
-    <description>Recent content in Rnn on Nondifferentiable Log</description>
+    <description>Recent content in rnn on Nondifferentiable Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
     <lastBuildDate>Thu, 20 Apr 2017 21:16:13 +0900</lastBuildDate>

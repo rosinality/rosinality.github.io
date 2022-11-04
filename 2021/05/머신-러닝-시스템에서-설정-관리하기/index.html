@@ -1,0 +1,437 @@
+<!doctype html><html lang=ko-kr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.73.0"><meta name=theme content="Tranquilpeak 0.3.1-BETA"><title>머신 러닝 시스템에서 설정 관리하기</title><meta name=author content="Kim Seonghyeon"><meta name=keywords content="machine learning,ml pipeline,configuration system,machine learning,deep learning,social science"><link rel=icon href=/favicon.png><meta name=description content="머신 러닝 코드, 특히 실험적 목적이 강한 코드에서 가장 중요한 문제 중 하나가 설정을 관리하는 것이라고 본다. 머신 러닝 모델에는 수많은 하이퍼파라미터가 존재하고 그"><meta property="og:description" content="머신 러닝 코드, 특히 실험적 목적이 강한 코드에서 가장 중요한 문제 중 하나가 설정을 관리하는 것이라고 본다. 머신 러닝 모델에는 수많은 하이퍼파라미터가 존재하고 그"><meta property="og:type" content="blog"><meta property="og:title" content="머신 러닝 시스템에서 설정 관리하기"><meta property="og:url" content="/2021/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%97%90%EC%84%9C-%EC%84%A4%EC%A0%95-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0/"><meta property="og:site_name" content="Nondifferentiable Log"><meta name=twitter:card content="summary"><meta name=twitter:title content="Nondifferentiable Log"><meta name=twitter:description content="머신 러닝 코드, 특히 실험적 목적이 강한 코드에서 가장 중요한 문제 중 하나가 설정을 관리하는 것이라고 본다. 머신 러닝 모델에는 수많은 하이퍼파라미터가 존재하고 그"><meta name=twitter:creator content="@rosinality"><meta property="og:image" content="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=640"><meta property="og:image" content="https://res.cloudinary.com/rosinality/image/upload/v1618043855/config_ngnhlp.png"><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css><link rel=stylesheet href=/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css></head><body><div id=blog><header id=header data-behavior=5><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=/>Nondifferentiable Log</a></div></header><nav id=sidebar data-behavior=5><div class=sidebar-container><div class=sidebar-profile><a href=/#about><img class=sidebar-profile-picture src="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=110" alt></a><h4 class=sidebar-profile-name>Kim Seonghyeon</h4><h5 class=sidebar-profile-bio>Machine learning enthusiast</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=/categories><i class="sidebar-button-icon fa fa-lg fa-bookmark"></i><span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=/tags><i class="sidebar-button-icon fa fa-lg fa-tags"></i><span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=/archives><i class="sidebar-button-icon fa fa-lg fa-archive"></i><span class=sidebar-button-desc>Archives</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=/#about><i class="sidebar-button-icon fa fa-lg fa-question"></i><span class=sidebar-button-desc>About</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=/><i class="sidebar-button-icon fa fa-lg fa-home"></i><span class=sidebar-button-desc>Home</span></a></li></ul><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/rosinality target=_blank><i class="sidebar-button-icon fa fa-lg fa-github"></i><span class=sidebar-button-desc>GitHub</span></a></li></ul><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=/index.xml><i class="sidebar-button-icon fa fa-lg fa-rss"></i><span class=sidebar-button-desc>RSS</span></a></li></ul></div></nav><div class="post-header-cover
+text-left
+post-header-cover--partial" style=background-image:url(https://res.cloudinary.com/rosinality/image/upload/v1618043855/config_ngnhlp.png) data-behavior=5></div><div id=main data-behavior=5 class="hasCover
+hasCoverMetaIn"><article class=post itemscope itemtype=http://schema.org/BlogPosting><div class="post-header main-content-wrap text-left"><h1 class=post-title itemprop=headline>머신 러닝 시스템에서 설정 관리하기</h1><div class="postShorten-meta post-meta"><time itemprop=datePublished datetime=2021-05-22T20:27:53+09:00>May 22, 2021</time>
+<span></span><a class=category-link href=/categories/sorta-informative>sorta-informative</a></div></div><div class="post-content markdown" itemprop=articleBody><div class=main-content-wrap><p>머신 러닝 코드, 특히 실험적 목적이 강한 코드에서 가장 중요한 문제 중 하나가 설정을 관리하는 것이라고 본다. 머신 러닝 모델에는 수많은 하이퍼파라미터가 존재하고 그 하이퍼파라미터 각각이 설정 항목이 된다. 그 외에 또한 설정이 필요한 데이터, 로깅, 평가 등 부수적인 항목들이 많이 추가된다. (예를 들어 detectron2에는 기본적으로 200개 가량의 설정 항목이 존재한다. <a href=https://github.com/facebookresearch/detectron2/blob/master/detectron2/config/defaults.py>https://github.com/facebookresearch/detectron2/blob/master/detectron2/config/defaults.py</a> 여기에 개별 모델마다 설정이 추가된다.) 이 많은 설정 사항들을 어떻게 감당할만하게 관리할 것인가?</p><p>이 이하는 이 문제에 대해 개인적으로 탐색해봤던 시도들을 정리한 것이다. 물론 더 정석적이고 이상적인 방법(또한 더 뻥셔널한 방법)이 있을 것이다. 그런 방법이 있다면 알려주시면 좋겠다.</p><p>기본적으로는, 설정이 존재하지 않는 형태의 코드에서 시작해보자. 예를 들어 다음과 같은 식이다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#000>optimizer</span> <span style=color:#000>=</span> <span style=color:#000>optim</span><span style=color:#000>.</span><span style=color:#000>Adam</span>(<span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>parameters</span>(), <span style=color:#000>lr</span><span style=color:#000>=</span><span style=color:#1c01ce>3e-4</span>) <span style=color:#177500># Karpathy&#39;s learning rate</span>
+</code></pre></div><p>대충 돌아가는지 체크해보는 정도의 목적에는 이 정도로도 충분하다. 나는 대체로 첫 코드는 이런 식으로 만든다. 이 이후 learning rate를 조절해보고 싶다는 생각이 들 수 있다. 흔히 쓰이는 방법 중 하나는 명령행 인자를 추가하는 것이다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#000>parser</span><span style=color:#000>.</span><span style=color:#000>add_argument</span>(<span style=color:#c41a16>&#39;--lr&#39;</span>, <span style=color:#a90d91>type</span><span style=color:#000>=</span><span style=color:#a90d91>float</span>, <span style=color:#000>default</span><span style=color:#000>=</span><span style=color:#1c01ce>3e-4</span>)
+<span style=color:#000>args</span> <span style=color:#000>=</span> <span style=color:#000>parser</span><span style=color:#000>.</span><span style=color:#000>parse_args</span>()
+<span style=color:#000>optimizer</span> <span style=color:#000>=</span> <span style=color:#000>optim</span><span style=color:#000>.</span><span style=color:#000>Adam</span>(<span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>parameters</span>(), <span style=color:#000>lr</span><span style=color:#000>=</span><span style=color:#000>args</span><span style=color:#000>.</span><span style=color:#000>lr</span>)
+</code></pre></div><p>실제로 많은 공개된 머신 러닝 코드가 이런 식으로 동작하고 있다. 어느 정도 수준까지는 쓸만하지만, 두 가지 문제가 있겠다.</p><ol><li>설정 인자의 수가 증가하면 감당하기 어렵다. 명령행 인자로 넘기기도 어렵고 이 과정에서 실수하지 않기도 어렵다.</li><li>매 실험마다 사용한 인자의 내역을 남기고 관리하기 어렵다.</li></ol><p>물론 이 두 문제는 쉘 스크립트를 만드는 것으로 해결할 수 있고, 이렇게 처리하고 있는 코드도 많다. 환경 변수를 쓰고 환경 변수를 기록하는 경우도 많이 있다. 다만 이 시점까지 왔다면 본격적인 설정 파일을 사용하는 좀 더 우아한 방법을 채택할 수 있겠다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#177500># default.conf</span>
+<span style=color:#000>training</span> {
+    <span style=color:#000>lr</span>: <span style=color:#1c01ce>3e-4</span>
+}
+
+<span style=color:#177500># train.py</span>
+<span style=color:#000>optimizer</span> <span style=color:#000>=</span> <span style=color:#000>optim</span><span style=color:#000>.</span><span style=color:#000>Adam</span>(<span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>parameters</span>(), <span style=color:#000>lr</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>training</span><span style=color:#000>.</span><span style=color:#000>lr</span>)
+</code></pre></div><h1 id=설정-파일>설정 파일</h1><h2 id=설정-포맷>설정 포맷</h2><p>설정 파일을 사용하는 것을 받아들인다고 할 때 한 가지 선택하게 되는 것은 대체 어떤 포맷을 사용하는 것이 이상적인가 하는 것일 것이다. 파이썬에서 쓰기 쉬운 포맷 중 인기 있는 포맷을 꼽아보자면 다음과 같을 것 같다.</p><ol><li>INI</li><li>JSON</li><li>YAML</li><li>TOML</li></ol><p>이들 중 머신 러닝 코드 베이스에서 가장 인기있는 것은 YAML일 듯 싶다. 단&mldr;개인적으로 YAML은 선호하지 않는다. 스펙이 지나치게 많은 문법 설탕을 포함하고 있고, 설정 파일 포맷에서 의미있는 들여쓰기를 사용한다는 것은 과도하고 실수를 유발하는 측면이 있다고 본다.</p><p>다른 선택지도 크게 좋지는 않은 것 같다. JSON은 주석을 지원하지 않고, TOML은 건전한 포맷이지만 머신 러닝 코드에서 발생하는 수준의 설정을 관리하기에는 지원하는 기능이 적다. INI는 더 말할 것도 없고. 또한 머신 러닝 코드에서는 위 설정 포맷들이 보통 지원하지 않지만 유용하거나 혹은 반드시 필요한 기능이 하나 있는데, 바로 설정 파일을 병합하는 것이다. 설정 파일 병합을 사용하면 기본적인 설정을 설정 파일로 기록하고 거기에 실험 혹은 모델 특정적으로 필요한 설정들을 추가하는 방식으로 설정을 관리할 수 있다.</p><p>detectron2의 예를 들면, R-CNN + FPN의 베이스 설정이 있고(<a href=https://github.com/facebookresearch/detectron2/blob/master/configs/Base-RCNN-FPN.yaml),>https://github.com/facebookresearch/detectron2/blob/master/configs/Base-RCNN-FPN.yaml),</a> 백본을 바꿔서 실험하는 경우에는 이 베이스 설정을 불러와 설정을 변경하는 방식(<a href=https://github.com/facebookresearch/detectron2/blob/master/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml>https://github.com/facebookresearch/detectron2/blob/master/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml</a>) 으로 되어있다. 이 접근을 사용하면 설정의 중복을 피할 수 있고 설정을 변경하는 과정에서 특정 설정 파일에서 변경한 내역을 다른 설정 파일에 적용하지 않아 발생하는 실수를 감소시킬 수 있다. (물론 베이스 설정의 변화가 다른 모든 설정에 파급된다는 이슈가 있지만, 보통 전자에 비해서는 덜 위험한 문제로 보인다.) 그래서 detectron2의 경우처럼 이러한 설정 병합을 YAML 위에 올려서 사용하는 경우가 많다.</p><p>위 선택지에 비해서는 인기가 없지만 나름 지명도가 있는 포맷들이 있다.</p><ol start=5><li>HOCON</li><li>JSONNET</li></ol><p>여기서 내가 선호하는 것은 HOCON이다. 둘 다 설정 병합을 지원하고 substitution 같은 추가적인 기능을 지원한다. 다만 일반적으로 사용하기에는 HOCON이 좀 더 간결하다. HOCON의 설정 병합 방식은 한쪽 설정으로 다른 설정을 대체하는 것이 아니라 두 설정을 합치는 방식(공집합)이라 좀 문제가 되기는 하는데&mldr;어쨌든 편리성을 고려하면 감수할만하다고 생각한다.</p><h2 id=설정-검증>설정 검증</h2><p>설정 파일을 사용한다면 또 한 가지 중요한 부분이 설정이 제대로 되어있는지를 체크하는 장치가 필요하다는 것이다. 예를 들어 정수가 들어가야할 곳에 실수가 들어간다거나 설정 키 이름에 오타를 내서 설정이 실제로는 적용되지 않는다거나 하는 문제를 미연에 방지할 수 있는 프로세스가 필요한 것이다. 단순히 실행하다 잘못된 값이 들어가서 종료되는 형태의 문제라면 괜찮겠지만 머신 러닝 코드의 특성상 한참 돌다가 문제가 생긴다거나 혹은 문제가 생겼는지도 알 수 없는 상태에서 모델의 성능만 저하된다거나 하는 경우가 생기기 마련이다.</p><p>scala의 경우에는 PureConfig (<a href=https://github.com/pureconfig/pureconfig>https://github.com/pureconfig/pureconfig</a>) 등이 이를 위한 인기있는 방법인 것 같다. 파이썬의 경우에도 Cereberus (<a href=https://docs.python-cerberus.org/en/stable/>https://docs.python-cerberus.org/en/stable/</a>) 같은 도구가 있었지만, 최근 가장 인기있는 라이브러리는 파이썬에 추가된 타입 어노테이션을 적극적으로 활용하는 pydantic (<a href=https://pydantic-docs.helpmanual.io/>https://pydantic-docs.helpmanual.io/</a>)인 것 같다. pydantic은 원칙적으로 데이터 검증을 위한 라이브러리라기보다는 데이터 파싱을 위한 라이브러리이지만, 좀 더 강력한 데이터 제약 조건을 걸면 충분히 검증을 위해서도 사용할 수 있다.</p><p>예를 들어, Adam optimizer를 위한 다음과 같은 pydantic 모델을 만들 수 있다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a90d91>class</span> <span style=color:#3f6e75>Adam</span>(<span style=color:#000>BaseConfig</span>):
+    <span style=color:#000>lr</span>: <span style=color:#a90d91>float</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.001</span>
+    <span style=color:#000>betas</span>: <span style=color:#000>Tuple</span>[<span style=color:#a90d91>float</span>, <span style=color:#a90d91>float</span>] <span style=color:#000>=</span> (<span style=color:#1c01ce>0.9</span>, <span style=color:#1c01ce>0.999</span>)
+    <span style=color:#000>eps</span>: <span style=color:#a90d91>float</span> <span style=color:#000>=</span> <span style=color:#1c01ce>1e-8</span>
+    <span style=color:#000>weight_decay</span>: <span style=color:#a90d91>float</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0</span>
+    <span style=color:#000>amsgrad</span>: <span style=color:#000>StrictBool</span> <span style=color:#000>=</span> <span style=color:#5b269a>False</span>
+
+    <span style=color:#a90d91>class</span> <span style=color:#3f6e75>Config</span>:
+        <span style=color:#000>extra</span> <span style=color:#000>=</span> <span style=color:#c41a16>&#34;forbid&#34;</span>
+</code></pre></div><p>위와 같은 모델을 사용해서 betas 대신 이름을 beta로 입력해서 betas 설정이 적용되지 않는다거나 하는 실수를 방지할 수 있다. 파이썬에서 타입 어노테이션이 인기를 얻으면서 이 방식 또한 점점 더 인기를 얻고 있는 것 같다. 다만 함수나 클래스 정의와 별개로 이런 스키마를 따로 정의한다는 것도 번거로운 일이다. 약간 더 작업을 해서 함수 및 클래스의 정의와 타입 어노테이션으로부터 pydantic 모델을 만들어주는 데코레이터를 정의해볼 수도 있겠다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#000>@config_model</span>(<span style=color:#000>name</span><span style=color:#000>=</span><span style=color:#c41a16>&#34;swin_transformer&#34;</span>)
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>SwinTransformer</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(
+        <span style=color:#5b269a>self</span>,
+        <span style=color:#000>image_size</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>n_class</span>: <span style=color:#000>StrictInt</span>,
+        <span style=color:#000>depths</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dims</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dim_head</span>: <span style=color:#000>StrictInt</span>,
+        <span style=color:#000>n_heads</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dim_ffs</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>window_size</span>: <span style=color:#000>StrictInt</span>,
+        <span style=color:#000>drop_ff</span>: <span style=color:#000>StrictFloat</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>,
+        <span style=color:#000>drop_attn</span>: <span style=color:#000>StrictFloat</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>,
+        <span style=color:#000>drop_path</span>: <span style=color:#000>StrictFloat</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>,
+    ):
+        <span style=color:#000>...</span>
+</code></pre></div><h2 id=설정-분기>설정 분기</h2><p>계속 Adam만 쓸 것이라면 상관이 없겠지만 optimizer를 바꿔보고 싶은 경우가 생길 수도 있다. optimizer 뿐만 아니라 백본을 바꿔본다거나 하는 경우는 흔히 등장할 것이다. 가장 기본적인 방법은 설정을 받아 if문으로 분기하는 것이다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a90d91>if</span> <span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>optimizer</span> <span style=color:#000>==</span> <span style=color:#c41a16>&#39;adam&#39;</span>:
+    <span style=color:#000>optimizer</span> <span style=color:#000>=</span> <span style=color:#000>optim</span><span style=color:#000>.</span><span style=color:#000>Adam</span>(<span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>parameters</span>(), <span style=color:#000>lr</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>training</span><span style=color:#000>.</span><span style=color:#000>lr</span>)
+
+<span style=color:#a90d91>elif</span> <span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>optimizer</span> <span style=color:#000>==</span> <span style=color:#c41a16>&#39;sgd&#39;</span>:
+    <span style=color:#000>optimizer</span> <span style=color:#000>=</span> <span style=color:#000>optim</span><span style=color:#000>.</span><span style=color:#000>Adam</span>(<span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>parameters</span>(), <span style=color:#000>lr</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>training</span><span style=color:#000>.</span><span style=color:#000>lr</span>)
+
+<span style=color:#a90d91>else</span>:
+    <span style=color:#000>...</span>
+</code></pre></div><p>이것도 어느 정도는 쓸만한 방법이겠지만, 선택지의 수가 늘어나고 각 선택지마다 추가적인 설정을 요구한다면 문제는 복잡해진다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a90d91>if</span> <span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>optimizer</span> <span style=color:#000>==</span> <span style=color:#c41a16>&#39;adam&#39;</span>:
+    <span style=color:#000>optimizer</span> <span style=color:#000>=</span> <span style=color:#000>optim</span><span style=color:#000>.</span><span style=color:#000>Adam</span>(<span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>parameters</span>(), <span style=color:#000>lr</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>training</span><span style=color:#000>.</span><span style=color:#000>lr</span>, <span style=color:#000>betas</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>betas</span>, <span style=color:#000>weight_decay</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>weight_decay</span>)
+
+<span style=color:#a90d91>elif</span> <span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>optimizer</span> <span style=color:#000>==</span> <span style=color:#c41a16>&#39;sgd&#39;</span>:
+    <span style=color:#000>optimizer</span> <span style=color:#000>=</span> <span style=color:#000>optim</span><span style=color:#000>.</span><span style=color:#000>Adam</span>(<span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>parameters</span>(), <span style=color:#000>lr</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>training</span><span style=color:#000>.</span><span style=color:#000>lr</span>, <span style=color:#000>momentum</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>momentum</span>, <span style=color:#000>nesterov</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>nesterov</span>, <span style=color:#000>weight_decay</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>weight_decay</span>)
+
+<span style=color:#a90d91>elif</span> <span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>optimizer</span> <span style=color:#000>==</span> <span style=color:#c41a16>&#39;rmsprop&#39;</span>:
+    <span style=color:#000>optimizer</span> <span style=color:#000>=</span> <span style=color:#000>optim</span><span style=color:#000>.</span><span style=color:#000>Adam</span>(<span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>parameters</span>(), <span style=color:#000>lr</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>training</span><span style=color:#000>.</span><span style=color:#000>lr</span>, <span style=color:#000>momentum</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>momentum</span>, <span style=color:#000>weight_decay</span><span style=color:#000>=</span><span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>weight_decay</span>)
+
+<span style=color:#a90d91>else</span>:
+    <span style=color:#000>...</span>
+</code></pre></div><p>설정의 숫자가 늘어나면서 각 설정 파라미터 사이의 혼동도 증가한다. momentum은 sgd를 위한 momentum인가 adam의 beta1을 momentum으로 표기한 것인가? rmsprop의 momentum과 sgd의 momentum은 이름이 같지만 이 둘을 같은 의미로 분류해도 되는 것일까? 설정에는 어떻게 설명해야 할까? <code># momentum for sgd, rmsprop, ...</code>이라고 주석을 달야아 할까?</p><p>pydantic을 사용해서 다음과 같이 접근해볼 수 있다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a90d91>class</span> <span style=color:#3f6e75>SGD</span>(<span style=color:#000>BaseConfig</span>):
+    <span style=color:#a90d91>type</span>: <span style=color:#000>StrictStr</span>
+
+    <span style=color:#000>lr</span>: <span style=color:#a90d91>float</span>
+    <span style=color:#000>momentum</span>: <span style=color:#a90d91>float</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>
+    <span style=color:#000>dampening</span>: <span style=color:#a90d91>float</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>
+    <span style=color:#000>weight_decay</span>: <span style=color:#a90d91>float</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>
+    <span style=color:#000>nesterov</span>: <span style=color:#000>StrictBool</span> <span style=color:#000>=</span> <span style=color:#5b269a>False</span>
+
+    <span style=color:#a90d91>class</span> <span style=color:#3f6e75>Config</span>:
+        <span style=color:#000>extra</span> <span style=color:#000>=</span> <span style=color:#c41a16>&#34;forbid&#34;</span>
+
+    <span style=color:#000>@validator</span>(<span style=color:#c41a16>&#34;type&#34;</span>)
+    <span style=color:#a90d91>def</span> <span style=color:#000>check_type</span>(<span style=color:#5b269a>cls</span>, <span style=color:#000>v</span>):
+        <span style=color:#a90d91>if</span> <span style=color:#000>v</span> <span style=color:#000>!=</span> <span style=color:#c41a16>&#34;sgd&#34;</span>:
+            <span style=color:#a90d91>raise</span> <span style=color:#000>ValueError</span>(<span style=color:#c41a16>&#34;Optimizer type not match for sgd&#34;</span>)
+
+        <span style=color:#a90d91>return</span> <span style=color:#000>v</span>
+
+    <span style=color:#a90d91>def</span> <span style=color:#000>make</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>params</span>):
+        <span style=color:#a90d91>return</span> <span style=color:#000>optim</span><span style=color:#000>.</span><span style=color:#000>SGD</span>(<span style=color:#000>params</span>, <span style=color:#000>lr</span><span style=color:#000>=</span><span style=color:#5b269a>self</span><span style=color:#000>.</span><span style=color:#000>lr</span>,
+            <span style=color:#000>momentum</span><span style=color:#000>=</span><span style=color:#5b269a>self</span><span style=color:#000>.</span><span style=color:#000>momentum</span>,
+            <span style=color:#000>dampening</span><span style=color:#000>=</span><span style=color:#5b269a>self</span><span style=color:#000>.</span><span style=color:#000>dampening</span>,
+            <span style=color:#000>weight_decay</span><span style=color:#000>=</span><span style=color:#5b269a>self</span><span style=color:#000>.</span><span style=color:#000>weight_decay</span>,
+            <span style=color:#000>nesterov</span><span style=color:#000>=</span><span style=color:#5b269a>self</span><span style=color:#000>.</span><span style=color:#000>nesterov</span>)
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>Adam</span>(<span style=color:#000>BaseConfig</span>):
+    <span style=color:#a90d91>type</span>: <span style=color:#000>StrictStr</span>
+
+    <span style=color:#000>lr</span>: <span style=color:#a90d91>float</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.001</span>
+    <span style=color:#000>betas</span>: <span style=color:#000>Tuple</span>[<span style=color:#a90d91>float</span>, <span style=color:#a90d91>float</span>] <span style=color:#000>=</span> (<span style=color:#1c01ce>0.9</span>, <span style=color:#1c01ce>0.999</span>)
+    <span style=color:#000>eps</span>: <span style=color:#a90d91>float</span> <span style=color:#000>=</span> <span style=color:#1c01ce>1e-8</span>
+    <span style=color:#000>weight_decay</span>: <span style=color:#a90d91>float</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0</span>
+    <span style=color:#000>amsgrad</span>: <span style=color:#000>StrictBool</span> <span style=color:#000>=</span> <span style=color:#5b269a>False</span>
+
+    <span style=color:#a90d91>class</span> <span style=color:#3f6e75>Config</span>:
+        <span style=color:#000>extra</span> <span style=color:#000>=</span> <span style=color:#c41a16>&#34;forbid&#34;</span>
+
+    <span style=color:#000>@validator</span>(<span style=color:#c41a16>&#34;type&#34;</span>)
+    <span style=color:#a90d91>def</span> <span style=color:#000>check_type</span>(<span style=color:#5b269a>cls</span>, <span style=color:#000>v</span>):
+        <span style=color:#a90d91>if</span> <span style=color:#000>v</span> <span style=color:#000>!=</span> <span style=color:#c41a16>&#34;adam&#34;</span>:
+            <span style=color:#a90d91>raise</span> <span style=color:#000>ValueError</span>(<span style=color:#c41a16>&#34;Optimizer type not match for adam&#34;</span>)
+
+        <span style=color:#a90d91>return</span> <span style=color:#000>v</span>
+
+    <span style=color:#a90d91>def</span> <span style=color:#000>make</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>params</span>):
+        <span style=color:#a90d91>return</span> <span style=color:#000>optim</span><span style=color:#000>.</span><span style=color:#000>Adam</span>(<span style=color:#000>params</span>, <span style=color:#000>lr</span><span style=color:#000>=</span><span style=color:#5b269a>self</span><span style=color:#000>.</span><span style=color:#000>lr</span>,
+            <span style=color:#000>betas</span><span style=color:#000>=</span><span style=color:#5b269a>self</span><span style=color:#000>.</span><span style=color:#000>betas</span>,
+            <span style=color:#000>eps</span><span style=color:#000>=</span><span style=color:#5b269a>self</span><span style=color:#000>.</span><span style=color:#000>eps</span>,
+            <span style=color:#000>weight_decay</span><span style=color:#000>=</span><span style=color:#5b269a>self</span><span style=color:#000>.</span><span style=color:#000>weight_decay</span>,
+            <span style=color:#000>amsgrad</span><span style=color:#000>=</span><span style=color:#5b269a>self</span><span style=color:#000>.</span><span style=color:#000>amsgrad</span>)
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>Training</span>(<span style=color:#000>BaseConfig</span>):
+    <span style=color:#000>optimizer</span>: <span style=color:#000>Union</span>[<span style=color:#000>SGD</span>, <span style=color:#000>Adam</span>]
+
+<span style=color:#177500># default.conf</span>
+<span style=color:#000>optimizer</span>: {
+    <span style=color:#a90d91>type</span>: <span style=color:#000>sgd</span>
+    <span style=color:#000>momentum</span>: <span style=color:#1c01ce>0.9</span>
+}
+
+<span style=color:#177500># train.py</span>
+<span style=color:#000>conf</span> <span style=color:#000>=</span> <span style=color:#000>Training</span>(<span style=color:#000>**</span><span style=color:#000>config</span>)
+<span style=color:#000>optimizer</span> <span style=color:#000>=</span> <span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>optimizer</span><span style=color:#000>.</span><span style=color:#000>make</span>(<span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>parameters</span>())
+</code></pre></div><p>타입 체크와 validation을 사용해서 개별 optimizer에 대한 설정을 격리하고 type이라는 설정 파라미터로 optimizer를 지정할 수 있게 되었다. 다만 이건 너무 복잡하지 않은가? 다른 방법으로 흔히 사용되는 것이 registry이다. detectron2, mmdet, fairseq 등에서 흔히 찾아볼 수 있다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#000>@BACKBONE_REGISTRY.register</span>()
+<span style=color:#a90d91>def</span> <span style=color:#000>build_resnet_backbone</span>(<span style=color:#000>cfg</span>, <span style=color:#000>input_shape</span>):
+    <span style=color:#000>...</span>
+</code></pre></div><p>(<a href=https://github.com/facebookresearch/detectron2/blob/master/detectron2/modeling/backbone/resnet.py>https://github.com/facebookresearch/detectron2/blob/master/detectron2/modeling/backbone/resnet.py</a>)</p><p>registry에 각 함수/클래스의 정의와 이름 사이의 매핑이 저장되기 때문에 config에 지정된 이름에 상응하는 객체를 registry에서 불러와 사용할 수 있다. 그런데 pydantic을 사용하는 접근 또한 이렇게 함수/클래스에 데코레이터를 사용하는 방식을 채택해봤으니, 여기에 registry 개념을 추가해서 스키마를 자동으로 생성하고 type 지정에 따라 해당하는 객체를 불러오는 방식으로 개선해볼 수 있겠다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a90d91>def</span> <span style=color:#000>get_models</span>(<span style=color:#000>namespace</span>):
+    <span style=color:#000>names</span> <span style=color:#000>=</span> <span style=color:#000>CONFIG_REGISTRY</span>[<span style=color:#000>namespace</span>]<span style=color:#000>.</span><span style=color:#000>keys</span>()
+    <span style=color:#a90d91>for</span> <span style=color:#000>i</span>, <span style=color:#000>name</span> <span style=color:#000>in</span> <span style=color:#a90d91>enumerate</span>(<span style=color:#000>names</span>):
+        <span style=color:#000>model</span> <span style=color:#000>=</span> <span style=color:#000>get_model</span>(<span style=color:#000>name</span>, <span style=color:#000>namespace</span>)
+
+        <span style=color:#a90d91>if</span> <span style=color:#000>i</span> <span style=color:#000>==</span> <span style=color:#1c01ce>0</span>:
+            <span style=color:#000>models</span> <span style=color:#000>=</span> <span style=color:#000>Union</span>[<span style=color:#000>model</span>]
+
+        <span style=color:#a90d91>else</span>:
+            <span style=color:#000>models</span> <span style=color:#000>=</span> <span style=color:#000>Union</span>[<span style=color:#000>models</span>, <span style=color:#000>model</span>]
+
+    <span style=color:#a90d91>return</span> <span style=color:#000>models</span>
+
+<span style=color:#177500># swin_transformer.py</span>
+<span style=color:#000>@config_model</span>(<span style=color:#000>name</span><span style=color:#000>=</span><span style=color:#c41a16>&#34;swin_transformer&#34;</span>, <span style=color:#000>namespace</span><span style=color:#000>=</span><span style=color:#c41a16>&#34;model&#34;</span>)
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>SwinTransformer</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(
+        <span style=color:#5b269a>self</span>,
+        <span style=color:#000>image_size</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>n_class</span>: <span style=color:#000>StrictInt</span>,
+        <span style=color:#000>depths</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dims</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dim_head</span>: <span style=color:#000>StrictInt</span>,
+        <span style=color:#000>n_heads</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dim_ffs</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>window_size</span>: <span style=color:#000>StrictInt</span>,
+        <span style=color:#000>drop_ff</span>: <span style=color:#000>StrictFloat</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>,
+        <span style=color:#000>drop_attn</span>: <span style=color:#000>StrictFloat</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>,
+        <span style=color:#000>drop_path</span>: <span style=color:#000>StrictFloat</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>,
+    ):
+        <span style=color:#000>...</span>
+
+<span style=color:#177500># config.py</span>
+<span style=color:#a90d91>import</span> <span style=color:#000>swin_transformer</span>
+
+<span style=color:#000>Arch</span> <span style=color:#000>=</span> <span style=color:#000>get_models</span>(<span style=color:#c41a16>&#34;model&#34;</span>)
+
+<span style=color:#177500># default.conf</span>
+<span style=color:#000>arch</span>: {
+    <span style=color:#a90d91>type</span>: <span style=color:#000>swin_transformer</span>
+    <span style=color:#000>image_size</span>: [<span style=color:#1c01ce>224</span>, <span style=color:#1c01ce>224</span>],
+    <span style=color:#000>n_class</span>: <span style=color:#1c01ce>1000</span>
+    <span style=color:#000>depths</span>: [<span style=color:#1c01ce>2</span>, <span style=color:#1c01ce>2</span>, <span style=color:#1c01ce>18</span>, <span style=color:#1c01ce>2</span>]
+    <span style=color:#000>dims</span>: [<span style=color:#1c01ce>96</span>, <span style=color:#1c01ce>192</span>, <span style=color:#1c01ce>384</span>, <span style=color:#1c01ce>768</span>]
+    <span style=color:#000>dim_head</span>: <span style=color:#1c01ce>32</span>
+    <span style=color:#000>n_heads</span>: [<span style=color:#1c01ce>3</span>, <span style=color:#1c01ce>6</span>, <span style=color:#1c01ce>12</span>, <span style=color:#1c01ce>24</span>]
+    <span style=color:#000>dim_ffs</span>: [<span style=color:#1c01ce>384</span>, <span style=color:#1c01ce>768</span>, <span style=color:#1c01ce>1536</span>, <span style=color:#1c01ce>3072</span>] <span style=color:#177500># dims * 4</span>
+    <span style=color:#000>window_size</span>: <span style=color:#1c01ce>7</span>
+    <span style=color:#000>drop_path</span>: <span style=color:#1c01ce>0.3</span>
+}
+
+<span style=color:#177500># train.py</span>
+<span style=color:#000>model</span> <span style=color:#000>=</span> <span style=color:#000>conf</span><span style=color:#000>.</span><span style=color:#000>arch</span><span style=color:#000>.</span><span style=color:#000>make</span>()
+</code></pre></div><p>이런 형태의 접근을 취한 경우도 꽤 보인다. (좀 다르긴 하지만) 대표적으로는 thinc (<a href=https://thinc.ai>https://thinc.ai</a>) 의 접근이 이와 유사하다.</p><h2 id=더-단순하고-유연하게>더 단순하고 유연하게</h2><p>여기까지만 해도 꽤 쓸만한 수준이 된 것 같고 이런 방식을 채택해 성공적으로 사용되고 있는 프레임워크들이 있지만, 여전히 문제가 좀 있다. 어쨌든 데코레이터를 정의해놓아야 한다는 것도 나쁘지는 않지만 불편한 점이고, registry에 등록하려면 registry 데코레이터가 정의된 파일이 실행되어야 하기 때문에 개별 파일들을 모두 import 해야한다는 것이다. 따라서 <strong>init</strong>.py 등에 import를 해놓아야 한다는 것이 문제가 된다. 번거롭고 config 사용을 위해서 이러한 정의를 import 해야한다는 것이 실수를 유발하며, import 자체가 실행 시간에 오버헤드를 발생시킨다는 점이 거슬린다.</p><p>여기서 hydra (<a href=https://hydra.cc>https://hydra.cc</a>) 의 방법을 참고해볼 수 있겠다. hydra는 설정 대상이 되는 객체를 어노테이션 해서 등록해놓고 호출하는 대신 import 경로를 지정해서 설정을 불러오는 시점에 import하여 실행하는 방법을 취한다. (<a href=https://hydra.cc/docs/patterns/instantiate_objects/overview>https://hydra.cc/docs/patterns/instantiate_objects/overview</a>)</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#177500># default.conf</span>
+<span style=color:#000>arch</span>: {
+    <span style=color:#a90d91>type</span>: <span style=color:#000>models</span><span style=color:#000>.</span><span style=color:#000>swin_transformer</span><span style=color:#000>.</span><span style=color:#000>SwinTransformer</span>
+    <span style=color:#000>image_size</span>: [<span style=color:#1c01ce>224</span>, <span style=color:#1c01ce>224</span>],
+    <span style=color:#000>n_class</span>: <span style=color:#1c01ce>1000</span>
+    <span style=color:#000>depths</span>: [<span style=color:#1c01ce>2</span>, <span style=color:#1c01ce>2</span>, <span style=color:#1c01ce>18</span>, <span style=color:#1c01ce>2</span>]
+    <span style=color:#000>dims</span>: [<span style=color:#1c01ce>96</span>, <span style=color:#1c01ce>192</span>, <span style=color:#1c01ce>384</span>, <span style=color:#1c01ce>768</span>]
+    <span style=color:#000>dim_head</span>: <span style=color:#1c01ce>32</span>
+    <span style=color:#000>n_heads</span>: [<span style=color:#1c01ce>3</span>, <span style=color:#1c01ce>6</span>, <span style=color:#1c01ce>12</span>, <span style=color:#1c01ce>24</span>]
+    <span style=color:#000>dim_ffs</span>: [<span style=color:#1c01ce>384</span>, <span style=color:#1c01ce>768</span>, <span style=color:#1c01ce>1536</span>, <span style=color:#1c01ce>3072</span>] <span style=color:#177500># dims * 4</span>
+    <span style=color:#000>window_size</span>: <span style=color:#1c01ce>7</span>
+    <span style=color:#000>drop_path</span>: <span style=color:#1c01ce>0.3</span>
+}
+
+<span style=color:#177500># instance.py</span>
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>Instance</span>(<span style=color:#a90d91>dict</span>):
+    <span style=color:#000>@classmethod</span>
+    <span style=color:#a90d91>def</span> <span style=color:#000>__get_validators__</span>(<span style=color:#5b269a>cls</span>):
+        <span style=color:#a90d91>yield</span> <span style=color:#5b269a>cls</span><span style=color:#000>.</span><span style=color:#000>validate</span>
+
+    <span style=color:#000>@classmethod</span>
+    <span style=color:#a90d91>def</span> <span style=color:#000>validate</span>(<span style=color:#5b269a>cls</span>, <span style=color:#000>v</span>):
+        <span style=color:#000>v_new</span> <span style=color:#000>=</span> <span style=color:#000>validate</span>(<span style=color:#000>v</span>)
+        <span style=color:#000>instance</span> <span style=color:#000>=</span> <span style=color:#5b269a>cls</span>(<span style=color:#000>v_new</span>)
+
+        <span style=color:#a90d91>return</span> <span style=color:#000>instance</span>
+
+    <span style=color:#a90d91>def</span> <span style=color:#000>make</span>(<span style=color:#5b269a>self</span>):
+        <span style=color:#a90d91>return</span> <span style=color:#000>instantiate</span>(<span style=color:#5b269a>self</span>)
+
+<span style=color:#177500># config.py</span>
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>ImageNetConfig</span>(<span style=color:#000>BaseModel</span>):
+    <span style=color:#000>arch</span>: <span style=color:#000>Instance</span>
+</code></pre></div><p>type에 import 경로를 지정해주면, 설정을 불러오는 시점에 대상 객체를 import 해서 객체의 타입 어노테이션을 사용해 설정 파일을 검증하고 객체를 생성하는 방식이다. 지금까지는 이 방법이 설정 파일을 관리하는 괜찮은 방법인 것 같다. 즉 hydra가 파이썬 환경에서는 가장 괜찮은 도구가 될 것 같다. 다만 Hydra는 YAML에 크게 의존해서 YAML을 선호하지 않는 입장에서는 비슷한 다른 도구를 쓰고 있다.</p><h2 id=설정-주입하기>설정 주입하기</h2><p>설정을 불러오는 것 뿐만 아니라 설정을 어떻게 개별 객체에 넘겨줄 것인가 또한 중요한 문제이다. 머신 러닝 모델을 만들다 보면 다음과 같은 상황이 흔히 발생한다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a90d91>class</span> <span style=color:#3f6e75>MultiHeadedLocalAttention</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(
+        <span style=color:#5b269a>self</span>, <span style=color:#000>dim</span>, <span style=color:#000>n_head</span>, <span style=color:#000>dim_head</span>, <span style=color:#000>input_size</span>, <span style=color:#000>window_size</span>, <span style=color:#000>shift</span>, <span style=color:#000>dropout</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>
+    ):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>PositionwiseFeedForward</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Sequential</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>in_dim</span>, <span style=color:#000>dim</span><span style=color:#000>=</span><span style=color:#5b269a>None</span>, <span style=color:#000>out_dim</span><span style=color:#000>=</span><span style=color:#5b269a>None</span>, <span style=color:#000>activation</span><span style=color:#000>=</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>SiLU</span>, <span style=color:#000>dropout</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>TransformerLayer</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(
+        <span style=color:#5b269a>self</span>,
+        <span style=color:#000>dim</span>,
+        <span style=color:#000>n_head</span>,
+        <span style=color:#000>dim_head</span>,
+        <span style=color:#000>dim_ff</span>,
+        <span style=color:#000>input_size</span>,
+        <span style=color:#000>window_size</span>,
+        <span style=color:#000>shift</span>,
+        <span style=color:#000>activation</span><span style=color:#000>=</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>SiLU</span>,
+        <span style=color:#000>drop_ff</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>,
+        <span style=color:#000>drop_attn</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>,
+        <span style=color:#000>drop_path</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>,
+    ):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>SwinTransformer</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(
+        <span style=color:#5b269a>self</span>,
+        <span style=color:#000>image_size</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>n_class</span>: <span style=color:#000>StrictInt</span>,
+        <span style=color:#000>depths</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dims</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dim_head</span>: <span style=color:#000>StrictInt</span>,
+        <span style=color:#000>n_heads</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dim_ffs</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>window_size</span>: <span style=color:#000>StrictInt</span>,
+        <span style=color:#000>drop_ff</span>: <span style=color:#000>StrictFloat</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>,
+        <span style=color:#000>drop_attn</span>: <span style=color:#000>StrictFloat</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>,
+        <span style=color:#000>drop_path</span>: <span style=color:#000>StrictFloat</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>,
+    ):
+        <span style=color:#000>...</span>
+</code></pre></div><p>개별 모듈들의 설정이 누적되어, 이 모듈들을 사용하는 상위 단계의 모듈들은 개별 모듈의 설정을 넘겨받아야 한다. 이것이 누적되면 인자의 수가 어마어마하게 증가한다. 예를 들어 torchvision의 Mask R-CNN 구현은 30개가 넘는 인자를 받는다. (<a href=https://github.com/pytorch/vision/blob/master/torchvision/models/detection/mask_rcnn.py>https://github.com/pytorch/vision/blob/master/torchvision/models/detection/mask_rcnn.py</a>) 결국에는 모든 세부 설정을 지정하는 것을 포기하고 중요한 설정 몇 가지만 설정 가능하게 만드는 방향으로 타협하는 경우도 많다.</p><p>이 문제에 대해 가장 흔히 쓰이는 방법은 conf 객체에 이 옵션들을 전부 몰아넣고 각 모듈들이 conf 객체만 인자로 받게 만드는 것이다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a90d91>class</span> <span style=color:#3f6e75>MultiHeadedLocalAttention</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>conf</span>):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>PositionwiseFeedForward</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Sequential</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>conf</span>):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>TransformerLayer</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>conf</span>):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>SwinTransformer</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>conf</span>):
+        <span style=color:#000>...</span>
+</code></pre></div><p>널리 쓰이긴 하지만 이 방법에는 중요한 문제가 있다. 개별 모듈에서 conf 객체의 어떤 항목을 사용하는지 확인하기 어렵고, 개별 모듈을 떼어내 사용하려면 conf 객체에서 사용하는 항목들을 찾아내 conf 객체를 만들어야만 한다.</p><p>이에 대한 대안으로 gin (<a href=https://github.com/google/gin-config>https://github.com/google/gin-config</a>) 과 같은 방법이 있다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#000>@gin.configurable</span>
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>MultiHeadedLocalAttention</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(
+        <span style=color:#5b269a>self</span>, <span style=color:#000>dim</span>, <span style=color:#000>n_head</span>, <span style=color:#000>dim_head</span>, <span style=color:#000>input_size</span>, <span style=color:#000>window_size</span>, <span style=color:#000>shift</span>, <span style=color:#000>dropout</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>
+    ):
+        <span style=color:#000>...</span>
+
+<span style=color:#000>@gin.configurable</span>
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>PositionwiseFeedForward</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Sequential</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>in_dim</span>, <span style=color:#000>dim</span><span style=color:#000>=</span><span style=color:#5b269a>None</span>, <span style=color:#000>out_dim</span><span style=color:#000>=</span><span style=color:#5b269a>None</span>, <span style=color:#000>activation</span><span style=color:#000>=</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>SiLU</span>, <span style=color:#000>dropout</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>):
+        <span style=color:#000>...</span>
+
+<span style=color:#000>@gin.configurable</span>
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>TransformerLayer</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(
+        <span style=color:#5b269a>self</span>,
+        <span style=color:#000>dim</span>,
+        <span style=color:#000>drop_path</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>,
+    ):
+        <span style=color:#000>...</span>
+
+<span style=color:#177500># train.py</span>
+<span style=color:#000>gin</span><span style=color:#000>.</span><span style=color:#000>parse_config_file</span>(<span style=color:#c41a16>&#39;default.gin&#39;</span>)
+</code></pre></div><p>이런 형태가 된다. gin으로 설정 파일을 불러오면 설정 파일의 항목들이 <code>gin.configurable</code> 데코레이터가 적용된 객체의 인자에 바인딩 된다. 즉 설정을 직접 넘겨주지 않아도 객체를 호출할 때 바인딩된 설정이 적용되는 것이다. 좋은 방법이지만 전역적으로 설정을 객체들에게 바인딩한다는 것이 썩 내키지 않았다. 너무 까다로운가? 그렇지만, 다른 방법이 없을까?</p><p>문제를 돌려서 생각하면, 하위 모듈들을 생성하기 위해 상위 모듈에서 하위 모듈의 인자를 모두 넘겨받는 것 자체가 적절하지 않은 것 같다. 상위 모듈이 하위 모듈을 생성하는 것이 아니라 하위 모듈을 넘겨받아 상위 모듈 내에서 활용하는 방식으로 바꿀 수 있지 않을까?</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a90d91>class</span> <span style=color:#3f6e75>MultiHeadedLocalAttention</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(
+        <span style=color:#5b269a>self</span>, <span style=color:#000>dim</span>, <span style=color:#000>n_head</span>, <span style=color:#000>dim_head</span>, <span style=color:#000>input_size</span>, <span style=color:#000>window_size</span>, <span style=color:#000>shift</span>, <span style=color:#000>dropout</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>
+    ):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>PositionwiseFeedForward</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Sequential</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>in_dim</span>, <span style=color:#000>dim</span><span style=color:#000>=</span><span style=color:#5b269a>None</span>, <span style=color:#000>out_dim</span><span style=color:#000>=</span><span style=color:#5b269a>None</span>, <span style=color:#000>activation</span><span style=color:#000>=</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>SiLU</span>, <span style=color:#000>dropout</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>TransformerLayer</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>attention</span>, <span style=color:#000>ff</span>):
+        <span style=color:#000>...</span>
+
+<span style=color:#000>layer</span> <span style=color:#000>=</span> <span style=color:#000>TransformerLayer</span>(<span style=color:#000>MultiHeadedLocalAttention</span>(<span style=color:#000>...</span>), <span style=color:#000>PositionwiseFeedForward</span>(<span style=color:#000>...</span>))
+</code></pre></div><p>상위 모듈의 인자가 계속해서 증가하는 것을 회피할 수 있었다. 추가적으로 다양한 모듈을 선택할 수 있는 형태가 되었다. <code>MultiHeadedLocalAttention</code>이 아니라 <code>MultiHeadedAttention</code>을 인자로 넘겨주면 local attention이 아닌 global attention을 사용하는 형태로 모델을 전환할 수 있는 것이다.</p><p>그렇지만 여전히 어딘가에서는 설정을 사용해 모듈들을 생성해서 넘겨줘야 한다. 그리고 이러한 위계구조가 반복적으로 중첩될 수도 있다. 이 중첩된 구조와 설정 파일을 어떻게 연결할 수 있을까?</p><p>그런데 위에서 hydra의 사례를 보면 객체들을 특별한 registry 등록 없이도 생성하는 형태로 설정을 구조화할 수 있었다는 것을 볼 수 있었다. 그렇다면 설정 파일을 사용해서 개별 객체, 모듈들을 생성한 다음 상위 객체에 넘겨주는 방법은 어떨까? 재귀적으로 설정을 순회해서 이 과정을 자동화하는 것 또한 가능할 것이다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a90d91>class</span> <span style=color:#3f6e75>Instance</span>(<span style=color:#a90d91>dict</span>):
+    <span style=color:#000>@classmethod</span>
+    <span style=color:#a90d91>def</span> <span style=color:#000>__get_validators__</span>(<span style=color:#5b269a>cls</span>):
+        <span style=color:#a90d91>yield</span> <span style=color:#5b269a>cls</span><span style=color:#000>.</span><span style=color:#000>validate</span>
+
+    <span style=color:#000>@classmethod</span>
+    <span style=color:#a90d91>def</span> <span style=color:#000>validate</span>(<span style=color:#5b269a>cls</span>, <span style=color:#000>v</span>):
+        <span style=color:#000>v_new</span> <span style=color:#000>=</span> <span style=color:#000>instance_traverse</span>(<span style=color:#000>v</span>, <span style=color:#000>recursive</span><span style=color:#000>=</span><span style=color:#5b269a>True</span>)
+        <span style=color:#000>instance</span> <span style=color:#000>=</span> <span style=color:#5b269a>cls</span>(<span style=color:#000>v_new</span>)
+
+        <span style=color:#a90d91>return</span> <span style=color:#000>instance</span>
+
+    <span style=color:#a90d91>def</span> <span style=color:#000>make</span>(<span style=color:#5b269a>self</span>):
+        <span style=color:#a90d91>return</span> <span style=color:#000>instance_traverse</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>recursive</span><span style=color:#000>=</span><span style=color:#5b269a>True</span>, <span style=color:#000>instantiate</span><span style=color:#000>=</span><span style=color:#5b269a>True</span>)
+</code></pre></div><p>실제로 어떻게 순회해서 객체를 생성하는가 하는 부분은 길어서 생략했지만, 이런 접근을 사용하면 다음과 같은 형태의 설정이 가능하다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a90d91>class</span> <span style=color:#3f6e75>Model</span>(<span style=color:#000>BaseModel</span>):
+    <span style=color:#000>mlp</span>: <span style=color:#000>Instance</span>
+
+<span style=color:#177500># default.conf</span>
+
+<span style=color:#000>mlp</span>: {
+    <span style=color:#000>__target</span>: <span style=color:#000>torch</span><span style=color:#000>.</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>ModuleList</span>
+    <span style=color:#000>__validate</span>: <span style=color:#000>false</span>
+    <span style=color:#000>modules</span>: [
+        {
+            <span style=color:#000>__target</span>: <span style=color:#000>torch</span><span style=color:#000>.</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Linear</span>
+            <span style=color:#000>in_features</span>: <span style=color:#1c01ce>5</span>
+            <span style=color:#000>out_features</span>: <span style=color:#1c01ce>7</span>
+        },
+        {
+            <span style=color:#000>__target</span>: <span style=color:#000>torch</span><span style=color:#000>.</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>ReLU</span>
+        },
+        {
+            <span style=color:#000>__target</span>: <span style=color:#000>torch</span><span style=color:#000>.</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>ModuleList</span>,
+            <span style=color:#000>__validate</span>: <span style=color:#000>false</span>,
+            <span style=color:#000>modules</span>: [
+                {
+                    <span style=color:#000>__target</span>: <span style=color:#000>torch</span><span style=color:#000>.</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Linear</span>,
+                    <span style=color:#000>in_features</span>: <span style=color:#1c01ce>5</span>,
+                    <span style=color:#000>out_features</span>: <span style=color:#1c01ce>9</span>,
+                    <span style=color:#000>bias</span>: <span style=color:#000>false</span>
+                },
+                {
+                    <span style=color:#000>__target</span>: <span style=color:#000>torch</span><span style=color:#000>.</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>SiLU</span>
+                }
+            ]
+        }
+    ]
+}
+
+<span style=color:#177500># train.py</span>
+<span style=color:#000>model</span> <span style=color:#000>=</span> <span style=color:#000>Model</span>(<span style=color:#000>**</span><span style=color:#000>config</span>)
+<span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>mlp</span><span style=color:#000>.</span><span style=color:#000>make</span>()
+</code></pre></div><p>생성된 객체는 다음과 같다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#000>ModuleList</span>(
+  (<span style=color:#1c01ce>0</span>): <span style=color:#000>Linear</span>(<span style=color:#000>in_features</span><span style=color:#000>=</span><span style=color:#1c01ce>5</span>, <span style=color:#000>out_features</span><span style=color:#000>=</span><span style=color:#1c01ce>7</span>, <span style=color:#000>bias</span><span style=color:#000>=</span><span style=color:#5b269a>True</span>)
+  (<span style=color:#1c01ce>1</span>): <span style=color:#000>ReLU</span>()
+  (<span style=color:#1c01ce>2</span>): <span style=color:#000>ModuleList</span>(
+    (<span style=color:#1c01ce>0</span>): <span style=color:#000>Linear</span>(<span style=color:#000>in_features</span><span style=color:#000>=</span><span style=color:#1c01ce>5</span>, <span style=color:#000>out_features</span><span style=color:#000>=</span><span style=color:#1c01ce>9</span>, <span style=color:#000>bias</span><span style=color:#000>=</span><span style=color:#5b269a>False</span>)
+    (<span style=color:#1c01ce>1</span>): <span style=color:#000>SiLU</span>()
+  )
+)
+</code></pre></div><p>결과적으로는 declarative하게 모델을 정의하는 형태가 되었다. 그렇다면 위 방법을 채택해 문제의 SwinTransformer를 정의해보겠다. 추가적으로 특정 모듈을 직접 생성해서 넘기는 대신 설정에 지정된 파라미터만 <code>functools.partial</code>로 바인딩하고 넘겨서 모듈에서 추가적인 인자를 넘겨주게 만들었다. 물론 설정에 지정된 파라미터에 대해서는 pydantic을 사용해 타입 체크와 검증을 수행한다.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#177500># swin_transformer.py</span>
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>MultiHeadedLocalAttention</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(
+        <span style=color:#5b269a>self</span>, <span style=color:#000>dim</span>, <span style=color:#000>n_head</span>, <span style=color:#000>dim_head</span>, <span style=color:#000>input_size</span>, <span style=color:#000>window_size</span>, <span style=color:#000>shift</span>, <span style=color:#000>dropout</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>
+    ):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>PositionwiseFeedForward</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Sequential</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>in_dim</span>, <span style=color:#000>dim</span><span style=color:#000>=</span><span style=color:#5b269a>None</span>, <span style=color:#000>out_dim</span><span style=color:#000>=</span><span style=color:#5b269a>None</span>, <span style=color:#000>activation</span><span style=color:#000>=</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>SiLU</span>, <span style=color:#000>dropout</span><span style=color:#000>=</span><span style=color:#1c01ce>0</span>):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>TransformerLayer</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(<span style=color:#5b269a>self</span>, <span style=color:#000>attention</span>, <span style=color:#000>ff</span>):
+        <span style=color:#000>...</span>
+
+<span style=color:#a90d91>class</span> <span style=color:#3f6e75>SwinTransformer</span>(<span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>Module</span>):
+    <span style=color:#a90d91>def</span> <span style=color:#000>__init__</span>(
+        <span style=color:#5b269a>self</span>,
+        <span style=color:#000>image_size</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>n_class</span>: <span style=color:#000>StrictInt</span>,
+        <span style=color:#000>attention</span>,
+        <span style=color:#000>ff</span>,
+        <span style=color:#000>depths</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dims</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>n_heads</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>dim_ffs</span>: <span style=color:#000>Tuple</span>[<span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>, <span style=color:#000>StrictInt</span>],
+        <span style=color:#000>drop_path</span>: <span style=color:#000>StrictFloat</span> <span style=color:#000>=</span> <span style=color:#1c01ce>0.0</span>,
+    ):
+
+<span style=color:#177500># default.conf</span>
+<span style=color:#000>arch</span>: {
+    <span style=color:#000>__target</span>: <span style=color:#000>models</span><span style=color:#000>.</span><span style=color:#000>swin_transformer</span><span style=color:#000>.</span><span style=color:#000>SwinTransformer</span>
+    <span style=color:#000>attention</span>: {
+        <span style=color:#000>__target</span>: <span style=color:#000>models</span><span style=color:#000>.</span><span style=color:#000>swin_transformer</span><span style=color:#000>.</span><span style=color:#000>MultiHeadedLocalAttention</span>
+        <span style=color:#000>__partial</span>: <span style=color:#000>true</span>
+        <span style=color:#000>dim_head</span>: <span style=color:#1c01ce>32</span>
+        <span style=color:#000>window_size</span>: <span style=color:#1c01ce>7</span>
+        <span style=color:#000>dropout</span>: <span style=color:#1c01ce>0.0</span>
+    }
+    <span style=color:#000>ff</span>: {
+        <span style=color:#000>__target</span>: <span style=color:#000>models</span><span style=color:#000>.</span><span style=color:#000>layer</span><span style=color:#000>.</span><span style=color:#000>PositionwiseFeedForward</span>
+        <span style=color:#000>__partial</span>: <span style=color:#000>true</span>,
+        <span style=color:#000>dropout</span>: <span style=color:#1c01ce>0.0</span>
+        <span style=color:#000>activation</span>: {
+            <span style=color:#000>__target</span>: <span style=color:#000>torch</span><span style=color:#000>.</span><span style=color:#000>nn</span><span style=color:#000>.</span><span style=color:#000>SiLU</span>,
+            <span style=color:#000>__partial</span>: <span style=color:#000>true</span>
+        }
+    }
+    <span style=color:#000>image_size</span>: [<span style=color:#1c01ce>224</span>, <span style=color:#1c01ce>224</span>]
+    <span style=color:#000>n_class</span>: <span style=color:#1c01ce>1000</span>
+    <span style=color:#000>depths</span>: [<span style=color:#1c01ce>2</span>, <span style=color:#1c01ce>2</span>, <span style=color:#1c01ce>18</span>, <span style=color:#1c01ce>2</span>]
+    <span style=color:#000>dims</span>: [<span style=color:#1c01ce>96</span>, <span style=color:#1c01ce>192</span>, <span style=color:#1c01ce>384</span>, <span style=color:#1c01ce>768</span>]
+    <span style=color:#000>n_heads</span>: [<span style=color:#1c01ce>3</span>, <span style=color:#1c01ce>6</span>, <span style=color:#1c01ce>12</span>, <span style=color:#1c01ce>24</span>]
+    <span style=color:#000>dim_ffs</span>: [<span style=color:#1c01ce>384</span>, <span style=color:#1c01ce>768</span>, <span style=color:#1c01ce>1536</span>, <span style=color:#1c01ce>3072</span>]
+    <span style=color:#000>drop_path</span>: <span style=color:#1c01ce>0.3</span>
+}
+
+<span style=color:#177500># train.py</span>
+<span style=color:#000>swin</span> <span style=color:#000>=</span> <span style=color:#000>model</span><span style=color:#000>.</span><span style=color:#000>arch</span><span style=color:#000>.</span><span style=color:#000>make</span>()
+</code></pre></div><p>개별 모듈의 자잘한 설정은 <code>functools.partial</code>에 바인딩되어 상위 모듈로 넘어가고, 모듈 레벨이 아닌 모델 전체에 대해 적용되는 인자들은 따로 설정해서 바인딩된 함수에 넘겨줄 수 있게 만들었다.</p><p>여기까지가 단순하고 실수를 막는 설정 관리 방법을 찾으려는 시도의 결과이다. 더 나은 방법이 있을 것이고, 이 방법의 문제와 한계가 분명히 있을 것이다. 나 또한 더 나은 방법을 찾아보려 계속 시도하게 될 것이다. 다만 지금까지 탐색해왔던 방법에 대한 기록들이 비슷한 문제에 접근해보려는 이들에게 참고 사항 정도는 될 수 있기를 바란다.</p></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-footer-tags><span class="text-color-light text-small"></span><br><a class="tag tag--primary tag--small" href=http://rosinality.github.io//tags/machine-learning/>machine learning</a>
+<a class="tag tag--primary tag--small" href=http://rosinality.github.io//tags/ml-pipeline/>ml pipeline</a>
+<a class="tag tag--primary tag--small" href=http://rosinality.github.io//tags/configuration-system/>configuration system</a></div><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=/2022/11/%ED%85%94-%EC%95%84%EB%B9%84%EB%B8%8C%EC%99%80-eccv-2022-%EC%97%AC%ED%96%89%EA%B8%B0-1/ data-tooltip="텔 아비브와 ECCV 2022 여행기 1"><i class="fa fa-angle-left"></i><span class="hide-xs hide-sm text-small icon-ml"></span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=/2021/04/%EC%A7%84%EA%B2%A9%EC%9D%98-%EA%B1%B0%EC%9D%B8/ data-tooltip="진격의 거인"><span class="hide-xs hide-sm text-small icon-mr"></span><i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions><i class="fa fa-share-alt"></i></a></li><li class="post-action hide-xs"><a class="post-action-btn btn btn--default" target=new href="https://plus.google.com/share?url=http%3a%2f%2frosinality.github.io%2f2021%2f05%2f%25EB%25A8%25B8%25EC%258B%25A0-%25EB%259F%25AC%25EB%258B%259D-%25EC%258B%259C%25EC%258A%25A4%25ED%2585%259C%25EC%2597%2590%25EC%2584%259C-%25EC%2584%25A4%25EC%25A0%2595-%25EA%25B4%2580%25EB%25A6%25AC%25ED%2595%2598%25EA%25B8%25B0%2f"><i class="fa fa-google-plus"></i></a></li><li class="post-action hide-xs"><a class="post-action-btn btn btn--default" target=new href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frosinality.github.io%2f2021%2f05%2f%25EB%25A8%25B8%25EC%258B%25A0-%25EB%259F%25AC%25EB%258B%259D-%25EC%258B%259C%25EC%258A%25A4%25ED%2585%259C%25EC%2597%2590%25EC%2584%259C-%25EC%2584%25A4%25EC%25A0%2595-%25EA%25B4%2580%25EB%25A6%25AC%25ED%2595%2598%25EA%25B8%25B0%2f"><i class="fa fa-facebook-official"></i></a></li><li class="post-action hide-xs"><a class="post-action-btn btn btn--default" target=new href="https://twitter.com/intent/tweet?text=http%3a%2f%2frosinality.github.io%2f2021%2f05%2f%25EB%25A8%25B8%25EC%258B%25A0-%25EB%259F%25AC%25EB%258B%259D-%25EC%258B%259C%25EC%258A%25A4%25ED%2585%259C%25EC%2597%2590%25EC%2584%259C-%25EC%2584%25A4%25EC%25A0%2595-%25EA%25B4%2580%25EB%25A6%25AC%25ED%2595%2598%25EA%25B8%25B0%2f"><i class="fa fa-twitter"></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#disqus_thread><i class="fa fa-comment-o"></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#><i class="fa fa-list"></i></a></li></ul></div><div id=disqus_thread><noscript>Please enable JavaScript to view the <a href=//disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2022 Kim Seonghyeon.</span></footer></div><div id=share-options-bar class=share-options-bar data-behavior=5><ul class=share-options><li class=share-option><a class=share-option-btn target=new href="https://plus.google.com/share?url=http%3a%2f%2frosinality.github.io%2f2021%2f05%2f%25EB%25A8%25B8%25EC%258B%25A0-%25EB%259F%25AC%25EB%258B%259D-%25EC%258B%259C%25EC%258A%25A4%25ED%2585%259C%25EC%2597%2590%25EC%2584%259C-%25EC%2584%25A4%25EC%25A0%2595-%25EA%25B4%2580%25EB%25A6%25AC%25ED%2595%2598%25EA%25B8%25B0%2f"><i class="fa fa-google-plus"></i><span></span></a></li><li class=share-option><a class=share-option-btn target=new href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frosinality.github.io%2f2021%2f05%2f%25EB%25A8%25B8%25EC%258B%25A0-%25EB%259F%25AC%25EB%258B%259D-%25EC%258B%259C%25EC%258A%25A4%25ED%2585%259C%25EC%2597%2590%25EC%2584%259C-%25EC%2584%25A4%25EC%25A0%2595-%25EA%25B4%2580%25EB%25A6%25AC%25ED%2595%2598%25EA%25B8%25B0%2f"><i class="fa fa-facebook-official"></i><span></span></a></li><li class=share-option><a class=share-option-btn target=new href="https://twitter.com/intent/tweet?text=http%3a%2f%2frosinality.github.io%2f2021%2f05%2f%25EB%25A8%25B8%25EC%258B%25A0-%25EB%259F%25AC%25EB%258B%259D-%25EC%258B%259C%25EC%258A%25A4%25ED%2585%259C%25EC%2597%2590%25EC%2584%259C-%25EC%2584%25A4%25EC%25A0%2595-%25EA%25B4%2580%25EB%25A6%25AC%25ED%2595%2598%25EA%25B8%25B0%2f"><i class="fa fa-twitter"></i><span></span></a></li></ul></div><div id=share-options-mask class=share-options-mask></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-remove"></i></div><img id=about-card-picture src="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=110" alt><h4 id=about-card-name>Kim Seonghyeon</h4><div id=about-card-bio>Machine learning enthusiast</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Graduate student in HCCLab at Seoul National University</div><div id=about-card-location><i class="fa fa-map-marker"></i><br>Korea, Republic of</div></div></div><div id=algolia-search-modal class=modal-container><div class=modal><div class=modal-header><span class=close-button><i class="fa fa-close"></i></span><a href=https://algolia.com target=_blank class="searchby-algolia text-color-light link-unstyled"><span class="searchby-algolia-text text-color-light text-small">by</span>
+<img class=searchby-algolia-logo src=https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg></a>
+<i class="search-icon fa fa-search"></i><form id=algolia-search-form><input type=text id=algolia-search-input name=search class="form-control input--large search-input" placeholder></form></div><div class=modal-body><div class="no-result text-color-light text-center"></div><div class=results><div class=media><div class=media-body><a class=link-unstyled href=http://rosinality.github.io/post/><h3 class=media-heading>Posts</h3></a><span class=media-meta><span class="media-date text-small">Nov 11, 2022</span></span><div class="media-content hide-xs font-merryweather"></div></div><div style=clear:both></div><hr></div><div class=media><div class=media-body><a class=link-unstyled href=http://rosinality.github.io/2022/11/%ED%85%94-%EC%95%84%EB%B9%84%EB%B8%8C%EC%99%80-eccv-2022-%EC%97%AC%ED%96%89%EA%B8%B0-1/><h3 class=media-heading>텔 아비브와 ECCV 2022 여행기 1</h3></a><span class=media-meta><span class="media-date text-small">Nov 11, 2022</span></span><div class="media-content hide-xs font-merryweather">생애 첫 해외 여행(은 아니고 출장이긴 하지만)을 이스라엘로 기념하게 됐다. 일단 여권부터 만들고. (이번에 만든 거라 신형 여권이다.) 인천국제공항에 입성. 사</div></div><div style=clear:both></div><hr></div><div class=media><div class=media-body><a class=link-unstyled href=http://rosinality.github.io/2021/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%97%90%EC%84%9C-%EC%84%A4%EC%A0%95-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0/><h3 class=media-heading>머신 러닝 시스템에서 설정 관리하기</h3></a><span class=media-meta><span class="media-date text-small">May 5, 2021</span></span><div class="media-content hide-xs font-merryweather">머신 러닝 코드, 특히 실험적 목적이 강한 코드에서 가장 중요한 문제 중 하나가 설정을 관리하는 것이라고 본다. 머신 러닝 모델에는 수많은 하이퍼파라미터가 존재하고 그</div></div><div style=clear:both></div><hr></div><div class=media><div class=media-body><a class=link-unstyled href=http://rosinality.github.io/2021/04/%EC%A7%84%EA%B2%A9%EC%9D%98-%EA%B1%B0%EC%9D%B8/><h3 class=media-heading>진격의 거인</h3></a><span class=media-meta><span class="media-date text-small">Apr 4, 2021</span></span><div class="media-content hide-xs font-merryweather">진격의 거인은 우익적 혹은 극우적인가? 보통 일본의 창작물이 극우적인가를 논하는 기준은 욱일기가 은근슬쩍 등장한다든지 혹은 대체역사물 같이 노골적으로 (유치한</div></div><div style=clear:both></div><hr></div><div class=media><div class=media-body><a class=link-unstyled href=http://rosinality.github.io/2020/06/the-last-of-us-part-ii/><h3 class=media-heading>The Last of Us Part II</h3></a><span class=media-meta><span class="media-date text-small">Jun 6, 2020</span></span><div class="media-content hide-xs font-merryweather">과연 라스트 오브 어스 2는 증오와 적대에 대한 게임이다. (인터뷰) 게임에서 싸우는 것이 일상이고 증오와 적대가 게임에 등장하는 것이야 대수로운 일도 아니지 않을까</div></div><div style=clear:both></div><hr></div><div class=media><div class=media-body><a class=link-unstyled href=http://rosinality.github.io/2019/08/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/><h3 class=media-heading>머신러닝 파이프라인 만들기</h3></a><span class=media-meta><span class="media-date text-small">Aug 8, 2019</span></span><div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘(Feature extractor)을 데이터를 통해 학습한다는 것이었</div></div><div style=clear:both></div><hr></div><div class=media><div class=media-body><a class=link-unstyled href=http://rosinality.github.io/2018/10/bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding/><h3 class=media-heading>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h3></a><span class=media-meta><span class="media-date text-small">Oct 10, 2018</span></span><div class="media-content hide-xs font-merryweather">프리트레이닝과 전이학습 모델을 프리트레이닝하는 것이, 혹은 프리트레이닝된 모델이 모듈로 쓰는 것이 성능에 큰 영향을 미칠 수 있다는 건 너무나 잘 알려진 사실이다.</div></div><div style=clear:both></div><hr></div><div class=media><div class=media-body><a class=link-unstyled href=http://rosinality.github.io/2018/08/%EC%9D%B8%EA%B3%BC%EA%B4%80%EA%B3%84%EB%A5%BC-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B0%9D%ED%9E%90-%EC%88%98-%EC%9E%88%EB%8A%94%EA%B0%80/><h3 class=media-heading>인과관계를 어떻게 밝힐 수 있는가</h3></a><span class=media-meta><span class="media-date text-small">Aug 8, 2018</span></span><div class="media-content hide-xs font-merryweather">우선 인과관계라는 것이 대체 무엇인가? 인과관계라는 것을 명확하게 정의하는 것은 복잡한 철학적 문제다. 그러나 실용적인 목적으로는 단순한 정의를 사용할 수 있다.</div></div><div style=clear:both></div><hr></div><div class=media><div class=media-body><a class=link-unstyled href=http://rosinality.github.io/2018/05/%EB%B2%84%EB%8B%9D/><h3 class=media-heading>버닝</h3></a><span class=media-meta><span class="media-date text-small">May 5, 2018</span></span><div class="media-content hide-xs font-merryweather">모호한 세상. 영화에서는 수수께끼 같다는 말로 직접적으로 표현한다. 세상을 명료하게 설명해서 글로 옮길 수 있다면 좋겠지만 영화는 시종일관 진실이 무엇인지 말해주</div></div><div style=clear:both></div><hr></div><div class=media><div class=media-body><a class=link-unstyled href=http://rosinality.github.io/2017/11/%EC%95%9E%EC%9C%BC%EB%A1%9C-%EC%9E%AC%EB%AF%B8%EC%9E%88%EC%9D%84%EC%A7%80%EB%8F%84-%EB%AA%A8%EB%A5%B4%EB%8A%94-%EC%A3%BC%EC%A0%9C%EB%93%A4/><h3 class=media-heading>앞으로 재미있을지도 모르는 주제들</h3></a><span class=media-meta><span class="media-date text-small">Nov 11, 2017</span></span><div class="media-content hide-xs font-merryweather">LSTM을 대신할 RNN Cell을 설계한다거나 하는 식의 기존의 구조를 개선하는 방안을 고안하는 것은 분명히 중요한 일이기는 하지만 그 자체로는 이전에는 불가능하거</div></div><div style=clear:both></div><hr></div></div></div><div class=modal-footer><p class="results-count text-medium" data-message-zero data-message-one data-message-other>55 posts found</p></div></div></div><div id=cover style=background-image:url(http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/stair.jpg)></div><script>(function(d){var config={kitId:'vld6lxf',scriptTimeout:3000,async:true},h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)})(document);</script><script src=//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js></script><script src=/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js></script><script>$(document).ready(function(){hljs.configure({classPrefix:'',useBR:false});$('pre.code-highlight').each(function(i,block){var code="";hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line){code+="<span class=\"line\">"+line+"</span><br>";});if(code.length>0){block.innerHTML=code;}});$('pre > code').each(function(i,block){$(this).addClass('codeblock');hljs.highlightBlock(block);});});</script><script>var disqus_config=function(){this.page.url='http:\/\/rosinality.github.io\/2021\/05\/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%97%90%EC%84%9C-%EC%84%A4%EC%A0%95-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0\/';{{if.Params.disqusIdentifier}}
+this.page.identifier='';{{else}}
+this.page.identifier='\/2021\/05\/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%97%90%EC%84%9C-%EC%84%A4%EC%A0%95-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0\/'
+{{end}}};(function(){if(window.location.hostname=="localhost"){return;}
+var d=document,s=d.createElement('script');var disqus_shortname='rosinality';s.src='//'+disqus_shortname+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script></body></html>

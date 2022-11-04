@@ -1,0 +1,868 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="ko-kr">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.73.0">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>Wasserstein 거리</title>
+    <meta name="author" content="Kim Seonghyeon">
+    <meta name="keywords" content="wasserstein distance, manifold, probability distribution, measure theory, topology, convergence, machine learning, deep learning, social science">
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+    <meta name="description" content="지금 시점에서는 나온지 좀 되긴 했지만 여전히 재미있는 Wasserstein GAN에 대해서 정리해본다. 뉴럴넷이라는 측면에서도 재미있지만 나오는 수학도 재미있다. Read-through: Wasserstein GAN과">
+    <meta property="og:description" content="지금 시점에서는 나온지 좀 되긴 했지만 여전히 재미있는 Wasserstein GAN에 대해서 정리해본다. 뉴럴넷이라는 측면에서도 재미있지만 나오는 수학도 재미있다. Read-through: Wasserstein GAN과">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Wasserstein 거리">
+    <meta property="og:url" content="/2017/04/wasserstein-%EA%B1%B0%EB%A6%AC/">
+    <meta property="og:site_name" content="Nondifferentiable Log">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Nondifferentiable Log">
+    <meta name="twitter:description" content="지금 시점에서는 나온지 좀 되긴 했지만 여전히 재미있는 Wasserstein GAN에 대해서 정리해본다. 뉴럴넷이라는 측면에서도 재미있지만 나오는 수학도 재미있다. Read-through: Wasserstein GAN과">
+    
+      <meta name="twitter:creator" content="@rosinality">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=640">
+    
+
+    
+    
+      <meta property="og:image" content="https://res.cloudinary.com/rosinality/image/upload/v1492740759/covers/earthmover.jpg">
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Nondifferentiable Log</a>
+  </div>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Kim Seonghyeon</h4>
+        
+          <h5 class="sidebar-profile-bio">Machine learning enthusiast</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/rosinality" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('https://res.cloudinary.com/rosinality/image/upload/v1492740759/covers/earthmover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Wasserstein 거리
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-04-21T11:12:59&#43;09:00">
+      
+  April 21, 2017
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="/categories/sorta-informative">sorta informative</a>
+    
+  
+
+
+</div>
+
+</div>
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>지금 시점에서는 나온지 좀 되긴 했지만 여전히 재미있는 <a href="https://arxiv.org/abs/1701.07875">Wasserstein GAN</a>에 대해서 정리해본다. 뉴럴넷이라는 측면에서도 재미있지만 나오는 수학도 재미있다. <a href="http://www.alexirpan.com/2017/02/22/wasserstein-gan.html">Read-through: Wasserstein GAN</a>과 <a href="https://arxiv.org/abs/1701.04862">Towards Principled Methods for Training Generative Adversarial Networks</a>를 많이 참조했다.</p>
+
+<p>확률 분포를 학습하는 건 머신 러닝에서 아주 중요한 문제다. 생성 모형(Generative Model)이라는 것은 결국 데이터의 결합 확률 분포를 학습하는 문제다. 확률 분포를 학습하는 전통적인 방법은 최대가능도 추정(Maximum Likelihood)이다.</p>
+
+<p><span  class="math">\[
+\max_\theta\frac{1}{N}\sum_{i=1}^N\log P_\theta(\mathbf{x}^{(i)})
+\]</span></p>
+
+<p>최대가능도 추정은 점근적으로 데이터의 분포와 모형의 분포 사이의 KL 다이버전스를 최소화하는 것과 같다.</p>
+
+<p><span  class="math">\[
+\begin{align*}
+\lim_{N \to \infty}\max_\theta\frac{1}{N}\sum_{i=1}^N\log P_\theta(\mathbf{x}^{(i)}) &= \max_\theta\int P_r(x)\log P_\theta(x)\,\mathrm{d}x \\
+&= \min_\theta \left\{\int P_r(x)\log P_r(x)\,\mathrm{d}x - \int P_r(x)\log P_\theta(x)\,\mathrm{d}x\right\} \\
+&= \min_\theta KL(P_r\| P_\theta)
+\end{align*}
+\]</span></p>
+
+<p>그런데 실제 데이터를 가지고 이걸 해보면 KL 다이버전스가 무한대로 펑펑 튄다. KL 다이버전스의 최소화가 통하려면 모형의 밀도가 존재해야 한다. 그런데 가능한 차원에 비해 확률 분포가 매우 낮은 차원의 매니폴드에 밀집해 있는 아주 일반적인 경우에는 이 확률 분포가 밀집한 매니폴드의 측도가 0이 된다. 라돈-니코딤 정리에 의해서 밀도가 존재하려면 확률 측도가 절대 연속(Absolutely Continuous)이어야 하고, 확률 측도가 절대 연속이라는 것은 <span  class="math">\(\lambda(A) = 0\)</span>인 모든 집합 <span  class="math">\(A\)</span>에 대해 <span  class="math">\(P(X \in A) = 0\)</span>인 것과 같다. 그런데 확률 분포가 밀집한 매니폴드의 측도가 0이라는 것은 이 매니폴드 <span  class="math">\(M\)</span>에 대해 <span  class="math">\(P(X \in M) = 0\)</span>이라는 것이고 이건 이 확률 분포의 받침이 <span  class="math">\(M\)</span>이라는 것을 고려할 때 이상한 결과이다. 따라서 최대가능도 혹은 KL 다이버전스의 최소화가 적절하지 않은 것이다.</p>
+
+<p>이런 매니폴드 가설에 대한 재미있는 사례 하나가 Carlsson의 <a href="http://www.ams.org/journals/bull/2009-46-02/S0273-0979-09-01249-X/">Topology and Data</a>에 소개되어 있다. <span  class="math">\(3\times 3\)</span> 실제 이미지, 즉 <span  class="math">\(\mathbb{R}^9\)</span>의 원소가 이루는 매니폴드를 살펴봤더니 2차원 매니폴드인 클라인 병(Klein Bottle)을 구성하고 있었다는 것이다. <a href="/2017/04/%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81%EA%B3%BC-%EB%A7%A4%EB%8B%88%ED%8F%B4%EB%93%9C/">클러스터링과 매니폴드</a></p>
+
+<p>여기에 대처하는 방법 중 하나는 노이즈를 집어넣어서 분포가 넓게 정의되도록 하는 것이다. 그래서 거의 대부분의 생성 모형은 노이즈 텀을 포함하고 있었다. 그런데 노이즈를 쳐서 이걸 해결하려면 노이즈를 좀 많이 쳐야 한다. 그러면 결과물이 영 좋지 않다. 이미지 분포를 이렇게 학습시켰을 때 나오는 대표적인 결과가 흐릿한(Blurry) 이미지다.</p>
+
+<p>밀도가 존재하지 않는 경우에 대응하기 위해 고안된 방법이 <span  class="math">\(Z \sim p(z)\)</span>인 확률 변수 <span  class="math">\(Z\)</span>를 <span  class="math">\(P_\theta\)</span>의 샘플로 변환하는 함수 <span  class="math">\(g_\theta : \mathcal{Z} \to \mathcal{X}\)</span>를 학습하는 방법이다. 이렇게 하면 밀도를 학습하는 것과는 달리 저차원의 매니폴드에 밀집한 확률 분포를 표현할 수 있다. 그리고 이러한 접근 중 대표적인 방법이 바로 GAN(Generative Adversarial Network)이다.</p>
+
+<p>여기서 <span  class="math">\(P_g\)</span>의 받침은 <span  class="math">\(g(\mathcal{Z})\)</span>에 포함되어 있고 따라서 <span  class="math">\(\mathcal{Z}\)</span>의 차원이 <span  class="math">\(\mathcal{X}\)</span>의 차원보다 낮다면 <span  class="math">\(g(\mathcal{Z})\)</span>가 낮은 차원의 매니폴드의 합집합에 포함되어 있기 때문에 <span  class="math">\(\mathcal{X}\)</span>에서 측도는 0이 되며 따라서 <span  class="math">\(P_g\)</span>는 절대 연속일 수 없다. 이를 <span  class="math">\(g\)</span>가 뉴럴 네트워크인 경우에 대해서 증명할 수 있다.</p>
+
+<blockquote>
+<p>보조정리 1. <span  class="math">\(g : \mathcal{Z} \to \mathcal{X}\)</span>가 아핀 변환과 (Leaky) Rectifier 혹은 매끈한(Smooth) 순증가 함수 등의 비선형 함수로 구성된 함수인 경우에 <span  class="math">\(g(\mathcal{Z})\)</span>는 차원이 최대 <span  class="math">\(\operatorname{dim}\mathcal{Z}\)</span>인 매니폴드의 가산 합집합에 포함되고 따라서 <span  class="math">\(\operatorname{dim}\mathcal{Z} < \operatorname{dim}\mathcal{X}\)</span>라면 <span  class="math">\(g(\mathcal{Z})\)</span>는 <span  class="math">\(\mathcal{X}\)</span>에서 측도가 0이다.</p>
+</blockquote>
+
+<p><strong>증명</strong></p>
+
+<p>(Leaky) Rectifier인 경우에 대해서 생각해보자. 이 경우에 <span  class="math">\(g(z)\)</span>는 아핀 변환 <span  class="math">\(\mathrm{W}_i\)</span>와 <span  class="math">\(z\)</span>에 의해서 결정되는 대각 행렬 <span  class="math">\(\mathrm{D}_i\)</span>을 통해 <span  class="math">\(g(z) = \mathrm{D}_n\mathrm{W}_n\dots\mathrm{D}_1\mathrm{W}_1 z\)</span>와 같이 구성된다. <span  class="math">\(\mathcal{D}\)</span>를 이 대각 행렬들의 유한 집합이라고 하면 <span  class="math">\(g(\mathcal{Z}) \subseteq \bigcup_{D_i \in \mathcal{D}} \mathrm{D}_n\mathrm{W}_n\dots\mathrm{D}_1\mathrm{W}_1 \mathcal{Z}\)</span>이며 따라서 선형 매니폴드의 유한 합집합에 포함된다.</p>
+
+<p><span  class="math">\(\sigma\)</span>가 순증가 비선형 함수인 경우 이 함수를 벡터에 적용하는 것은 함수의 이미지에 대한 미분동형사상(Diffeomorphism)이다. 따라서 이 함수는 <span  class="math">\(d\)</span> 차원의 매니폴드의 가산 합집합을 <span  class="math">\(d\)</span> 차원 매니폴드의 가산 합집합으로 사상한다. 따라서 아핀 변환이 매니폴드를 차원의 증가 없이 매니폴드의 가산 합집합으로 사상한다는 것을 증명하면 된다.</p>
+
+<p><span  class="math">\(\mathrm{W} \in \mathbb{R}^{n \times x}\)</span>의 특이값 분해 <span  class="math">\(\mathrm{W} = \mathrm{U\Sigma V}\)</span>에서 <span  class="math">\(\mathrm{U}, \mathrm{V}\)</span>는 기저 변환, 새 좌표에 0을 추가, 그리고 좌표의 부분집합으로의 사영(Projection)으로 구성되어 있다. <span  class="math">\(\mathrm{\Sigma}\)</span>를 곱하고 기저를 변환하는 것은 미분동형사상이며 새 좌표에 0을 추가하는 것은 매니폴드 임베딩, 즉 도함수가 단사(Injective) 함수인 단사 함수(<a href="https://en.wikipedia.org/wiki/Embedding#Differential_topology">Embedding</a>)이기에 좌표의 부분 집합으로의 사영에 대해서만 증명하면 된다.</p>
+
+<p><span  class="math">\(\pi : \mathbb{R}^{n + k} \to \mathbb{R}^n\)</span>이라고 하고 <span  class="math">\(\mathcal{M}\subseteq \mathbb{R}^{n + k}\)</span>를 <span  class="math">\(d\)</span> 차원 매니폴드라고 하자. <span  class="math">\(n \leq d\)</span>라면 <span  class="math">\(\pi\)</span>의 이미지는 <span  class="math">\(\mathbb{R}^n\)</span>에 포함되어 있을 것이고 따라서 차원이 최대 <span  class="math">\(d\)</span>인 매니폴드에 포함될 것이다.</p>
+
+<p><span  class="math">\(n > d\)</span>인 경우에 <span  class="math">\(\pi_i(x) = x_i\)</span>라고 하자. <span  class="math">\(x\)</span>가 <span  class="math">\(\pi\)</span>의 임계점(Critical Point)인 경우에 <span  class="math">\(\pi\)</span>의 좌표는 독립이므로 <span  class="math">\(x\)</span>는 <span  class="math">\(\pi_i\)</span>의 임계점일 것이다. 모스 보조정리(Morse Lemma)에 의해서 <span  class="math">\(\pi_i\)</span>의 임계점은 고립점(Isolated Point)이다. 모스 보조정리에 따르면 매끈한 함수 <span  class="math">\(f\)</span>의 모든 임계점 <span  class="math">\(p\)</span>에는 좌표 근방(Neighborhood) <span  class="math">\(x_i\)</span>가 존재하며 이 좌표들에 대해서 <span  class="math">\(f(x_i) = f(p) - \sum_{i=1}^a x_i^2 + \sum_{i=a+1}^n x_i^2\)</span>이다. 이 함수의 그래디언트를 구해보면 그래디언트가 0인 지점은 모든 <span  class="math">\(x_i\)</span>가 0인 지점이며 따라서 임계점은 <span  class="math">\(p\)</span> 밖에 없다. <a href="https://en.wikipedia.org/wiki/Morse_theory#Morse_lemma">Morse Lemma</a></p>
+
+<p>따라서 <span  class="math">\(\pi\)</span>의 다른 임계점에 대해서도 마찬가지고 따라서 가산 개의 임계점만이 존재할 수 있다. <span  class="math">\(\pi\)</span>는 비임계점을 <span  class="math">\(d\)</span> 차원 매니폴드로 사상하며 가산 개의 임계점을 가산 개의 점으로 사상한다.</p>
+
+<p>파라미터 <span  class="math">\(\theta\)</span>를 학습 혹은 최적화하려면 <span  class="math">\(\theta \to P_\theta\)</span>가 연속인 쪽이 바람직하다. 그런데 <span  class="math">\(\theta \to P_\theta\)</span>가 연속이라는 것은 파라미터의 수열 <span  class="math">\(\theta_t\)</span>가 <span  class="math">\(\theta\)</span>로 수렴할 때 <span  class="math">\(P_{\theta_t} \to P_\theta\)</span>라는 것을 의미한다. 그런데 이러한 수렴의 양상은 확률 변수 사이의 거리 <span  class="math">\(d(P_{\theta_t}, P_\theta)\)</span>를 어떻게 정의하느냐에 따라서 달라진다.</p>
+
+<h2 id="확률-분포의-거리">확률 분포의 거리</h2>
+
+<p>그렇다면 몇 가지 대표적인 거리(Distance)를 살펴보자. 가측공간 <span  class="math">\((\mathcal{X}, \Sigma)\)</span>에 대해</p>
+
+<ul>
+<li>Total Variation distance</li>
+</ul>
+
+<p><span  class="math">\[\delta(P_r, P_g) = \sup_{A \in \Sigma} |P_r(A) - P_g(A)|\]</span></p>
+
+<ul>
+<li>Kullback-Leibler divergence</li>
+</ul>
+
+<p><span  class="math">\[KL(P_r\| P_g) = \int P_r(x)\log\frac{P_r(x)}{P_g(x)}\,\mathrm{d}x\]</span></p>
+
+<p>앞서 보았듯 <span  class="math">\(P_r\)</span>, <span  class="math">\(P_g\)</span>는 절대 연속이어서 밀도가 존재해야 한다.</p>
+
+<ul>
+<li>Jensen-Shannon divergence</li>
+</ul>
+
+<p><span  class="math">\[JS(P_r, P_g) = KL(P_r\| P_m) + KL(P_g\| P_m), P_m = (P_r + P_g) / 2\]</span></p>
+
+<p>JS 다이버전스는 KL 다이버전스와는 달리 대칭이고 늘 잘 정의된다.</p>
+
+<ul>
+<li>Earth-Mover distance, Wasserstein-1 distance</li>
+</ul>
+
+<p><span  class="math">\[W(P_r, P_g) = \inf_{\gamma \in \Pi(P_r, P_g)}\operatorname{E}_{(x, y) \sim \gamma}\left[\|x-y\|\right],\]</span></p>
+
+<p><span  class="math">\(\Pi(P_r, P_g)\)</span>는 주변 확률 분포가 각각 <span  class="math">\(P_r\)</span>, <span  class="math">\(P_g\)</span>인 모든 결합 분포 <span  class="math">\(\gamma(x, y)\)</span>의 집합.</p>
+
+<p>EM 거리를 직관적으로 생각해보면 다음과 같다. <span  class="math">\(P_r\)</span>에 있는 확률의 &quot;흙더미&quot;를 옮겨 <span  class="math">\(P_r\)</span>을 <span  class="math">\(P_g\)</span>로 변환한다고 생각해보자. (그래서 Earth-Mover 거리라고 부른다.) 그렇다면 <span  class="math">\(\gamma(x, y)\)</span>는 <span  class="math">\(x\)</span>에서 <span  class="math">\(y\)</span>로 얼마나 많은 흙을 옮겨야 하는지를 나타내고 있다고 할 수 있다. <span  class="math">\(x\)</span>에서 <span  class="math">\(y\)</span>로 옮겨지는 흙의 양은 <span  class="math">\(\int\gamma(x, y)\,\mathrm{d}y = P_r(x)\)</span>가 될 것이며 <span  class="math">\(x\)</span>에서 <span  class="math">\(y\)</span>로 들어오는 흙의 양은 <span  class="math">\(\int\gamma(x, y)\,\mathrm{d}x = P_g(y)\)</span>가 될 것이다. 따라서 <span  class="math">\(\gamma(x, y)\)</span>의 주변 확률 분포는 각각 <span  class="math">\(P_r\)</span>, <span  class="math">\(P_g\)</span>이어야 한다. <span  class="math">\(m\)</span> 만큼의 흙을 <span  class="math">\(d\)</span>만큼 옮기는데 <span  class="math">\(m\cdot d\)</span> 만큼의 비용이 소요된다고 가정하면 <span  class="math">\(\gamma(x, y)\)</span>에 따라 <span  class="math">\(P_r\)</span>을 <span  class="math">\(P_g\)</span>로 변환하는데 소요되는 비용은
+<span  class="math">\(\iint\gamma(x, y)\|x-y\|\,\mathrm{d}y = \operatorname{E}_{(x, y) \sim \gamma}\left[\|x-y\|\right]\)</span>
+이다. 따라서 <span  class="math">\(\Pi(P_r, P_g)\)</span>에 대해 하한을 구하면 변환에 필요한 최소 비용을 구할 수 있다.</p>
+
+<p>EM 거리는 수학의 Transportation Theory라는 분야에서 중요한 개념인 듯 하다.</p>
+
+<p>EM 거리의 중요한 특징은 다른 거리 혹은 다이버전스로는 수렴하지 않는 확률 분포의 수열이 EM 거리에서는 수렴하는 경우가 있다는 것이다.</p>
+
+<p><span  class="math">\(P_0 = (0, y) \in \mathbb{R}^2,\, y \sim \operatorname{Uniform}(0, 1)\)</span>라고 하고 <span  class="math">\(P_\theta = (\theta, y),\, y \sim \operatorname{Uniform}(0, 1)\)</span>라고 하자.</p>
+
+<p><figure><img src="http://res.cloudinary.com/rosinality/image/upload/v1492734059/images/dist.png" alt="Distance between distributions"></figure></p>
+
+<ul>
+<li><p>Total Variation distance
+<span  class="math">\(
+\delta(P_0, P_\theta) =
+\begin{cases}
+1 & \quad \theta \neq 0 \\
+0 & \quad \theta = 0\\
+\end{cases}
+\)</span></p></li>
+
+<li><p>Kullback-Leibler divergence
+<span  class="math">\(
+KL(P_0\| P_\theta) = KL(P_\theta\| P_0) =
+\begin{cases}
++\infty & \quad \theta \neq 0 \\
+0 & \quad \theta = 0 \\
+\end{cases}
+\)</span></p></li>
+
+<li><p>Jensen-Shannon divergence
+<span  class="math">\(
+JS(P_0, P_\theta) =
+\begin{cases}
+\log 2 & \quad \theta \neq 0 \\
+0 & \quad \theta = 0 \\
+\end{cases}
+\)</span></p></li>
+
+<li><p>Earth-Mover distance, Wasserstein-1 distance
+<span  class="math">\(
+W(P_0, P_\theta) = |\theta|
+\)</span></p></li>
+</ul>
+
+<p>이 사례를 보면 <span  class="math">\(\theta \to 0\)</span>인 경우에 EM 거리 하에서는 <span  class="math">\(P_\theta\)</span>가 <span  class="math">\(P_0\)</span>에 수렴하지만 다른 거리 혹은 다이버전스에서는 수렴하지 않는다는 것을 알 수 있다. 거기다 거리가 연속도 아니라서 그래디언트로 최적화하는 것도 불가능하다. 이상한 사례처럼 보이지만 분포의 받침의 교집합이 측도 0인 집합에 포함되어 있는 경우에 발생하는 상황이기도 하며 이게 실제 데이터에서 벌어진다는 것이 중요한 부분이다.</p>
+
+<p>기존의 GAN은 JS 다이버전스를 최소화하는 방식으로 학습된다. (Energy-based GAN은 Total Variation 거리를 최소화하는 방식으로 학습한다는 증명이 Wasserstein GAN 논문에 붙어있다.) Wasserstein 거리는 JS 다이버전스에 비해 훨씬 약하다. 여기서 <span  class="math">\(d\)</span>가 <span  class="math">\(d^\prime\)</span>에 비해 약하다는 것은 <span  class="math">\(d^\prime\)</span>에서 수렴하는 모든 수열이 <span  class="math">\(d\)</span>에서도 수렴한다는 것이다.</p>
+
+<h2 id="wasserstein-거리는-왜-약한가">Wasserstein 거리는 왜 약한가?</h2>
+
+<p>Wasserstein GAN 논문에 Wasserstein 거리가 약한 이유에 대해서 관심이 있으면 꼭 읽어보라고 하길래 읽어봤는데 일단 정리해본다.</p>
+
+<p><span  class="math">\(\mathcal{X} \subseteq \mathbb{R}^d\)</span>가 컴팩트 집합이라고 하고 <span  class="math">\(\mathcal{P}(\mathcal{X})\)</span>를 <span  class="math">\(\mathcal{X}\)</span>에 대해 정의된 확률 측도의 공간이라고 하자.</p>
+
+<p><span  class="math">\[
+C_b(\mathcal{X}) = \left\{f : \mathcal{X} \to \mathbb{R}, \text{f는 연속이고 유계}\right\}
+\]</span></p>
+
+<p><span  class="math">\(f \in C_b(\mathcal{X})\)</span>인 함수에 대해서 <span  class="math">\(f\)</span>는 유계이기에 <span  class="math">\(\|f\|_\infty = \max|f(x)|\)</span>를 정의할 수 있다. 이 놈(Norm)에 대해 놈 벡터 공간 <span  class="math">\((C_b(\mathcal{X}), \|\cdot\|_\infty)\)</span>를 정의할 수 있다. 이 놈 벡터 공간에 대한 쌍대 공간은</p>
+
+<p><span  class="math">\[
+C_b(\mathcal{X})^\ast = \left\{\phi : C_b(\mathcal{X}) \to \mathbb{R}, \phi\text{는 선형이고 연속}\right\}
+\]</span></p>
+
+<p>이며 쌍대 놈은 <span  class="math">\(\|\phi\| = \sup_{f\in C_b(\mathcal{X}),\, \|f\|_\infty \leq 1}|\phi(f)|\)</span>이다. 따라서 <span  class="math">\((C_b(\mathcal{X})^\ast, \|\cdot\|)\)</span>은 또 다른 놈 벡터 공간이다. <span  class="math">\(\mu\)</span>를 <span  class="math">\(\mathcal{X}\)</span>에 대한 부호 측도(Signed Measure)라고 하고 Total Variation 거리</p>
+
+<p><span  class="math">\[
+\|\mu\|_{TV} = \sup_{A \subseteq \mathcal{X}}|\mu(A)|
+\]</span></p>
+
+<p>를 정의하자. Total Variation은 놈이기에 만약 <span  class="math">\(\mathcal{X}\)</span>에 대한 확률 분포 <span  class="math">\(P_r, P_\theta\)</span>가 존재한다면 <span  class="math">\(\delta(P_r, P_\theta) = \|P_r - P_\theta\|_{TV}\)</span>는 <span  class="math">\(\mathcal{P}(\mathcal{X})\)</span>에 대해 정의된 거리이다.</p>
+
+<p><span  class="math">\[
+\Phi : (\mathcal{P}(\mathcal{X}), \delta) \to (C_b(\mathcal{X})^\ast, \|\cdot\|) \\
+\Phi(P)(f) = \operatorname{E}_{x \sim P}\left[f(x)\right]
+\]</span></p>
+
+<p>을 정의하면 리즈-마르코프-카쿠타니 정리(Riesz-Markov-Kakutani Theorem)에 의해(<a href="https://en.wikipedia.org/wiki/Riesz%E2%80%93Markov%E2%80%93Kakutani_representation_theorem">Riesz-Markov-Kakutani Representation Theorem</a>, <a href="https://ncatlab.org/nlab/show/Riesz+representation+theorem">Riesz Representation Theorem</a>) <span  class="math">\(\Phi\)</span>는 등거리 동형사상(Isometric Isomorphism)이 된다. 따라서 <span  class="math">\(\mathcal{P}(\mathcal{X})\)</span>에 대한 Total Variation 거리는 <span  class="math">\(C_b(\mathcal{X})^\ast\)</span>에 대한 놈 거리가 된다.</p>
+
+<p>확률 분포에 대한 거리 <span  class="math">\(\delta\)</span>를 <span  class="math">\(C_b(\mathcal{X})^\ast\)</span>에 대한 거리라고 봤을 때 이 거리는 놈 위상(Norm Topology)을 생성한다. 놈 위상은 강한 위상(Strong Topology)이다. 따라서 <span  class="math">\(\delta\)</span>에 대해 <span  class="math">\(\theta \mapsto P_\theta\)</span>가 연속인 경우는 상당히 제한적이라고 할 수 있다. <span  class="math">\(\delta\)</span>에 의해 생성된 위상은 JS 다이버전스에 의해 생성된 위상과 같고, 따라서 JS 다이버전스도 강한 거리라고 할 수 있으며 불연속적인 경우가, 그러니까 loss 함수가 불연속적인 경우가 흔하다고 볼 수 있다.</p>
+
+<p><span  class="math">\(\mathcal{P}(\mathcal{X}), C_b(\mathcal{X})^\ast\)</span>와 같은 모든 쌍대 공간은 놈에 의한 강한 위상과 함께 약한<span  class="math">\(^\ast\)</span>(Weak<span  class="math">\(^\ast\)</span>) 위상을 갖고 있다. <span  class="math">\(\mathcal{P}(\mathcal{X})\)</span>에 대해서 강한 위상은 Total Variation 거리에 의해 주어지며 약한<span  class="math">\(^\ast\)</span> 위상은 Wasserstein 거리에 의해 주어진다.</p>
+
+<h2 id="kantorovichrubinstein-duality">Kantorovich-Rubinstein Duality</h2>
+
+<p>Wasserstein 거리가 좋은 특성을 갖고 있다는 건 좋은데 실제로 이걸 어떻게 계산할 수 있나? 모든 결합 확률 분포에 대해서 하한(Infimum)을 구한다는 건 불가능한 문제다. 이 문제에 대해 Kantorovich-Rubinstein 쌍대성이 도움이 된다.</p>
+
+<p><span  class="math">\[
+W(P_r, P_\theta) = \sup_{\|f\|_L\leq 1}\operatorname{E}_{x\sim P_r}\left[f(x)\right] - \operatorname{E}_{x\sim P_\theta}\left[f(x)\right]
+\]</span></p>
+
+<p>상한은 1-Lipschitz 함수 <span  class="math">\(\|f\|_L\leq 1\)</span>에 대해 구해진다. <span  class="math">\(|\int f(x) - f(y)\,\mathrm{d}\mu| \leq \int \|x - y\|\,\mathrm{d}\mu\)</span>이기에 <span  class="math">\(f\)</span>에 대해서 상한을 취하고 <span  class="math">\(\mu\)</span>에 대해서 하한을 취하면 <span  class="math">\(KR(P, Q) \leq W(P, Q)\)</span>라는 것은 비교적 쉽게 증명할 수 있다. 나머지 방향이 문제인데 이건 Dudley의 Real Analysis and Probability에 나와 있다...</p>
+
+<p>여기서 K-Lipschitz 함수란 척도 공간 <span  class="math">\((X, d_X)\)</span>와 <span  class="math">\((Y, d_Y)\)</span>에 대해서 함수 <span  class="math">\(f : X \to Y\)</span>가 모든 <span  class="math">\(x_1, x_2 \in X\)</span>에 대해 <span  class="math">\(d_Y(f(x_1), f(x_2)) \leq Kd_X(x_1, x_2)\)</span>임을 의미한다. 그러니까 일종의 최대 기울기에 상한을 둔 것이라고 할 수 있다.</p>
+
+<p>여전히 1-Lipschitz (혹은 K-Lipschitz 함수. 이 경우엔 <span  class="math">\(K\cdot W(P_r, P_\theta)\)</span>가 된다.) 함수에 대해 상한을 구하는 것도 계산은 불가능하다. 그렇지만 근사는 훨씬 쉽게 할 수 있다. 요즘 함수를 근사한다고 하면? 당연히 뉴럴 네트워크다. 단 뉴럴 네트워크가 K-Lipschitz 함수여야 하기 때문에 가중치를 특정한 상수 <span  class="math">\(c\)</span>로 클리핑해주기만 하면 된다.</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/wasserstein-distance/">wasserstein distance</a>
+
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/manifold/">manifold</a>
+
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/probability-distribution/">probability distribution</a>
+
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/measure-theory/">measure theory</a>
+
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/topology/">topology</a>
+
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/convergence/">convergence</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/%ED%96%89%EC%9C%84%EC%9E%90-%EA%B8%B0%EB%B0%98-%EB%AA%A8%ED%98%95%EA%B3%BC-%ED%95%98%EC%9D%B4%ED%8D%BC%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0-%EC%B5%9C%EC%A0%81%ED%99%94/" data-tooltip="행위자 기반 모형과 하이퍼파라미터 최적화">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/%EC%83%81%EC%8B%9D%EA%B3%BC-%EC%82%AC%ED%9A%8C%ED%95%99%EC%A0%81-%EC%84%A4%EB%AA%85-2/" data-tooltip="상식과 사회학적 설명 2">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2frosinality.github.io%2f2017%2f04%2fwasserstein-%25EA%25B1%25B0%25EB%25A6%25AC%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frosinality.github.io%2f2017%2f04%2fwasserstein-%25EA%25B1%25B0%25EB%25A6%25AC%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2frosinality.github.io%2f2017%2f04%2fwasserstein-%25EA%25B1%25B0%25EB%25A6%25AC%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Kim Seonghyeon. 
+  </span>
+</footer>
+
+      </div>
+      
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2frosinality.github.io%2f2017%2f04%2fwasserstein-%25EA%25B1%25B0%25EB%25A6%25AC%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frosinality.github.io%2f2017%2f04%2fwasserstein-%25EA%25B1%25B0%25EB%25A6%25AC%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2frosinality.github.io%2f2017%2f04%2fwasserstein-%25EA%25B1%25B0%25EB%25A6%25AC%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=110" alt="" />
+    
+    <h4 id="about-card-name">Kim Seonghyeon</h4>
+    
+      <div id="about-card-bio">Machine learning enthusiast</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Graduate student in HCCLab at Seoul National University
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Korea, Republic of
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2022/11/%ED%85%94-%EC%95%84%EB%B9%84%EB%B8%8C%EC%99%80-eccv-2022-%EC%97%AC%ED%96%89%EA%B8%B0-1/">
+                <h3 class="media-heading">텔 아비브와 ECCV 2022 여행기 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">생애 첫 해외 여행(은 아니고 출장이긴 하지만)을 이스라엘로 기념하게 됐다. 일단 여권부터 만들고. (이번에 만든 거라 신형 여권이다.) 인천국제공항에 입성. 사</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2021/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%97%90%EC%84%9C-%EC%84%A4%EC%A0%95-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0/">
+                <h3 class="media-heading">머신 러닝 시스템에서 설정 관리하기</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">머신 러닝 코드, 특히 실험적 목적이 강한 코드에서 가장 중요한 문제 중 하나가 설정을 관리하는 것이라고 본다. 머신 러닝 모델에는 수많은 하이퍼파라미터가 존재하고 그</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2021/04/%EC%A7%84%EA%B2%A9%EC%9D%98-%EA%B1%B0%EC%9D%B8/">
+                <h3 class="media-heading">진격의 거인</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">진격의 거인은 우익적 혹은 극우적인가? 보통 일본의 창작물이 극우적인가를 논하는 기준은 욱일기가 은근슬쩍 등장한다든지 혹은 대체역사물 같이 노골적으로 (유치한</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2020/06/the-last-of-us-part-ii/">
+                <h3 class="media-heading">The Last of Us Part II</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">과연 라스트 오브 어스 2는 증오와 적대에 대한 게임이다. (인터뷰) 게임에서 싸우는 것이 일상이고 증오와 적대가 게임에 등장하는 것이야 대수로운 일도 아니지 않을까</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2019/08/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">
+                <h3 class="media-heading">머신러닝 파이프라인 만들기</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘(Feature extractor)을 데이터를 통해 학습한다는 것이었</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/10/bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding/">
+                <h3 class="media-heading">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">프리트레이닝과 전이학습 모델을 프리트레이닝하는 것이, 혹은 프리트레이닝된 모델이 모듈로 쓰는 것이 성능에 큰 영향을 미칠 수 있다는 건 너무나 잘 알려진 사실이다.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/08/%EC%9D%B8%EA%B3%BC%EA%B4%80%EA%B3%84%EB%A5%BC-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B0%9D%ED%9E%90-%EC%88%98-%EC%9E%88%EB%8A%94%EA%B0%80/">
+                <h3 class="media-heading">인과관계를 어떻게 밝힐 수 있는가</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">우선 인과관계라는 것이 대체 무엇인가? 인과관계라는 것을 명확하게 정의하는 것은 복잡한 철학적 문제다. 그러나 실용적인 목적으로는 단순한 정의를 사용할 수 있다.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/05/%EB%B2%84%EB%8B%9D/">
+                <h3 class="media-heading">버닝</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">모호한 세상. 영화에서는 수수께끼 같다는 말로 직접적으로 표현한다. 세상을 명료하게 설명해서 글로 옮길 수 있다면 좋겠지만 영화는 시종일관 진실이 무엇인지 말해주</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2017/11/%EC%95%9E%EC%9C%BC%EB%A1%9C-%EC%9E%AC%EB%AF%B8%EC%9E%88%EC%9D%84%EC%A7%80%EB%8F%84-%EB%AA%A8%EB%A5%B4%EB%8A%94-%EC%A3%BC%EC%A0%9C%EB%93%A4/">
+                <h3 class="media-heading">앞으로 재미있을지도 모르는 주제들</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">LSTM을 대신할 RNN Cell을 설계한다거나 하는 식의 기존의 구조를 개선하는 방안을 고안하는 것은 분명히 중요한 일이기는 하지만 그 자체로는 이전에는 불가능하거</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         55 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/stair.jpg');"></div>
+  
+
+
+    
+<script>
+  (function (d) {
+    var config = {
+      kitId: 'vld6lxf',
+      scriptTimeout: 3000,
+      async: true
+    },
+      h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+  })(document);
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    preview: "none",
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+
+
+<script src="/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    hljs.configure({ classPrefix: '', useBR: false });
+    $('pre.code-highlight').each(function (i, block) {
+      var code = "";
+      hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function (line) {
+        code += "<span class=\"line\">" + line + "</span><br>";
+      });
+      if (code.length > 0) {
+        block.innerHTML = code;
+      }
+    });
+    $('pre > code').each(function (i, block) {
+      $(this).addClass('codeblock');
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = 'http:\/\/rosinality.github.io\/2017\/04\/wasserstein-%EA%B1%B0%EB%A6%AC\/';
+    { { if .Params.disqusIdentifier } }
+    this.page.identifier = 'wasserstein-distance';
+    { { else } }
+    this.page.identifier = '\/2017\/04\/wasserstein-%EA%B1%B0%EB%A6%AC\/'
+    { { end } }
+  };
+  (function () {
+    
+    
+    if (window.location.hostname == "localhost") {
+      return;
+    }
+    var d = document, s = d.createElement('script');
+    var disqus_shortname = 'rosinality';
+    s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+
+
+
+
+    
+  </body>
+</html>
+

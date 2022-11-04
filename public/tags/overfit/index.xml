@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>overfit on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/overfit/</link>
+    <description>Recent content in overfit on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Mon, 08 May 2017 22:31:57 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/overfit/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>머신 러닝 모델을 만들기</title>
+      <link>http://rosinality.github.io/2017/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D-%EB%AA%A8%EB%8D%B8%EC%9D%84-%EB%A7%8C%EB%93%A4%EA%B8%B0/</link>
+      <pubDate>Mon, 08 May 2017 22:31:57 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D-%EB%AA%A8%EB%8D%B8%EC%9D%84-%EB%A7%8C%EB%93%A4%EA%B8%B0/</guid>
+      <description>머신 러닝을 하는데 성능이 잘 안 나온다는 질문이 종종 보여서, 모델 성능 평가의 왕도를 소개해봄. 사실 Deep Learning book의 챕터 11에 나오는 내용. 전처리를 하고 데이터</description>
+    </item>
+    
+  </channel>
+</rss>

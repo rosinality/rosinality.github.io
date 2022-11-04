@@ -1,0 +1,655 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="ko-kr">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.73.0">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>사회학은 과학인가?</title>
+    <meta name="author" content="Kim Seonghyeon">
+    <meta name="keywords" content=", machine learning, deep learning, social science">
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+    <meta name="description" content="사회학은 과학인가? 사회학이 과학이 아니라고, 혹은 사회학은 과학이 될 수 없다고 주장하는 경우 중에는 자연과학의 과학성을 치켜세우면서 애매하고 복잡한 대상인 사">
+    <meta property="og:description" content="사회학은 과학인가? 사회학이 과학이 아니라고, 혹은 사회학은 과학이 될 수 없다고 주장하는 경우 중에는 자연과학의 과학성을 치켜세우면서 애매하고 복잡한 대상인 사">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="사회학은 과학인가?">
+    <meta property="og:url" content="/2017/04/%EC%82%AC%ED%9A%8C%ED%95%99%EC%9D%80-%EA%B3%BC%ED%95%99%EC%9D%B8%EA%B0%80/">
+    <meta property="og:site_name" content="Nondifferentiable Log">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Nondifferentiable Log">
+    <meta name="twitter:description" content="사회학은 과학인가? 사회학이 과학이 아니라고, 혹은 사회학은 과학이 될 수 없다고 주장하는 경우 중에는 자연과학의 과학성을 치켜세우면서 애매하고 복잡한 대상인 사">
+    
+      <meta name="twitter:creator" content="@rosinality">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=640">
+    
+
+    
+    
+      <meta property="og:image" content="http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/cover02.jpg">
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Nondifferentiable Log</a>
+  </div>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Kim Seonghyeon</h4>
+        
+          <h5 class="sidebar-profile-bio">Machine learning enthusiast</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/rosinality" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/cover02.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      사회학은 과학인가?
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-04-20T14:04:42&#43;09:00">
+      
+  April 20, 2017
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="/categories/thoughts">thoughts</a>
+    
+  
+
+
+</div>
+
+</div>
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>사회학은 과학인가? 사회학이 과학이 아니라고, 혹은 사회학은 과학이 될 수 없다고 주장하는 경우 중에는 자연과학의 과학성을 치켜세우면서 애매하고 복잡한 대상인 사회를 다루는 사회학은 자연과학 수준의 엄밀성을 가질 수 없고, 따라서 과학이 아니며 과학이 될 수도 없다고 말하는 부류가 있다. 물론 여기서 자연과학의 대표주자로 나오는 것은 대체로 늘 물리학이다.</p>
+<p>이런 주장은 일반적으로 자연과 인간이라는 대상을 질적으로 다르다고 가정한다. 즉 예외 없는 규칙을 따라 움직이는 자연에 비해 사회학 혹은 심리학의 연구 대상인 인간은 제각기 외부에서는 알 수 없는 판단 기준과 감정을 가지고 행동하기 때문에 객관적인 연구가 불가능하다는 가정을 한다는 것이다. 그런 주장의 시각에선 현실에는 아무런 규칙도 없고 단순히 우발적인, 개별적인 상황들만이 있을 뿐이다. 그러나 그 주장이 기대하는 것과는 달리 인간의 행동은 상당히 규칙적이고 예측 가능하다. 어제와 오늘의 하루 일과를 비교해보라. 예측할 수 없는 것 같은 인간이 매우 패턴화된 행동 양식을 가지고 있다는 것을 쉽게 알 수 있다. 그런 규칙성 때문에, 인간의 내면은 객관적으로 관찰 불가능한 것이기에 관찰 가능한 인간의 행동만을 연구해야 한다고 주장했던 심리학의 행동주의 또한 그 나름의 방식대로 인간 행동의 많은 부분을 설명하고 예측하는데 성공했다.</p>
+<p>이후 측정과 실험의 방법이 발전하면서 심리학은 인간의 내면 또한 객관적인 방식으로 분석하는데 성공했고, 심리학이 예측할 수 있는 대상은 계속해서 넓어지고 있다. 물론 인간은 에측할 수 있으나 인간이 많이 모인 복잡한 사회는 예측하기 어렵다고 말할 수도 있다. 그러나 오히려 사회에서 인간들이 다른 인간들의 행동을 제약해서 전반적인 변화를 보다 예측 가능하게 하는 경우도 흔히 발생한다. 다시 한 번 오늘과 어제의 일과를 떠올려보라. 두 일과의 유사함이 어디서 기인하는 것일까? 물론 개인적인 습관에 의한 것도 많이 있겠지만 사회적인 환경과 조건이 미치는 영향도 상당하다는 것을 알 수 있을 것이다.</p>
+<p>사회학은 사회 현상에 대한 비평과 성찰이며, 따라서 비평과 성찰에 과학성을 논하지는 않듯 사회학이 과학이 될 필요가 없다고 말하는 경우도 있다. 이는 사회학이라는 학문에 대해 거는 기대가 완전히 다른 경우이며 따라서 이 둘을 화해시키기는 쉽지 않다. 많은 경우에 이 두 입장은 서로 말도 잘 통하지 않는다. 과학으로서의 사회학을 이상으로 삼는 이들은 좀 더 나은 설명과 예측을 위해서 지식을 축적시키는 것을 목표로 하고, 성찰로서의 사회학을 목표로 하는 이들은 마치 문예 비평이 계속해서 새로운 문학에 대한 새로운 시선을 추가하는 것을 목표로 하는 것처럼 사회에 대한 새로운 시각을 추가해 사회학을 다양화해나가는 것이 사회학이 가야할 길이라고 여긴다. 따라서 전자의 시각에선 후자가 딱히 발전을 목표로 하지 않으면서 너절하게 말만 늘어놓는 것처럼 보이고, 후자의 시선에선 전자가 과학이라는 말에 쓸데없이 얽매여 있는 것처럼 보인다.</p>
+<p>사회학이 과학이 될 수 없다는 주장에 반론을 제기하기는 어렵지 않다. 그러나 사회학이 과학이 될 필요가 없다는 주장을 반박하기는 어렵다. 이는 학문이 어떠해야 하며 어떻게 되어야 한다는 관점 자체가 아예 다르기 때문이다. 그래서 이 두 가지 입장은 일반적으로 서로 무간섭주의를 공언하며 사회학이라는 학문 아래 공존하고 있다. 사회학이라는 좁은 공간 아래에서 서로 전혀 다른 두 입장이 뒤엉켜 살아야 한다는 것은 분명히 불편한 일이지만, 아마 앞으로도 그런 공존 아닌 공존은 지속될 가능성이 높다.</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/%EC%83%81%EC%8B%9D%EA%B3%BC-%EC%82%AC%ED%9A%8C%ED%95%99%EC%A0%81-%EC%84%A4%EB%AA%85/" data-tooltip="상식과 사회학적 설명">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/%EC%8B%A0%ED%98%B8-%ED%83%90%EC%A7%80-%EC%9D%B4%EB%A1%A0/" data-tooltip="신호 탐지 이론">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2frosinality.github.io%2f2017%2f04%2f%25EC%2582%25AC%25ED%259A%258C%25ED%2595%2599%25EC%259D%2580-%25EA%25B3%25BC%25ED%2595%2599%25EC%259D%25B8%25EA%25B0%2580%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frosinality.github.io%2f2017%2f04%2f%25EC%2582%25AC%25ED%259A%258C%25ED%2595%2599%25EC%259D%2580-%25EA%25B3%25BC%25ED%2595%2599%25EC%259D%25B8%25EA%25B0%2580%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2frosinality.github.io%2f2017%2f04%2f%25EC%2582%25AC%25ED%259A%258C%25ED%2595%2599%25EC%259D%2580-%25EA%25B3%25BC%25ED%2595%2599%25EC%259D%25B8%25EA%25B0%2580%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Kim Seonghyeon. 
+  </span>
+</footer>
+
+      </div>
+      
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2frosinality.github.io%2f2017%2f04%2f%25EC%2582%25AC%25ED%259A%258C%25ED%2595%2599%25EC%259D%2580-%25EA%25B3%25BC%25ED%2595%2599%25EC%259D%25B8%25EA%25B0%2580%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frosinality.github.io%2f2017%2f04%2f%25EC%2582%25AC%25ED%259A%258C%25ED%2595%2599%25EC%259D%2580-%25EA%25B3%25BC%25ED%2595%2599%25EC%259D%25B8%25EA%25B0%2580%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2frosinality.github.io%2f2017%2f04%2f%25EC%2582%25AC%25ED%259A%258C%25ED%2595%2599%25EC%259D%2580-%25EA%25B3%25BC%25ED%2595%2599%25EC%259D%25B8%25EA%25B0%2580%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=110" alt="" />
+    
+    <h4 id="about-card-name">Kim Seonghyeon</h4>
+    
+      <div id="about-card-bio">Machine learning enthusiast</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Graduate student in HCCLab at Seoul National University
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Korea, Republic of
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2022/11/%ED%85%94-%EC%95%84%EB%B9%84%EB%B8%8C%EC%99%80-eccv-2022-%EC%97%AC%ED%96%89%EA%B8%B0-1/">
+                <h3 class="media-heading">텔 아비브와 ECCV 2022 여행기 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">생애 첫 해외 여행(은 아니고 출장이긴 하지만)을 이스라엘로 기념하게 됐다. 일단 여권부터 만들고. (이번에 만든 거라 신형 여권이다.) 인천국제공항에 입성. 사</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2021/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%97%90%EC%84%9C-%EC%84%A4%EC%A0%95-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0/">
+                <h3 class="media-heading">머신 러닝 시스템에서 설정 관리하기</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">머신 러닝 코드, 특히 실험적 목적이 강한 코드에서 가장 중요한 문제 중 하나가 설정을 관리하는 것이라고 본다. 머신 러닝 모델에는 수많은 하이퍼파라미터가 존재하고 그</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2021/04/%EC%A7%84%EA%B2%A9%EC%9D%98-%EA%B1%B0%EC%9D%B8/">
+                <h3 class="media-heading">진격의 거인</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">진격의 거인은 우익적 혹은 극우적인가? 보통 일본의 창작물이 극우적인가를 논하는 기준은 욱일기가 은근슬쩍 등장한다든지 혹은 대체역사물 같이 노골적으로 (유치한</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2020/06/the-last-of-us-part-ii/">
+                <h3 class="media-heading">The Last of Us Part II</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">과연 라스트 오브 어스 2는 증오와 적대에 대한 게임이다. (인터뷰) 게임에서 싸우는 것이 일상이고 증오와 적대가 게임에 등장하는 것이야 대수로운 일도 아니지 않을까</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2019/08/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">
+                <h3 class="media-heading">머신러닝 파이프라인 만들기</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘(Feature extractor)을 데이터를 통해 학습한다는 것이었</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/10/bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding/">
+                <h3 class="media-heading">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">프리트레이닝과 전이학습 모델을 프리트레이닝하는 것이, 혹은 프리트레이닝된 모델이 모듈로 쓰는 것이 성능에 큰 영향을 미칠 수 있다는 건 너무나 잘 알려진 사실이다.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/08/%EC%9D%B8%EA%B3%BC%EA%B4%80%EA%B3%84%EB%A5%BC-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B0%9D%ED%9E%90-%EC%88%98-%EC%9E%88%EB%8A%94%EA%B0%80/">
+                <h3 class="media-heading">인과관계를 어떻게 밝힐 수 있는가</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">우선 인과관계라는 것이 대체 무엇인가? 인과관계라는 것을 명확하게 정의하는 것은 복잡한 철학적 문제다. 그러나 실용적인 목적으로는 단순한 정의를 사용할 수 있다.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/05/%EB%B2%84%EB%8B%9D/">
+                <h3 class="media-heading">버닝</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">모호한 세상. 영화에서는 수수께끼 같다는 말로 직접적으로 표현한다. 세상을 명료하게 설명해서 글로 옮길 수 있다면 좋겠지만 영화는 시종일관 진실이 무엇인지 말해주</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2017/11/%EC%95%9E%EC%9C%BC%EB%A1%9C-%EC%9E%AC%EB%AF%B8%EC%9E%88%EC%9D%84%EC%A7%80%EB%8F%84-%EB%AA%A8%EB%A5%B4%EB%8A%94-%EC%A3%BC%EC%A0%9C%EB%93%A4/">
+                <h3 class="media-heading">앞으로 재미있을지도 모르는 주제들</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">LSTM을 대신할 RNN Cell을 설계한다거나 하는 식의 기존의 구조를 개선하는 방안을 고안하는 것은 분명히 중요한 일이기는 하지만 그 자체로는 이전에는 불가능하거</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         55 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/stair.jpg');"></div>
+  
+
+
+    
+<script>
+  (function (d) {
+    var config = {
+      kitId: 'vld6lxf',
+      scriptTimeout: 3000,
+      async: true
+    },
+      h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+  })(document);
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+
+<script src="/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    hljs.configure({ classPrefix: '', useBR: false });
+    $('pre.code-highlight').each(function (i, block) {
+      var code = "";
+      hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function (line) {
+        code += "<span class=\"line\">" + line + "</span><br>";
+      });
+      if (code.length > 0) {
+        block.innerHTML = code;
+      }
+    });
+    $('pre > code').each(function (i, block) {
+      $(this).addClass('codeblock');
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = 'http:\/\/rosinality.github.io\/2017\/04\/%EC%82%AC%ED%9A%8C%ED%95%99%EC%9D%80-%EA%B3%BC%ED%95%99%EC%9D%B8%EA%B0%80\/';
+    { { if .Params.disqusIdentifier } }
+    this.page.identifier = '';
+    { { else } }
+    this.page.identifier = '\/2017\/04\/%EC%82%AC%ED%9A%8C%ED%95%99%EC%9D%80-%EA%B3%BC%ED%95%99%EC%9D%B8%EA%B0%80\/'
+    { { end } }
+  };
+  (function () {
+    
+    
+    if (window.location.hostname == "localhost") {
+      return;
+    }
+    var d = document, s = d.createElement('script');
+    var disqus_shortname = 'rosinality';
+    s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+
+
+
+
+    
+  </body>
+</html>
+

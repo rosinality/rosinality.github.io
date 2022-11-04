@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>distributed processing on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/distributed-processing/</link>
+    <description>Recent content in distributed processing on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 21 Apr 2017 16:21:44 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/distributed-processing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>빅 데이터</title>
+      <link>http://rosinality.github.io/2017/04/%EB%B9%85-%EB%8D%B0%EC%9D%B4%ED%84%B0/</link>
+      <pubDate>Fri, 21 Apr 2017 16:21:44 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EB%B9%85-%EB%8D%B0%EC%9D%B4%ED%84%B0/</guid>
+      <description>잘 아는 것은 아니지만 빅 데이터가 뭔가 생각해보면&amp;hellip;빅 데이터라고 할 때 데이터를 분석하는 방법 자체는 다 기존의 통계, 머신 러닝, IR에서 왔다고 할</description>
+    </item>
+    
+  </channel>
+</rss>

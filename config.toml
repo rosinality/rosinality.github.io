@@ -1,0 +1,78 @@
+baseURL = "http://rosinality.github.io/"
+languageCode = "ko-kr"
+title = "Nondifferentiable Log"
+
+disqusShortname = "rosinality"
+
+[permalinks]
+  post = "/:year/:month/:slug/"
+
+[params]
+  sidebarBehavior = 5
+  coverImage = "http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/stair.jpg"
+  thumbnailImage = true
+  keywords = ["machine learning", "deep learning", "social science"]
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  archive = "archives"
+
+[markup]
+  [markup.highlight]
+    # noClasses = true
+    # codeFences = true
+    style = "xcode"
+
+[author]
+  name = "Kim Seonghyeon"
+  location = "Korea, Republic of"
+  bio = "Machine learning enthusiast"
+  job = "Graduate student in HCCLab at Seoul National University"
+  gravatarEmail = "kim.seonghyeon@snu.ac.kr"
+  twitter = "rosinality"
+
+[[menu.main]]
+  weight = 0
+  identifier = "home"
+  name = "Home"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-home\"></i>"
+  url = "/"
+[[menu.main]]
+  weight = 1
+  identifier = "categories"
+  name = "Categories"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bookmark\"></i>"
+  url = "/categories"
+[[menu.main]]
+  weight = 2
+  identifier = "tags"
+  name = "Tags"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-tags\"></i>"
+  url = "/tags"
+[[menu.main]]
+  weight = 3
+  identifier = "archives"
+  name = "Archives"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-archive\"></i>"
+  url = "/archives"
+[[menu.main]]
+  weight = 4
+  identifier = "about"
+  name = "About"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
+  url = "/#about"
+
+[[menu.links]]
+  weight = 0
+  identifier = "github"
+  name = "GitHub"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-github\"></i>"
+  url = "https://github.com/rosinality"
+
+[[menu.misc]]
+  weight = 0
+  identifier = "rss"
+  name = "RSS"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-rss\"></i>"
+  url = "/index.xml"

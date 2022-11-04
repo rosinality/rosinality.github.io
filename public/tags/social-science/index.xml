@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>social science on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/social-science/</link>
+    <description>Recent content in social science on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Mon, 08 May 2017 22:45:30 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/social-science/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>머신 러닝과 사회 과학</title>
+      <link>http://rosinality.github.io/2017/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D%EA%B3%BC-%EC%82%AC%ED%9A%8C-%EA%B3%BC%ED%95%99/</link>
+      <pubDate>Mon, 08 May 2017 22:45:30 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D%EA%B3%BC-%EC%82%AC%ED%9A%8C-%EA%B3%BC%ED%95%99/</guid>
+      <description>머신 러닝이 사회과학 연구에 어떤 도움이 될까? 머신 러닝 알고리즘 중에는 사회과학에서 흔히 쓰이던 방법과 거의 동일한 작업을 수행할 수 있으면서 많은 경우에 더 강력한</description>
+    </item>
+    
+  </channel>
+</rss>

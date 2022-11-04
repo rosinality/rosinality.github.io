@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>neural network on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/neural-network/</link>
+    <description>Recent content in neural network on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 21 Apr 2017 16:18:05 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/neural-network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>배치 정규화 2</title>
+      <link>http://rosinality.github.io/2017/04/%EB%B0%B0%EC%B9%98-%EC%A0%95%EA%B7%9C%ED%99%94-2/</link>
+      <pubDate>Fri, 21 Apr 2017 16:18:05 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EB%B0%B0%EC%B9%98-%EC%A0%95%EA%B7%9C%ED%99%94-2/</guid>
+      <description>batch normalization의 문제 의식은 뉴럴넷에서 하나의 레이어의 출력은 이전의 레이어의 출력에 의해 영향을 받기에, 깊은 뉴럴넷에서는 이런 &amp;ldquo</description>
+    </item>
+    
+    <item>
+      <title>베이지안 뉴럴 네트워크</title>
+      <link>http://rosinality.github.io/2017/04/%EB%B2%A0%EC%9D%B4%EC%A7%80%EC%95%88-%EB%89%B4%EB%9F%B4-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/</link>
+      <pubDate>Fri, 21 Apr 2017 10:35:56 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EB%B2%A0%EC%9D%B4%EC%A7%80%EC%95%88-%EB%89%B4%EB%9F%B4-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/</guid>
+      <description>https://twitter.com/ylecun/status/764033716276428800 인상적인 성능을 내는 뉴럴넷 모형을 학습하려면 (연산능력의 증가와는 별개로) 늘 2-3주는 필요하다는 이야기가 있다. 수백 개의 GPU를 쓰면 모형도 그만큼 복</description>
+    </item>
+    
+    <item>
+      <title>딥 러닝 모형의 해석</title>
+      <link>http://rosinality.github.io/2017/04/%EB%94%A5-%EB%9F%AC%EB%8B%9D-%EB%AA%A8%ED%98%95%EC%9D%98-%ED%95%B4%EC%84%9D/</link>
+      <pubDate>Fri, 21 Apr 2017 01:16:36 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EB%94%A5-%EB%9F%AC%EB%8B%9D-%EB%AA%A8%ED%98%95%EC%9D%98-%ED%95%B4%EC%84%9D/</guid>
+      <description>딥 러닝은 이론적 근거가 부족하고 해석이 어렵다는 등등의 평가를 흔히 받는다. 이건 통계학쪽 뿐만 아니라 머신 러닝 커뮤니티쪽에서도 (과거에는) 마찬가지였던 모양</description>
+    </item>
+    
+    <item>
+      <title>4차 산업 혁명</title>
+      <link>http://rosinality.github.io/2017/04/4%EC%B0%A8-%EC%82%B0%EC%97%85-%ED%98%81%EB%AA%85/</link>
+      <pubDate>Fri, 21 Apr 2017 01:15:36 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/4%EC%B0%A8-%EC%82%B0%EC%97%85-%ED%98%81%EB%AA%85/</guid>
+      <description>4차 산업혁명이라는 게 구체적으로 어떤 건가 싶어서 찾아봤는데 대충 가장 중요한 문제의식은 인공지능이나 로보틱스 등으로 인해서 산업 현장에서 급진적인 자동화가 일</description>
+    </item>
+    
+    <item>
+      <title>배치 정규화</title>
+      <link>http://rosinality.github.io/2017/04/%EB%B0%B0%EC%B9%98-%EC%A0%95%EA%B7%9C%ED%99%94/</link>
+      <pubDate>Fri, 21 Apr 2017 01:05:02 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EB%B0%B0%EC%B9%98-%EC%A0%95%EA%B7%9C%ED%99%94/</guid>
+      <description>배치 정규화는 엄청나게 효과적인 방법이지만 또 사람들이 그렇게 우아한 방법이라고 생각하지 않는 방법이기도 한 듯 하다. 생각해보면 평균을 미니 배치로 추정한다는 것</description>
+    </item>
+    
+    <item>
+      <title>Sequence to Sequence 모형</title>
+      <link>http://rosinality.github.io/2017/04/sequence-to-sequence-%EB%AA%A8%ED%98%95/</link>
+      <pubDate>Thu, 20 Apr 2017 21:16:13 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/sequence-to-sequence-%EB%AA%A8%ED%98%95/</guid>
+      <description>기본적인 뉴럴 네트워크는 함수 $f(x)$를 근사하는 것이라고 보면 된다. 입력을 원하는 출력으로 매핑하는 것이다. 예컨대 입력이 이미지라면 입력 이미지가 개인</description>
+    </item>
+    
+  </channel>
+</rss>

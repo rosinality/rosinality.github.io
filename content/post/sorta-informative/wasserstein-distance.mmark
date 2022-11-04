@@ -1,0 +1,184 @@
++++
+autoThumbnailImage = true
+categories = ["sorta informative"]
+coverImage = "https://res.cloudinary.com/rosinality/image/upload/v1492740759/covers/earthmover.jpg"
+coverSize = "partial"
+date = "2017-04-21T11:12:59+09:00"
+hasMath = true
+isCJKLanguage = true
+disqusIdentifier = "wasserstein-distance"
+keywords = ["wasserstein distance", "manifold", "probability distribution", "measure theory", "topology", "convergence"]
+tags = ["wasserstein distance", "manifold", "probability distribution", "measure theory", "topology", "convergence"]
+thumbnailImagePosition = "top"
+title = "Wasserstein 거리"
+
++++
+
+지금 시점에서는 나온지 좀 되긴 했지만 여전히 재미있는 [Wasserstein GAN](https://arxiv.org/abs/1701.07875)에 대해서 정리해본다. 뉴럴넷이라는 측면에서도 재미있지만 나오는 수학도 재미있다. [Read-through: Wasserstein GAN](http://www.alexirpan.com/2017/02/22/wasserstein-gan.html)과 [Towards Principled Methods for Training Generative Adversarial Networks](https://arxiv.org/abs/1701.04862)를 많이 참조했다.
+
+확률 분포를 학습하는 건 머신 러닝에서 아주 중요한 문제다. 생성 모형(Generative Model)이라는 것은 결국 데이터의 결합 확률 분포를 학습하는 문제다. 확률 분포를 학습하는 전통적인 방법은 최대가능도 추정(Maximum Likelihood)이다.
+
+$$
+\max_\theta\frac{1}{N}\sum_{i=1}^N\log P_\theta(\mathbf{x}^{(i)})
+$$
+
+최대가능도 추정은 점근적으로 데이터의 분포와 모형의 분포 사이의 KL 다이버전스를 최소화하는 것과 같다.
+
+$$
+\begin{align*}
+\lim_{N \to \infty}\max_\theta\frac{1}{N}\sum_{i=1}^N\log P_\theta(\mathbf{x}^{(i)}) &= \max_\theta\int P_r(x)\log P_\theta(x)\,\mathrm{d}x \\
+&= \min_\theta \left\{\int P_r(x)\log P_r(x)\,\mathrm{d}x - \int P_r(x)\log P_\theta(x)\,\mathrm{d}x\right\} \\
+&= \min_\theta KL(P_r\| P_\theta)
+\end{align*}
+$$
+
+그런데 실제 데이터를 가지고 이걸 해보면 KL 다이버전스가 무한대로 펑펑 튄다. KL 다이버전스의 최소화가 통하려면 모형의 밀도가 존재해야 한다. 그런데 가능한 차원에 비해 확률 분포가 매우 낮은 차원의 매니폴드에 밀집해 있는 아주 일반적인 경우에는 이 확률 분포가 밀집한 매니폴드의 측도가 0이 된다. 라돈-니코딤 정리에 의해서 밀도가 존재하려면 확률 측도가 절대 연속(Absolutely Continuous)이어야 하고, 확률 측도가 절대 연속이라는 것은 $$\lambda(A) = 0$$인 모든 집합 $$A$$에 대해 $$P(X \in A) = 0$$인 것과 같다. 그런데 확률 분포가 밀집한 매니폴드의 측도가 0이라는 것은 이 매니폴드 $$M$$에 대해 $$P(X \in M) = 0$$이라는 것이고 이건 이 확률 분포의 받침이 $$M$$이라는 것을 고려할 때 이상한 결과이다. 따라서 최대가능도 혹은 KL 다이버전스의 최소화가 적절하지 않은 것이다.
+
+이런 매니폴드 가설에 대한 재미있는 사례 하나가 Carlsson의 [Topology and Data](http://www.ams.org/journals/bull/2009-46-02/S0273-0979-09-01249-X/)에 소개되어 있다. $$3\times 3$$ 실제 이미지, 즉 $$\mathbb{R}^9$$의 원소가 이루는 매니폴드를 살펴봤더니 2차원 매니폴드인 클라인 병(Klein Bottle)을 구성하고 있었다는 것이다. [클러스터링과 매니폴드]({{< relref "clustering-and-manifold.md" >}})
+
+여기에 대처하는 방법 중 하나는 노이즈를 집어넣어서 분포가 넓게 정의되도록 하는 것이다. 그래서 거의 대부분의 생성 모형은 노이즈 텀을 포함하고 있었다. 그런데 노이즈를 쳐서 이걸 해결하려면 노이즈를 좀 많이 쳐야 한다. 그러면 결과물이 영 좋지 않다. 이미지 분포를 이렇게 학습시켰을 때 나오는 대표적인 결과가 흐릿한(Blurry) 이미지다.
+
+밀도가 존재하지 않는 경우에 대응하기 위해 고안된 방법이 $$Z \sim p(z)$$인 확률 변수 $$Z$$를 $$P_\theta$$의 샘플로 변환하는 함수 $$g_\theta : \mathcal{Z} \to \mathcal{X}$$를 학습하는 방법이다. 이렇게 하면 밀도를 학습하는 것과는 달리 저차원의 매니폴드에 밀집한 확률 분포를 표현할 수 있다. 그리고 이러한 접근 중 대표적인 방법이 바로 GAN(Generative Adversarial Network)이다.
+
+여기서 $$P_g$$의 받침은 $$g(\mathcal{Z})$$에 포함되어 있고 따라서 $$\mathcal{Z}$$의 차원이 $$\mathcal{X}$$의 차원보다 낮다면 $$g(\mathcal{Z})$$가 낮은 차원의 매니폴드의 합집합에 포함되어 있기 때문에 $$\mathcal{X}$$에서 측도는 0이 되며 따라서 $$P_g$$는 절대 연속일 수 없다. 이를 $$g$$가 뉴럴 네트워크인 경우에 대해서 증명할 수 있다.
+
+> 보조정리 1. $$g : \mathcal{Z} \to \mathcal{X}$$가 아핀 변환과 (Leaky) Rectifier 혹은 매끈한(Smooth) 순증가 함수 등의 비선형 함수로 구성된 함수인 경우에 $$g(\mathcal{Z})$$는 차원이 최대 $$\operatorname{dim}\mathcal{Z}$$인 매니폴드의 가산 합집합에 포함되고 따라서 $$\operatorname{dim}\mathcal{Z} < \operatorname{dim}\mathcal{X}$$라면 $$g(\mathcal{Z})$$는 $$\mathcal{X}$$에서 측도가 0이다.
+
+**증명**
+
+(Leaky) Rectifier인 경우에 대해서 생각해보자. 이 경우에 $$g(z)$$는 아핀 변환 $$\mathrm{W}_i$$와 $$z$$에 의해서 결정되는 대각 행렬 $$\mathrm{D}_i$$을 통해 $$g(z) = \mathrm{D}_n\mathrm{W}_n\dots\mathrm{D}_1\mathrm{W}_1 z$$와 같이 구성된다. $$\mathcal{D}$$를 이 대각 행렬들의 유한 집합이라고 하면 $$g(\mathcal{Z}) \subseteq \bigcup_{D_i \in \mathcal{D}} \mathrm{D}_n\mathrm{W}_n\dots\mathrm{D}_1\mathrm{W}_1 \mathcal{Z}$$이며 따라서 선형 매니폴드의 유한 합집합에 포함된다.
+
+$$\sigma$$가 순증가 비선형 함수인 경우 이 함수를 벡터에 적용하는 것은 함수의 이미지에 대한 미분동형사상(Diffeomorphism)이다. 따라서 이 함수는 $$d$$ 차원의 매니폴드의 가산 합집합을 $$d$$ 차원 매니폴드의 가산 합집합으로 사상한다. 따라서 아핀 변환이 매니폴드를 차원의 증가 없이 매니폴드의 가산 합집합으로 사상한다는 것을 증명하면 된다.
+
+$$\mathrm{W} \in \mathbb{R}^{n \times x}$$의 특이값 분해 $$\mathrm{W} = \mathrm{U\Sigma V}$$에서 $$\mathrm{U}, \mathrm{V}$$는 기저 변환, 새 좌표에 0을 추가, 그리고 좌표의 부분집합으로의 사영(Projection)으로 구성되어 있다. $$\mathrm{\Sigma}$$를 곱하고 기저를 변환하는 것은 미분동형사상이며 새 좌표에 0을 추가하는 것은 매니폴드 임베딩, 즉 도함수가 단사(Injective) 함수인 단사 함수([Embedding](https://en.wikipedia.org/wiki/Embedding#Differential_topology))이기에 좌표의 부분 집합으로의 사영에 대해서만 증명하면 된다.
+
+$$\pi : \mathbb{R}^{n + k} \to \mathbb{R}^n$$이라고 하고 $$\mathcal{M}\subseteq \mathbb{R}^{n + k}$$를 $$d$$ 차원 매니폴드라고 하자. $$n \leq d$$라면 $$\pi$$의 이미지는 $$\mathbb{R}^n$$에 포함되어 있을 것이고 따라서 차원이 최대 $$d$$인 매니폴드에 포함될 것이다.
+
+$$n > d$$인 경우에 $$\pi_i(x) = x_i$$라고 하자. $$x$$가 $$\pi$$의 임계점(Critical Point)인 경우에 $$\pi$$의 좌표는 독립이므로 $$x$$는 $$\pi_i$$의 임계점일 것이다. 모스 보조정리(Morse Lemma)에 의해서 $$\pi_i$$의 임계점은 고립점(Isolated Point)이다. 모스 보조정리에 따르면 매끈한 함수 $$f$$의 모든 임계점 $$p$$에는 좌표 근방(Neighborhood) $$x_i$$가 존재하며 이 좌표들에 대해서 $$f(x_i) = f(p) - \sum_{i=1}^a x_i^2 + \sum_{i=a+1}^n x_i^2$$이다. 이 함수의 그래디언트를 구해보면 그래디언트가 0인 지점은 모든 $$x_i$$가 0인 지점이며 따라서 임계점은 $$p$$ 밖에 없다. [Morse Lemma](https://en.wikipedia.org/wiki/Morse_theory#Morse_lemma)
+
+따라서 $$\pi$$의 다른 임계점에 대해서도 마찬가지고 따라서 가산 개의 임계점만이 존재할 수 있다. $$\pi$$는 비임계점을 $$d$$ 차원 매니폴드로 사상하며 가산 개의 임계점을 가산 개의 점으로 사상한다.
+
+파라미터 $$\theta$$를 학습 혹은 최적화하려면 $$\theta \to P_\theta$$가 연속인 쪽이 바람직하다. 그런데 $$\theta \to P_\theta$$가 연속이라는 것은 파라미터의 수열 $$\theta_t$$가 $$\theta$$로 수렴할 때 $$P_{\theta_t} \to P_\theta$$라는 것을 의미한다. 그런데 이러한 수렴의 양상은 확률 변수 사이의 거리 $$d(P_{\theta_t}, P_\theta)$$를 어떻게 정의하느냐에 따라서 달라진다.
+
+## 확률 분포의 거리
+
+그렇다면 몇 가지 대표적인 거리(Distance)를 살펴보자. 가측공간 $$(\mathcal{X}, \Sigma)$$에 대해
+
+  * Total Variation distance
+
+$$\delta(P_r, P_g) = \sup_{A \in \Sigma} |P_r(A) - P_g(A)|$$
+
+  * Kullback-Leibler divergence
+
+$$KL(P_r\| P_g) = \int P_r(x)\log\frac{P_r(x)}{P_g(x)}\,\mathrm{d}x$$
+
+앞서 보았듯 $$P_r$$, $$P_g$$는 절대 연속이어서 밀도가 존재해야 한다.
+
+  * Jensen-Shannon divergence
+
+$$JS(P_r, P_g) = KL(P_r\| P_m) + KL(P_g\| P_m), P_m = (P_r + P_g) / 2$$
+
+JS 다이버전스는 KL 다이버전스와는 달리 대칭이고 늘 잘 정의된다.
+
+  * Earth-Mover distance, Wasserstein-1 distance
+
+$$W(P_r, P_g) = \inf_{\gamma \in \Pi(P_r, P_g)}\operatorname{E}_{(x, y) \sim \gamma}\left[\|x-y\|\right],$$
+
+$$\Pi(P_r, P_g)$$는 주변 확률 분포가 각각 $$P_r$$, $$P_g$$인 모든 결합 분포 $$\gamma(x, y)$$의 집합.
+
+EM 거리를 직관적으로 생각해보면 다음과 같다. $$P_r$$에 있는 확률의 "흙더미"를 옮겨 $$P_r$$을 $$P_g$$로 변환한다고 생각해보자. (그래서 Earth-Mover 거리라고 부른다.) 그렇다면 $$\gamma(x, y)$$는 $$x$$에서 $$y$$로 얼마나 많은 흙을 옮겨야 하는지를 나타내고 있다고 할 수 있다. $$x$$에서 $$y$$로 옮겨지는 흙의 양은 $$\int\gamma(x, y)\,\mathrm{d}y = P_r(x)$$가 될 것이며 $$x$$에서 $$y$$로 들어오는 흙의 양은 $$\int\gamma(x, y)\,\mathrm{d}x = P_g(y)$$가 될 것이다. 따라서 $$\gamma(x, y)$$의 주변 확률 분포는 각각 $$P_r$$, $$P_g$$이어야 한다. $$m$$ 만큼의 흙을 $$d$$만큼 옮기는데 $$m\cdot d$$ 만큼의 비용이 소요된다고 가정하면 $$\gamma(x, y)$$에 따라 $$P_r$$을 $$P_g$$로 변환하는데 소요되는 비용은
+$$\iint\gamma(x, y)\|x-y\|\,\mathrm{d}y = \operatorname{E}_{(x, y) \sim \gamma}\left[\|x-y\|\right]$$
+이다. 따라서 $$\Pi(P_r, P_g)$$에 대해 하한을 구하면 변환에 필요한 최소 비용을 구할 수 있다.
+
+EM 거리는 수학의 Transportation Theory라는 분야에서 중요한 개념인 듯 하다.
+
+EM 거리의 중요한 특징은 다른 거리 혹은 다이버전스로는 수렴하지 않는 확률 분포의 수열이 EM 거리에서는 수렴하는 경우가 있다는 것이다.
+
+$$P_0 = (0, y) \in \mathbb{R}^2,\, y \sim \operatorname{Uniform}(0, 1)$$라고 하고 $$P_\theta = (\theta, y),\, y \sim \operatorname{Uniform}(0, 1)$$라고 하자.
+
+![Distance between distributions](http://res.cloudinary.com/rosinality/image/upload/v1492734059/images/dist.png)
+
+  * Total Variation distance
+$$
+\delta(P_0, P_\theta) =
+  \begin{cases}
+    1 & \quad \theta \neq 0 \\
+    0 & \quad \theta = 0\\
+  \end{cases}
+$$
+
+  * Kullback-Leibler divergence
+$$
+KL(P_0\| P_\theta) = KL(P_\theta\| P_0) =
+  \begin{cases}
+    +\infty & \quad \theta \neq 0 \\
+    0 & \quad \theta = 0 \\
+  \end{cases}
+$$
+
+  * Jensen-Shannon divergence
+$$
+JS(P_0, P_\theta) =
+  \begin{cases}
+    \log 2 & \quad \theta \neq 0 \\
+    0 & \quad \theta = 0 \\
+  \end{cases}
+$$
+
+  * Earth-Mover distance, Wasserstein-1 distance
+$$
+W(P_0, P_\theta) = |\theta|
+$$
+
+이 사례를 보면 $$\theta \to 0$$인 경우에 EM 거리 하에서는 $$P_\theta$$가 $$P_0$$에 수렴하지만 다른 거리 혹은 다이버전스에서는 수렴하지 않는다는 것을 알 수 있다. 거기다 거리가 연속도 아니라서 그래디언트로 최적화하는 것도 불가능하다. 이상한 사례처럼 보이지만 분포의 받침의 교집합이 측도 0인 집합에 포함되어 있는 경우에 발생하는 상황이기도 하며 이게 실제 데이터에서 벌어진다는 것이 중요한 부분이다.
+
+기존의 GAN은 JS 다이버전스를 최소화하는 방식으로 학습된다. (Energy-based GAN은 Total Variation 거리를 최소화하는 방식으로 학습한다는 증명이 Wasserstein GAN 논문에 붙어있다.) Wasserstein 거리는 JS 다이버전스에 비해 훨씬 약하다. 여기서 $$d$$가 $$d^\prime$$에 비해 약하다는 것은 $$d^\prime$$에서 수렴하는 모든 수열이 $$d$$에서도 수렴한다는 것이다.
+
+## Wasserstein 거리는 왜 약한가?
+
+Wasserstein GAN 논문에 Wasserstein 거리가 약한 이유에 대해서 관심이 있으면 꼭 읽어보라고 하길래 읽어봤는데 일단 정리해본다.
+
+$$\mathcal{X} \subseteq \mathbb{R}^d$$가 컴팩트 집합이라고 하고 $$\mathcal{P}(\mathcal{X})$$를 $$\mathcal{X}$$에 대해 정의된 확률 측도의 공간이라고 하자.
+
+$$
+C_b(\mathcal{X}) = \left\{f : \mathcal{X} \to \mathbb{R}, \text{f는 연속이고 유계}\right\}
+$$
+
+$$f \in C_b(\mathcal{X})$$인 함수에 대해서 $$f$$는 유계이기에 $$\|f\|_\infty = \max|f(x)|$$를 정의할 수 있다. 이 놈(Norm)에 대해 놈 벡터 공간 $$(C_b(\mathcal{X}), \|\cdot\|_\infty)$$를 정의할 수 있다. 이 놈 벡터 공간에 대한 쌍대 공간은
+
+$$
+C_b(\mathcal{X})^\ast = \left\{\phi : C_b(\mathcal{X}) \to \mathbb{R}, \phi\text{는 선형이고 연속}\right\}
+$$
+
+이며 쌍대 놈은 $$\|\phi\| = \sup_{f\in C_b(\mathcal{X}),\, \|f\|_\infty \leq 1}|\phi(f)|$$이다. 따라서 $$(C_b(\mathcal{X})^\ast, \|\cdot\|)$$은 또 다른 놈 벡터 공간이다. $$\mu$$를 $$\mathcal{X}$$에 대한 부호 측도(Signed Measure)라고 하고 Total Variation 거리
+
+$$
+\|\mu\|_{TV} = \sup_{A \subseteq \mathcal{X}}|\mu(A)|
+$$
+
+를 정의하자. Total Variation은 놈이기에 만약 $$\mathcal{X}$$에 대한 확률 분포 $$P_r, P_\theta$$가 존재한다면 $$\delta(P_r, P_\theta) = \|P_r - P_\theta\|_{TV}$$는 $$\mathcal{P}(\mathcal{X})$$에 대해 정의된 거리이다.
+
+$$
+\Phi : (\mathcal{P}(\mathcal{X}), \delta) \to (C_b(\mathcal{X})^\ast, \|\cdot\|) \\
+\Phi(P)(f) = \operatorname{E}_{x \sim P}\left[f(x)\right]
+$$
+
+을 정의하면 리즈-마르코프-카쿠타니 정리(Riesz-Markov-Kakutani Theorem)에 의해([Riesz-Markov-Kakutani Representation Theorem](https://en.wikipedia.org/wiki/Riesz%E2%80%93Markov%E2%80%93Kakutani_representation_theorem), [Riesz Representation Theorem](https://ncatlab.org/nlab/show/Riesz+representation+theorem)) $$\Phi$$는 등거리 동형사상(Isometric Isomorphism)이 된다. 따라서 $$\mathcal{P}(\mathcal{X})$$에 대한 Total Variation 거리는 $$C_b(\mathcal{X})^\ast$$에 대한 놈 거리가 된다.
+
+확률 분포에 대한 거리 $$\delta$$를 $$C_b(\mathcal{X})^\ast$$에 대한 거리라고 봤을 때 이 거리는 놈 위상(Norm Topology)을 생성한다. 놈 위상은 강한 위상(Strong Topology)이다. 따라서 $$\delta$$에 대해 $$\theta \mapsto P_\theta$$가 연속인 경우는 상당히 제한적이라고 할 수 있다. $$\delta$$에 의해 생성된 위상은 JS 다이버전스에 의해 생성된 위상과 같고, 따라서 JS 다이버전스도 강한 거리라고 할 수 있으며 불연속적인 경우가, 그러니까 loss 함수가 불연속적인 경우가 흔하다고 볼 수 있다.
+
+$$\mathcal{P}(\mathcal{X}), C_b(\mathcal{X})^\ast$$와 같은 모든 쌍대 공간은 놈에 의한 강한 위상과 함께 약한$$^\ast$$(Weak$$^\ast$$) 위상을 갖고 있다. $$\mathcal{P}(\mathcal{X})$$에 대해서 강한 위상은 Total Variation 거리에 의해 주어지며 약한$$^\ast$$ 위상은 Wasserstein 거리에 의해 주어진다.
+
+## Kantorovich-Rubinstein Duality
+
+Wasserstein 거리가 좋은 특성을 갖고 있다는 건 좋은데 실제로 이걸 어떻게 계산할 수 있나? 모든 결합 확률 분포에 대해서 하한(Infimum)을 구한다는 건 불가능한 문제다. 이 문제에 대해 Kantorovich-Rubinstein 쌍대성이 도움이 된다.
+
+$$
+W(P_r, P_\theta) = \sup_{\|f\|_L\leq 1}\operatorname{E}_{x\sim P_r}\left[f(x)\right] - \operatorname{E}_{x\sim P_\theta}\left[f(x)\right]
+$$
+
+상한은 1-Lipschitz 함수 $$\|f\|_L\leq 1$$에 대해 구해진다. $$|\int f(x) - f(y)\,\mathrm{d}\mu| \leq \int \|x - y\|\,\mathrm{d}\mu$$이기에 $$f$$에 대해서 상한을 취하고 $$\mu$$에 대해서 하한을 취하면 $$KR(P, Q) \leq W(P, Q)$$라는 것은 비교적 쉽게 증명할 수 있다. 나머지 방향이 문제인데 이건 Dudley의 Real Analysis and Probability에 나와 있다...
+
+여기서 K-Lipschitz 함수란 척도 공간 $$(X, d_X)$$와 $$(Y, d_Y)$$에 대해서 함수 $$f : X \to Y$$가 모든 $$x_1, x_2 \in X$$에 대해 $$d_Y(f(x_1), f(x_2)) \leq Kd_X(x_1, x_2)$$임을 의미한다. 그러니까 일종의 최대 기울기에 상한을 둔 것이라고 할 수 있다.
+
+여전히 1-Lipschitz (혹은 K-Lipschitz 함수. 이 경우엔 $$K\cdot W(P_r, P_\theta)$$가 된다.) 함수에 대해 상한을 구하는 것도 계산은 불가능하다. 그렇지만 근사는 훨씬 쉽게 할 수 있다. 요즘 함수를 근사한다고 하면? 당연히 뉴럴 네트워크다. 단 뉴럴 네트워크가 K-Lipschitz 함수여야 하기 때문에 가중치를 특정한 상수 $$c$$로 클리핑해주기만 하면 된다.

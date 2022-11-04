@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tabular data on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/tabular-data/</link>
+    <description>Recent content in tabular data on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 21 Apr 2017 16:11:42 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/tabular-data/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>딥 러닝과 표 형태의 데이터</title>
+      <link>http://rosinality.github.io/2017/04/%EB%94%A5-%EB%9F%AC%EB%8B%9D%EA%B3%BC-%ED%91%9C-%ED%98%95%ED%83%9C%EC%9D%98-%EB%8D%B0%EC%9D%B4%ED%84%B0/</link>
+      <pubDate>Fri, 21 Apr 2017 16:11:42 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EB%94%A5-%EB%9F%AC%EB%8B%9D%EA%B3%BC-%ED%91%9C-%ED%98%95%ED%83%9C%EC%9D%98-%EB%8D%B0%EC%9D%B4%ED%84%B0/</guid>
+      <description>전통적 통계적 모델링의 대상인 표 형태의 데이터tabular data에 대해서는 딥 러닝이 힘을 못 쓴다(?)는 말을 흔히 한다. 사실 이건 딥 러닝이 이미지나 텍스</description>
+    </item>
+    
+  </channel>
+</rss>

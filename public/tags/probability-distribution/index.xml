@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>probability distribution on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/probability-distribution/</link>
+    <description>Recent content in probability distribution on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 21 Apr 2017 11:12:59 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/probability-distribution/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Wasserstein 거리</title>
+      <link>http://rosinality.github.io/2017/04/wasserstein-%EA%B1%B0%EB%A6%AC/</link>
+      <pubDate>Fri, 21 Apr 2017 11:12:59 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/wasserstein-%EA%B1%B0%EB%A6%AC/</guid>
+      <description>지금 시점에서는 나온지 좀 되긴 했지만 여전히 재미있는 Wasserstein GAN에 대해서 정리해본다. 뉴럴넷이라는 측면에서도 재미있지만 나오는 수학도 재미있다. Read-through: Wasserstein GAN과</description>
+    </item>
+    
+  </channel>
+</rss>

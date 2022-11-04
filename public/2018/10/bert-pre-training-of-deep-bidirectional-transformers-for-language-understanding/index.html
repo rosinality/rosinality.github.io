@@ -1,0 +1,987 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="ko-kr">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.73.0">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</title>
+    <meta name="author" content="Kim Seonghyeon">
+    <meta name="keywords" content="deep learning, nlp, transfer learning, transformer, language model, machine learning, deep learning, social science">
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+    <meta name="description" content="프리트레이닝과 전이학습 모델을 프리트레이닝하는 것이, 혹은 프리트레이닝된 모델이 모듈로 쓰는 것이 성능에 큰 영향을 미칠 수 있다는 건 너무나 잘 알려진 사실이다.">
+    <meta property="og:description" content="프리트레이닝과 전이학습 모델을 프리트레이닝하는 것이, 혹은 프리트레이닝된 모델이 모듈로 쓰는 것이 성능에 큰 영향을 미칠 수 있다는 건 너무나 잘 알려진 사실이다.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding">
+    <meta property="og:url" content="/2018/10/bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding/">
+    <meta property="og:site_name" content="Nondifferentiable Log">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Nondifferentiable Log">
+    <meta name="twitter:description" content="프리트레이닝과 전이학습 모델을 프리트레이닝하는 것이, 혹은 프리트레이닝된 모델이 모듈로 쓰는 것이 성능에 큰 영향을 미칠 수 있다는 건 너무나 잘 알려진 사실이다.">
+    
+      <meta name="twitter:creator" content="@rosinality">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=640">
+    
+
+    
+    
+      <meta property="og:image" content="https://res.cloudinary.com/rosinality/image/upload/v1539694498/train_a7myvw.jpg">
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Nondifferentiable Log</a>
+  </div>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Kim Seonghyeon</h4>
+        
+          <h5 class="sidebar-profile-bio">Machine learning enthusiast</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/rosinality" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('https://res.cloudinary.com/rosinality/image/upload/v1539694498/train_a7myvw.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2018-10-16T10:03:59&#43;09:00">
+      
+  October 16, 2018
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="/categories/sorta-informative">sorta-informative</a>
+    
+  
+
+
+</div>
+
+</div>
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="프리트레이닝과-전이학습">프리트레이닝과 전이학습</h1>
+
+<p>모델을 프리트레이닝하는 것이, 혹은 프리트레이닝된 모델이 모듈로 쓰는 것이 성능에 큰 영향을 미칠 수 있다는 건 너무나 잘 알려진 사실이다. 그렇다면 어떻게 프리트레이닝을 할 것인가? 많은 데이터를 비싸게 만들어야 하는 레이블 없이 사용할 수 있으면 좋을 것이고, 또 프리트레이닝 결과 학습된 모델이 특정 작업 뿐만 아니라 다양한 작업에 일반적으로 사용될 수 있는 범용성을 갖추면 이상적일 것이다. 이렇게 다른 과제를 수행하도록 학습된 모델을 가져와 또 다른 과제에 사용하는 방법을 전이 학습(Transfer Learning)이라고 부른다.</p>
+
+<p>컴퓨터 비전에서는 프리트레이닝된 모델들이 널리 쓰이고 있었다. 바로 ILSVRC 2012 이미지 분류 과제에 대해 학습된 모델들이다.</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539695375/images/cnntsne.jpg" alt="ImageNet"></figure></p>
+
+<p>추가적인 레이블이 있는 형태이긴 하지만 분류 레이블을 만드는 게 segmentation mask를 만든다거나 bounding box를 만들고 레이블을 단다거나 하는 것보다는 낫다. 거기다 이미 레이블이 달린 데이터가 있으니까 큰 문제는 아니다. 그리고 이런 이미지 분류 과제에 학습된 모델들은 다른 과제의 성능을 향상시키는데 사용할 수 있다. 심지어 더 놀라운 것은 이미지 분류를 더 잘 하는 모델이 다른 과제, 예컨대 segmentation mask를 만든다거나 bounding box를 찾는다거나 하는 과제에 대한 성능도 더 낫다는 것이다. 그래서 (지금도 그렇긴 하지만) 이미지 분류 과제를 더 잘 하는 구조를 만드려는 시도들이 있었다.</p>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure center" >
+  
+    <a class="fancybox" href="https://res.cloudinary.com/rosinality/image/upload/c_scale,h_500/v1539695407/images/resnet.png" title="ResNet" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://res.cloudinary.com/rosinality/image/upload/c_scale,h_500/v1539695407/images/resnet.png"  alt="ResNet">
+  
+    </a>
+  
+   
+    <span class="caption">ResNet</span>
+  
+</div>
+
+이젠 베이스라인인 ResNet. 속도가 고프면 34, 50 레이어 모델을, 성능이 고프면 101 레이어 모델을.</p>
+
+<p>그렇다면 자연어 처리 과제에서는 어떨까? 자연어 처리에서도 프리트레이닝된 모델들은 많이 쓰였다. word2vec, GloVe, fasttext 같은 단어 임베딩 모델들이 프리트레이닝된 모델들로 흔히 쓰였다.</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539696405/images/glove.jpg" alt="Glove"></figure>
+장갑 벡터</p>
+
+<p>단어 임베딩은 보통 특별한 레이블 없이 단어들만 가득한 코퍼스에서 비지도적으로 학습될 수 있다. 그리고 단어들의 의미나 문법적 특성 등을 반영하도록 학습된 단어 임베딩 벡터를 자연어 처리 모델의 입력으로 사용하면 이미지 분류 모델을 다른 과제에 적용했을 때처럼 적지 않은 성능 향상이 나타나기도 했다.</p>
+
+<p>그런데 이걸로 충분한 걸까?</p>
+
+<p>당장 동음이의어와 다의어 문제가 걸린다. 아침이라는 단어는 어떤 시점을 가리키는 것일 수도 있고 먹는 것일 수도 있다. 날이 밝은 시점이라는 의미로 쓰였다고 해도 화자의 의도에 따라 그 의미가 미묘하게 다를 수도 있다. (월요일 아침과 토요일 아침의 미묘한 차이 등.) 그러나 단어 임베딩은 각각의 단어만 보기에 이런 차이와 미묘함을 반영하기에는 한계가 있다.</p>
+
+<p>그렇다면 어떻게 해야할까? 아니 애초에 인간은 단어의 수많은 가능한 의미 중에서 어떻게 의미를 혼동하지 않는 것이 가능한가? 바로 맥락의 힘일 것이다.</p>
+
+<ul>
+<li>월요일 아침이 밝았다.</li>
+<li>간단한 아침을 먹었다.</li>
+</ul>
+
+<p>새삼스러운 예제이지만 어쨌든 인간은 아침이라는 단어 이후에 이어지는 단어들을 통해 아침이라는 단어의 의미를 포착해낸다. 날이 밝은 시점을 먹었다고 생각할 이유도 식사가 밝아졌다고 생각할 이유도 없기 때문이다.</p>
+
+<p>그렇다면 어떻게 맥락적 정보를 반영한 단어 임베딩 벡터를 만들 수 있을까? 단어 임베딩 모델들을 생각해보자. 많은 단어 임베딩 모델들의 아이디어는 이 단어와 어떤 단어들이 같이 등장하는지를 통해, 다르게 바꿔보면 이 단어를 통해 같이 등장하는 단어를 예측하는 방법으로 학습하자는 것이었다. 예컨대 아침이라는 단어는 밝았다는 단어와 혹은 먹었다는 단어와 같이 등장하니 이 아침이라는 단어를 통해 이 두 단어를 예측하도록 하면 대충 아침은 밝기도 하는 것이고 먹기도 하는 것이라는 것을 학습할 수 있다는 것이다. 그렇다면 단어 하나 뿐만 아니라 맥락을 구성하는 이전의 단어들도 결합하도록 하면 되는 것이 아닌가?</p>
+
+<p>이런 식으로 나아가면 결국 언어 모델으로 이어지게 된다.</p>
+
+<p>언어 모델은 텍스트의 확률을 추정하는 모델이다. 즉 월요일 아침이 밝았다라는 문장의 확률을 추정하는 것이다. 아니 그 확률을 어떻게 알아? 그렇게 생각하는 분들도 월요일 아침이 밝았다는 문장이 월요일 아침이 사라졌다라는 문장보다는 (개인적인 바람과는 별개로) 더 있을법하다고 생각할 것이다. 그러니까 확률이 더 높다고 할 수 있지 않을까? (물론 텍스트에 확률을 부여한다는 아이디어에 반대하는 언어학자들도 있다. 대표적으로 촘스키가 그렇다고 한다.)</p>
+
+<p>그렇다면 어떻게 텍스트의 확률을 추정할 수 있을까? 이 문제에는 확률의 연쇄 법칙(chain rule)을 사용할 수 있다. 텍스트의 각 단어에 해당되는 $x$, $y$, $z$라는 변수가 있다고 하자. 그렇다면 x = a, y = b, z = c라는 시퀀스, 즉 단어의 시퀀스인 텍스트의 확률은 어떻게 될까? 이는 $x = a$일 확률, $x = a$일때 $y = b$일 확률, $x = a, y = b$일 때 $z = c$일 확률의 곱이 된다. 즉 이전 변수들에 대해서 다음 변수의 확률을 구하고, 그리고 그 변수들을 통해 다시 다음 변수의 확률을 구하는 식으로 전체 시퀀스의 확률을 계산할 수 있다.</p>
+
+<p>그렇다면,</p>
+
+<ol>
+<li>$x$로 $y$의 확률을 예측하도록 학습</li>
+<li>$x$, $y$로 $z$의 확률을 예측하도록 학습</li>
+<li>...</li>
+</ol>
+
+<p>위와 같은 과정을 통해 시퀀스의 확률을 계산하는 모델을 학습할 수 있다는 것이다. 그리고 이런 문제는 RNN을 아주 자연스럽게 적용할 수 있다. RNN이 대충 $z = f(y, f(x))$와 같은 형태의 함수라고 생각해보면,</p>
+
+<ol>
+<li>$x$로 $y$ 예측 -&gt; $y = f(x, 0)$</li>
+<li>$x$, $y$로 $z$ 예측 -&gt; $z = f(y, f(x, 0))$
+3, ...</li>
+</ol>
+
+<p>위와 같은 형태로 매칭되기 때문이다. RNN 튜토리얼에 흔히 나오는 텍스트 생성을 위한 언어 모델 학습 과정이 꼭 이렇게 생겼다.</p>
+
+<p>그런데 대체 이게 단어의 의미 파악에 어떻게 도움이 되는 것일까?</p>
+
+<p>뒤의 단어를 통해 앞의 단어를 예측하는 언어 모델을 생각해보자. (언어 모델은 꼭 앞에서 뒤로 나아갈 필요는 없다.) 아침이 밝았다라는 단어들 앞에 올 수 있는 단어가 어떤 것이 있을까? 아침이라는 단어 뿐만 아니라 밝았다라는 단어까지 고려하므로, 또는 고려할 수 있기 때문에 날이 밝은 시점이라는 의미의 아침이라는 단어 앞에 올 수 있는 단어가 등장할 확률이 높을 것이다. 여기서는 월요일이라는 단어가 왔다. 반대로, 아침을 먹었다는 단어들 앞에는 식사라는 의미의 아침이라는 단어 앞에 올 수 있는 단어가 등장할 확률이 높을 것이다. 여기서는 간단한이라는 단어가 등장했다.</p>
+
+<p>즉 언어 모델을 통해 같은 단어가 다른 정보를 출력하게 된 것이다.</p>
+
+<p>사실 언어 모델이 자연어 처리를 위한 프리트레이닝으로 유용하다는 것은 상당히 이전부터 알려져 있었다. 바로 생각나는 건 Semi-supervised Sequence Learning (2015) 같은 논문이다. <sup class="footnote-ref" id="fnref:1"><a class="footnote" href="#fn:1">1</a></sup> (사실 딥 러닝 판이 아니고서야 3년 전 논문을 상당히 이전부터 알려져 있었다는 증거로 사용하는 건 부적절하긴 하지만.)</p>
+
+<p>그렇지만 언어 모델을 사용한 프리트레이닝이 지금처럼 화제가 된 것은 올해 초 나온 논문인 ULMFiT <sup class="footnote-ref" id="fnref:2"><a class="footnote" href="#fn:2">2</a></sup> 이후라고 봐도 좋을 것 같다. 요약하자면 언어 모델을 열심히 트레이닝 시킨 다음 논문에서 제안하는 여러 트릭을 사용해 각종 텍스트 분류 과제에 대해 파인 튜닝을 하면 여러 벤치마크를 깨뜨릴 수 있다는 것이다.</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539703987/images/ulmfit.png" alt="ULMFiT"></figure></p>
+
+<p>ULMFiT는 영화 평점 분류 같은 좀 전통적인 과제에 적용된 모델이었다. 그러다가 SQuAD QA 같은 과제에 프리트레이닝된 언어 모델을 사용하는 시도가 등장하게 된다.</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539703987/images/squad.png" alt="SQuAD"></figure>
+SQuAD. <sup class="footnote-ref" id="fnref:3"><a class="footnote" href="#fn:3">3</a></sup> 주어진 질문에 대해 지문에서 답에 해당하는 부분을 찾아내는 방식의 QA 과제이다.</p>
+
+<p>그것이 바로 ELMo이다. ELMo의 아이디어는 앞에서 뒤로 진행하는 언어 모델과 뒤에서 앞으로 진행하는 언어 모델을 결합하는 것이다. 위의 두 아침 문장 예제에서 월요일이라는 단어와 밝았다라는 단어 둘 다 아침이라는 단어에 대한 정보를 갖고 있다. 그러니 양방향의 정보를 가져오는 것이 자연스럽다. 또한 언어 모델을 학습하기 위해서 다층의 RNN을 사용하게 되는데, 최종 레이어의 출력 뿐만 아니라 이전 레이어의 출력도 또 유용한 정보를 갖고 있을 수 있으므로 가져와서 결합하자는 것이다.</p>
+
+<p>그리고 그랬더니,</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539704093/images/elmo.png" alt="ElMo"></figure></p>
+
+<p>벤치마크를 또 깨부수기 시작했다. 이젠 프리트레이닝한 모형을 사용해 전이학습을 하지 않으면 안 되게 된 것이다. 마치 컴퓨터 비전에서 프리트레이닝한 분류 모형을 쓰는 것이 거의 당연하게 여겨지는 것과 비슷하게...</p>
+
+<blockquote>
+<p>와, 대단하네요! 그러면 이제 가도 되죠?</p>
+</blockquote>
+
+<p>그러나 이 이야기는 아직 끝나지 않는다. 누군가가 이 프리트레이닝 과정에서 LSTM 같은 RNN 모형을 쓰는 것에 불만을 갖기 시작한다...</p>
+
+<h1 id="rnn을-넘어">RNN을 넘어</h1>
+
+<p>시퀀스 데이터에 대해 RNN은 아주 자연스러운 모델이다. RNN의 핵심인 시퀀스 내의 모든 스텝에 대해 동일한 네트워크를 적용하되 (weight sharing), 각 스텝에서 이전 스텝의 네트워크의 출력을 받아오는 것이다. 이전 스텝의 출력을 가져오니까 이전 스텝의 정보도 사용할 수 있다. 그리고 그 이전 스텝은 또 이전 이전 스텝의 정보를 가져오니 이전 스텝의 출력에는 이전 스텝의 정보 뿐만 아니라 이전 이전 스텝의 정보도 포함되어 있는 것이다. 그러니까 계속 반복하면 이전 모든 스텝의 정보를 사용할 수 있는 것이다.</p>
+
+<p>완벽하다!</p>
+
+<p>물론 그럴 수 있다는 것이고 실제로 그게 그렇게 잘 되는지는 별개의 문제렷다. 현재 스텝 ($t$)에서 이전 이전 스텝 ($t-2$)의 정보를 가져오려면 이전 스텝 ($t-1$)을 거쳐야 하니 $t-2$의 정보를 $t$에서 써먹자면 $t-2$의 정보가 $t-1$을 거쳐서 $t$까지 잘 전달되어야 한다. 1, 2 정도면 문제가 아니겠지만 한 $t-100$의 정보를 가져와야 한다면? 정보가 거치는 단계가 많아지니 정보를 가져와서 쓰기도 어렵고 또 그렇게 하도록 학습하기도 어려워진다.</p>
+
+<p>거기다 네트워크를 한 스텝에 적용하고, 그 결과를 다음 스텝에 입력해서 다시 결과를 가져오는 식으로 순차적으로 처리해야 하니까 연산 자체도 순차적으로 할 수밖에 없다. 병렬로 한 방에 처리할수록 효율적인 GPU에는 그닥 적절한 구조는 아니라 하겠다.</p>
+
+<p>그래서 누군가가 CNN을 써보는 건 어떨까 하는 생각을 하게 된다. CNN도 각 영역에 대해 동일한 네트워크를 적용하는 것은 비슷하니까 2d인 이미지가 아니라 1d인 시퀀스에 적용한다고 생각하면 그만인 것이다. 처음에는 텍스트 분류에 적용되었다가 <sup class="footnote-ref" id="fnref:4"><a class="footnote" href="#fn:4">4</a></sup> 데이터 특성상 길이가 매우 긴 (그러니까 초당 1만 스텝 이상) 시퀀스인 오디오 시그널에 적용되어 엄청난 성공을 거두게 된다. <sup class="footnote-ref" id="fnref:5"><a class="footnote" href="#fn:5">5</a></sup> 그리고 기계 번역 과제에도 적용되어 <sup class="footnote-ref" id="fnref:6"><a class="footnote" href="#fn:6">6</a></sup> <sup class="footnote-ref" id="fnref:7"><a class="footnote" href="#fn:7">7</a></sup> 한동안 SOTA도 찍고 좋은 시간을 보냈다.</p>
+
+<p>그러면 역시 미래는 CNN이었나?</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539705918/images/yann-lecun.jpg" alt="Yann LeCun"></figure>
+(흐뭇) (씨익)</p>
+
+<p>그러나 빠르게 변화하는 딥 러닝 판은 그러도록 내버려두지 않았다...</p>
+
+<h1 id="신경망-기계-번역과-주의attention">신경망 기계 번역과 주의(Attention)</h1>
+
+<p>뜬금없지만 시퀀스 A와 시퀀스 B가 있을 때 A를 B로 변환하려면 어떻게 해야할지 생각해보자. A와 B는 길이가 다르다. 그리고 A의 한 원소가 B의 어떤 원소와 대응되는지도 알  없다. 아니 그런 문제를 어떻게 풀어? 그런데 바로 그런 종류의 문제가 기계 번역에서 발생한다.</p>
+
+<ul>
+<li>(1) 아침을 (2) 먹었다 &lt;-&gt; [1] I [2] have [3] breakfast</li>
+</ul>
+
+<p>(2)와 [2]를 대응시키고 [3]과 (1)을 대응시키면 될 것 같긴 한데 갑자기 튀어나온 [1]도 있다. 그런 규칙들을 다 지정할 수 있으면 할 수도 있겠지만 그게 가능했으면 번역 시스템 같은 걸 진즉에 만들 수 있었을 것이다.</p>
+
+<p>대체 어떻게 해야 하나? 그런데 이 문제에 신경망을 적용하면서 인코더-디코더 구조가 등장하게 된다. <sup class="footnote-ref" id="fnref:8"><a class="footnote" href="#fn:8">8</a></sup> <sup class="footnote-ref" id="fnref:9"><a class="footnote" href="#fn:9">9</a></sup></p>
+
+<p>인코더-디코더 구조의 핵심은 다음과 같다.</p>
+
+<ul>
+<li>시퀀스 A -&gt; 인코더 -&gt; 코드 -&gt; 디코더 -&gt; 시퀀스 B</li>
+</ul>
+
+<p>그러니까 인코더가 시퀀스 A를 받아와서 그 의미 같은 정보를 코드로 잘 압축한 다음, 그 압축한 코드를 받아와 디코더가 시퀀스 B를 출력하는 것이다. 그러니까 길이가 달라도 상관 없고 시퀀스의 원소들을 서로 매칭하기 어려워도 상관 없다. 인코더가 알아서 정보를 전달할 것이고 디코더는 정보를 받아 알아서 잘 시퀀스를 출력할 것이기 때문이다.</p>
+
+<p>이 구조가 잘 동작했고, 이게 된다! 라는 결과를 얻었지만 한 가지 문제가 있었다. 위에서 시퀀스를 인코더가 코드, 즉 하나의 벡터로 압축한다고 한 대목에 주목하시라. 짧은 문장이 들어온다면 문제가 없겠지만 문장이 길어진다면? 긴 문장을 하나의 벡터로 압축하기는 어렵지 않을까? 실제로 그랬다.</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539707316/images/attention1.png" alt="Sequence length"></figure>
+RNNenc (인코더-디코더)에서 시퀀스의 길이가 길어질수록 BLEU가 감소하는 것을 보라 <sup class="footnote-ref" id="fnref:10"><a class="footnote" href="#fn:10">10</a></sup></p>
+
+<p>그리고 이 유명한 대사가 등장하게 된다.</p>
+
+<blockquote>
+<p>You can’t cram the meaning of a whole %&amp;!ing sentence into a single &amp;!*ing vector! - Ray Mooney</p>
+</blockquote>
+
+<p>그러면 어떻게 해야 할까? 길이가 길어지면 길어지는 만큼 코드의 길이도 길어지게 하면 된다. 그런데 그러면 문제는 원점으로 돌아가서 시퀀스의 길이가 달라지는 문제가 다시 등장한다.</p>
+
+<p>그런데 관점을 바꿔서, 인코더가 시퀀스의 길이를 줄이려고 하지 말고 디코더가 알아서 시퀀스에서 필요한 것을 뽑아가도록 하면 되지 않을까? 그런 아이디어에서 등장한 것이 주의(Attention)이다.</p>
+
+<p>주의 메커니즘을 간략하게 설명하면 이렇다. 시퀀스 $A = (a_1, a_2, a_3)$, 시퀀스 $B = (b_1, b_2, b_3)$가 있다고 하자. 과제는 시퀀스 A를 시퀀스 B로 바꾸는 것이다. 이 때 디코더는 시퀀스 B의 원소 $b_1$, $b_2$, $b_3$를 생성하게 되는데, 이 원소들 $(b_1, b_2, b_3)$을 생성하기 위한 정보들을 인코더가 인코딩한 시퀀스 $A = (a_1, a_2, a_3)$에서 가져올 수 있다고 생각해보자. 우선 $b_1$을 생성하려면 $(a_1, a_2, a_3)$에서 어떤 원소를 가져와야 할까? 여기서 원소를 직접 가져오는 대신 가중치 $(w_1, w_2, w_3)$를 주는 문제로 바꿔보자. 그렇다면 원하는 정보 $c$를 $c = w_1a_1 + w_2a_2 + w_3a_3$와 같이 구할 수 있을 것이다. 중요한 원소에 해당하는 가중치가 1이 되고 중요하지 않은 원소에 해당하는 가중치가 0이 된다고 하면, 결과적으로 중요한 원소를 가져오는 결과가 되는 것이다.</p>
+
+<p>이제 $w_1$을 구하기만 하면 된다. 이건 적절한 함수 $f$를 설정해서 구하면 된다. $w_1 = f(a_1, b_1)$. 복잡하게 생각할 필요는 없다. 시퀀스의 원소를 벡터로 보면 두 벡터의 내적 $w_1 = \mathbf{a}_1\cdot\mathbf{b}_1$ 을 구하는 정도로도 충분하다.</p>
+
+<p>자, 이제 다 끝났다! 이제 $f$를 모델 학습 과정에서 학습되도록 하기만 하면 된다. 그러면 결과적으로 디코더가 알아서 인코더에서 필요한 정보를 가져오는 모델이 만들어지는 것이다.</p>
+
+<p>정말로 이게 전부다. (기술적인 디테일을 제외하면.) 마법 같은 일이지만 이런 구조만 만들어주면 나머지는 알아서 학습된다.</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539708795/images/nmt.png" alt="Google NMT"></figure> 그리고 이 구조가 기계 번역의 성능을 크게 끌어올렸다. <sup class="footnote-ref" id="fnref:11"><a class="footnote" href="#fn:11">11</a></sup></p>
+
+<p>주의 메커니즘은 기계 번역 뿐만 아니라 수많은 과제에서 효과적이라는 것이 밝혀졌다. 심지어 시퀀스 하나를 처리하는 경우에도 유용했다. 위에서 RNN은 이전 스텝의 정보를 사용하기 위해선 여러 스텝을 거치더라도 이전 스텝의 정보를 계속 보존할 수 있도록 학습되어야 하는 문제가 있다는 것을 보았다. 위에서 한 문장에 대한 정보를 어떻게 벡터 하나에 집어넣을 수 있겠느냐고 했는데, 마찬가지의 문제가 RNN에서도 발생한다. 즉 <code>$h_{t-1}$</code>로 <code>$h_t$</code>를 예측하게 되는데, 그러므로 <code>$h_{t-1}$</code>은 <code>$h_t$</code>, 그리고 <code>$h_t$</code> 뿐만 아니라 <code>$h_{t+1}$</code>를 예측하기 위한 이전의 모든 정보들, 즉 <code>$h_{t-2}, h_{t-3}, \dots$</code>에 대한 정보를 갖고 있어야 하는 것이다.</p>
+
+<p>그런데 만약 현재 스텝에서 필요한 정보를 이전 스텝에 직접 접근해서 가져올 수 있다면? 굳이 이전 스텝의 정보를 계속 보존할 필요가 없다. 그러니까 이전 스텝의 정보를 직접 가져올 수 있도록 주의 메커니즘을 달아주면 된다. 자기 자신에 대해 주의 메커니즘을 사용한다고 해서 이를 자기 주의(Self Attention)이라고 부른다. <sup class="footnote-ref" id="fnref:12"><a class="footnote" href="#fn:12">12</a></sup> <sup class="footnote-ref" id="fnref:13"><a class="footnote" href="#fn:13">13</a></sup> 요령은 비슷하다. 다른 시퀀스 B를 사용하는 대신 시퀀스 A를 사용해서 시퀀스 A의 정보를 가져오도록 만드는 것이다.</p>
+
+<p>여기까지 오니 이상한 - 그렇지만 획기적인 - 발상을 떠올린 사람이 등장했다. RNN을 시퀀스 데이터에 사용했던 이유가 무엇인가? 이전 스텝의 정보를 사용해서 각 스텝들 사이의 관계를 반영하여 시퀀스를 처리하기 위함이었다. 그런데 자기 주의 메커니즘을 사용하면 마찬가지로 시퀀스 내에서 이전 스텝의 정보를 가져와 결합할 수 있다. 그렇다면 굳이 RNN을 쓸 필요가 있을까?</p>
+
+<h1 id="트랜스포머">트랜스포머</h1>
+
+<p>2017년 중반 Attention Is All You Need라는, 대충 어텐션을 쓰면 다 됨 ㅋ 정도의 뉘앙스를 가진 제목의 논문이 아카이브에 등장했다. <sup class="footnote-ref" id="fnref:14"><a class="footnote" href="#fn:14">14</a></sup> 이 논문의 요점이 바로 이런 것이었다. RNN을 쓸 필요는 없고 주의 메커니즘만으로도 시퀀스를 처리할 수 있다는 것이다.</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539730457/images/transformer.png" alt="Transformer"></figure>
+복잡하게 볼 필요는 없다. 사실상 Attention과 Feed Forward Network만으로 구성되어 있는 구조이다.</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539730721/images/transformer1.png" alt="Transformer BLEU"></figure></p>
+
+<p>Feed Forward 네트워크와 Attention은 모두 한 번에 병렬로 처리가 가능하다. 그런데 그렇다면 CNN에 대해서는 어떤 장점이 있을까? CNN은 레이어가 증가할수록 수용장(Receptive field)가 증가하는 구조다. 즉 먼 거리의 원소들 사이의 관계를 반영하기 위해서는 그만큼 깊은 레이어가 필요하다. 그러나 주의 메커니즘은 기본적으로 한 번에 시퀀스 내의 원소들에 접근하는 구조다. 즉 시퀀스 내에 있는 모든 원소들을 거리와 관계 없이 다룰 수 있는 것이다.</p>
+
+<p>트랜스포머는 등장 이후 온갖 자연어 처리 및 시퀀스 처리 문제에서 SOTA를 찍기 시작했다. 그러니 프리트레이닝, 전이 학습과 같은 문제에 쓰지 않을 이유도 없었다.</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539731527/images/openai.png" alt="OpenAI"></figure>
+그리고 실제로 그렇게 한 시도가 등장했다. <sup class="footnote-ref" id="fnref:15"><a class="footnote" href="#fn:15">15</a></sup> 이전의 방법들과 비슷하게 트랜스포머로 언어 모델을 학습시킨다. 그리고 여러 문장을 사용해 수행해야 하는 과제에 대해서는 그냥 문장을 구분자로 결합해 한 번에 입력해서 예측하게 만든다. 또한 파인튜닝 시점에서 모델 전체를 학습시키는 건 상당히 비싼 작업이니까 예측을 위한 최종 레이어와 문장을 구분하는 구분자 토큰만 학습시킨다.</p>
+
+<p><figure><img src="https://res.cloudinary.com/rosinality/image/upload/v1539731527/images/openai2.png" alt="OpenAI Transformer Results"></figure>
+Transformer 항상 Benchmarks에서 좋은 반응 얻다. 아직도 Transformer에 대한 불신 있어요?</p>
+
+<p>상당히 큰 모델이기 때문에 (Attention 차원 768, FFN 차원 3072, 레이어 수 12) GPU 8개로 한 달 트레이닝을 해야 했지만, 어쨌든 어떻게든 트레이닝을 시킨 모델이 있으면 다른 작업에 학습시키는 건 비교적 용이하다.</p>
+
+<p>그리고 2018년이 이 주제로 뜨거웠던 만큼 이런 방향으로 전이 학습에 적절한 모델을 만드려는 연구들은 여럿 있었다. <a href="https://arxiv.org/abs/1806.05662">GLoMo: Unsupervisedly Learned Relational Graphs as Transferable Representations</a>, <a href="https://arxiv.org/abs/1807.03748">Representation Learning with Contrastive Predictive Coding</a> 같은 논문들이 떠오르는데 재미있으니 읽어보시면 된다.</p>
+
+<h1 id="마지막으로-bert">마지막으로, BERT</h1>
+
+<p>이제 마지막으로 이 글의 목표였던 BERT에 대해 이야기해볼까 한다.</p>
+
+<p>언어 모델은 지금까지 좋은 성능을 보여줬지만 한 가지 큰 문제가 있었다. 언어 모델은 기본적으로 단방향이다. 즉 앞에서 뒤로 간다거나 뒤에서 앞으로 가는 식이라는 것이다. 즉 $t-1$ 시점에서 $t$ 시점의 단어를 예측하는 모델은 $t-1$까지의 이전 단어들의 정보를 사용해야지 $t+1$ 시점의 단어를 사용할 수는 없는 것이다. 이는 언어 모델이 시퀀스의 확률 분포를 순차적으로 분해하는 방법에서 기인한다는 것을 생각하면 자연스러운 일이다. (그리고 흔히 언어 모델을 사용하는 단어를 하나씩 생성하는 경우를 생각해보자. $t$ 시점의 단어를 생성하려는 시점에서 $t+1$ 시점의 단어 정보를 사용하게 만들기는 어렵다.)</p>
+
+<p>이는 분명한 제약이다. 위에서 봤듯 단어의 의미는 그 주위 단어, 즉 양방향의 단어들을 고려할 때 보다 정확히 파악할 수 있다. ELMo는 그래서 앞에서 뒤로 가는 언어 모델과 반대로 뒤에서 앞으로 진행하는 언어 모델을 결합하는 방법을 취했다. 그러면 양방향의 정보를 반영할 수 있겠지만...분리되어 있는 단방향 모델을 비교적 단순하게 결합하는 방식을 취했기에 한계가 있었다.</p>
+
+<p>그러나 자연어 번역 같은 과제에서 디코더는 이런 제약이 있지만 인코더에는 이런 제약이 없다는 것을 알 수 있다. 인코더는 어떻게든, 모든 단어들을 잘 사용해서 문장에 대한 좋은 표현(Representation)을 생성하면 된다. 그렇다면 그렇게 생성된 표현이 언어 모델로 생성된 표현보다 더 나을 수도 있다. 인코더를 학습시키는 것처럼 프리트레이닝을 할 수는 없을까?</p>
+
+<p>BERT는 바로 이 문제를 해소할 수 있는 방법(과 왕창 큰 모델의 사용)으로 성능을 향상시켰다.</p>
+
+<p><figure><img src="/img/bert1.png" alt="BERT"></figure></p>
+
+<p>우선, $t$ 시점의 단어를 예측하는 과제에는 $t$만 제외하면 의미있는 학습을 하는데 문제가 없다. $t$가 주어지면 $t$를 복사해서 출력하면 되는 과제가 되어버리니까 의미가 없지만, $t$를 제외하고 주위 단어들로 $t$를 예측하게 하면 결과적으로 주위 모든 단어를 사용해 $t$를 예측하는 과제가 되는 것이다. 즉 $t$를 마스크로 덮어씌우거나 혹은 아예 다른 단어로 대체한 다음 $t$를 예측하도록 학습시키면 된다.</p>
+
+<p>이는 word2vec의 CBOW와 비슷하다고 볼 수도 있고, 또한 이런 식으로 단어를 바꿔친다거나 지운다거나 해서 더 나은 표현을 만드는 방법은 <a href="https://arxiv.org/abs/1602.03483">Learning Distributed Representations of Sentences from Unlabelled Data</a>와 같은 논문들에서도 쓰였다. 그러한 방식들이 맥락을 반영하는 언어 표현을 학습하기 위한 최근의 노력들과 결합하니 강력한 결과가 나타난 것이다.</p>
+
+<p>또한 많은 벤치마크 과제는 두 문장을 주고 두 문장의 관계에 대한 정보를 사용해 결과를 내도록 요구한다. 예를 들어 QA 과제의 경우에는 지문을 가지고 질문에 대한 답을 내기를 요구하고, SNLI 같은 자연어 추론 문제는 두 문장을 주고 문장이 모순되는가 등을 묻는다. 즉 문장 사이의 관계를 반영하는 것이 큰 도움이 된다.</p>
+
+<p>문장 사이의 관계를 반영하는 것이 중요하다는 것은 잘 알려진 사실이다. 이러한 문장 간의 관계를 사용하는 접근은 문장의 임베딩 벡터를 생성하기 위해 <a href="https://arxiv.org/abs/1506.06726">Skip-Thought Vectors</a>와 같은 모델에서 사용되기도 했다. Skip-Thought Vector의 핵심은 하나의 문장을 입력으로 주고, 그 문장 입력으로 그 문장 이전에 나온 문장과 그 문장 다음에 나온 문장을 생성하도록 하는 것이다. 즉 문장 사이의 맥락적 정보를 사용해 문장의 의미를 반영하는 벡터를 생성하는 것이라고 할 수 있다. 이런 식으로 문장 내의 관계 뿐만 아니라 문장들의 관계와 문서 내의 관계가 중요하다는 것이 밝혀질수록 Wikipedia 코퍼스나 <a href="https://arxiv.org/abs/1506.06724">BookCorpus</a>와 같이 문장의 순서 정보가 그대로 보존되어있는 데이터의 인기가 높아지기 시작했다.</p>
+
+<p>그렇지만 문장을 생성하게 하는 방식의 학습은 상당히 비싸기 때문에(모든 단어를 예측하는 과제이기 때문에 그렇다.) 이 과제를 대체하기 위한 접근도 고안됐다. 예를 들어 다음 문장을 생성하게 하는 대신 문장 A와 문장 B를 주고 문장 B가 문장 A 다음에 나올지를 예측하게 하는 것이다. <sup class="footnote-ref" id="fnref:16"><a class="footnote" href="#fn:16">16</a></sup></p>
+
+<p>BERT 또한 바로 이런 접근을 사용했다. OpenAI의 GPT와 같이 두 문장을 연결해서 입력으로 주고 B 문장이 A 다음에 나왔을지를 예측하게 하는 것이다.</p>
+
+<p><figure><img src="/img/bert2.png" alt="BERT Sentences"></figure></p>
+
+<p>여기에 몇 가지 개선들이 더 들어간다. GPT와는 달리 구분자도 프리트레이닝 과정에서 학습하도록 하고, 왼쪽 문장 A와 오른쪽 문장 B가 다른 문장이라는 것을 표시하는데 도움이 될 수 있는 임베딩을 추가로 학습해주는 것이다. 그리고 파인튜닝을 할 때는 모델 파라미터 전체를 학습시킨다.</p>
+
+<p>이 정도를 한 다음 Wikipedia 코퍼스와 BookCorpus를 결합한 대충 30억 토큰 정도 되는 데이터셋에 TPU 칩 16개를 동원해서 화끈하게 4일 학습시키면 된다. TPU 16개를 썼기 때문인지 GPU 8개를 쓴 OpenAI GPT가 한 달 걸렸던 것에 비해서는 훨씬 빠르긴 하다.</p>
+
+<p><figure><img src="/img/tpu3.jpg" alt="TPU"></figure>
+TPU 3.0이 bfloat16으로 90 TOPS가 나온다고 하니까 Tesla P100이 Half Precision으로 20 TFLOPS가 나오는 것을 생각하면 대충 P100 72개 정도의 연산력이 아닐까? 정확히는 모르겠지만 대충 그렇게 생각해본다.</p>
+
+<p>그 결과 이 글을 읽고 계신 분들이라면 다들 아시는 대로 한바탕 벤치마크 깨기를 했다.</p>
+
+<p><figure><img src="/img/bert3.png" alt="BERT Result 1"></figure>
+<figure><img src="/img/bert4.png" alt="BERT Result 2"></figure></p>
+
+<p>여전히 자연어 처리에 대한 프리트레이닝과 표현 학습(Representation Learning), 그리고 전이 학습은 흥미로운 문제들이 많이 남아있는 문제이고 이미 아주 잘 작동한다는 것이 밝혀진 이상 많은 관심이 모이리라는 것은 자명하다. 그리고 공학적인 입장에서도 넘쳐나는 텍스트 코퍼스를 활용해 수많은 자연어 처리 과제의 성능을 높일 수 있다는 건 흥분을 넘어 상당히 행복한 일이다.</p>
+
+<h1 id="마무리-그리고-자연어의-의미를-이해한다는-것">마무리, 그리고 자연어의 의미를 이해한다는 것</h1>
+
+<p>언어학이나 발달심리학에 대한 지식이 일천하지만, 다들 자연어의 의미 학습, 자연어 이해 같은 표현을 쓰는 상황에서 자연어를 이해한다는 것이 무엇인지, 자연어의 의미란 무엇인지에 대해 생각해보지 않을 수 없다.</p>
+
+<p>물론 의미라는 것이 무엇인지, 이해한다는 것은 무엇인지 같은 것은 파고들면 아주 어려운 철학적 문제에 도달하게 될 것이다. 어쩌면 그 문제는 답이 없는 것인지도 모른다.</p>
+
+<p>그렇지만 좀 더 생각해보려고 한다. 언어 모델은 정말 앵무새처럼 - 이는 물론 앵무새를 비하하려는 것은 아니다 - 자연어를 흉내내고 있을 뿐인 것은 아닐까?</p>
+
+<p>언어의 의미는 세계에 대한 정보 등의 맥락적인 정보 등을 통해 결정되는 것으로 보인다. 그러나 우리의 모델에게는 그런 디테일하고 품질 높은 정보는 잘 주어지지 않는다. 인간은 언어를 주위 사람들의 끊임 없는 언어 사용과 피드백을 통해 배운다. 예를 들어 이 대상을 가리킬 때는 이 단어 대신 저 단어를 사용해야 한다든가, 혹은 문장을 구성하기 위해서는 단어를 어떠어떠하게 배치해야 한다든가 하는 피드백이 주어진다. 우리에게도 이런 피드백을 줄 수 있는 언어 시뮬레이터가 있으면 좋겠지만, 그런 시뮬레이터를 만들 수 있다면 애초에 언어 모델을 학습할 필요가 없을 것이다.</p>
+
+<p>대신 우리에게는 실제로 사용된 언어의 흔적들인 말뭉치, 코퍼스가 주어진다. 언어 모델의 경우를 생각해보면 세계에 대한 정보나 맥락에 대한 정보는 이전에 등장했던 단어들이 제공한다. 즉 이전에 등장했던 단어들이 합쳐져 세계와 화자의 의도에 대한 맥락을 제공하는 것이다. 또한 어떠한 단어를 어떻게 사용해야 하는지에 대해서 코퍼스는 실제로 단어를 어떻게 사용했는지에 대한 사례가 된다.</p>
+
+<p>언어 모델만으로 사과 7개가 있었는데 2개를 먹었다. 그러면 남은 사과는 몇 개? 라는 질문에 대해 5개라고 대답하게 만들기는 어려울지도 모른다. 그러나 충분한 코퍼스로 잘 학습시킨다면 이러한 질문 뒤에 숫자가 나와야 한다는 것은 학습할 수 있을지도 모른다. 사람도 구체적인 계산을 틀리는 경우는 종종 있지만 숫자를 묻는데 전혀 엉뚱한 대답을 하는 경우는 없지 않은가?</p>
+
+<p>물론 실용적인 입장에서는 이런 문제에 대한 생각을 할 필요는 없다. 수많은 자연어 처리 과제에서 좋은 성능을 낸다는 것은 문법적인 정보든 의미적인 정보든 잘 표현하고 있다는 의미가 아니겠는가? 아니 그러한 정보를 표현하고 있는가 어떤가를 생각할 필요도 없다. 일단 잘 되면 된다!</p>
+<div class="footnotes">
+
+<hr>
+
+<ol>
+<li id="fn:1"><a href="https://arxiv.org/abs/1511.01432">Semi-supervised Sequence Learning</a> (2015)
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2"><a href="https://arxiv.org/abs/1801.06146">Universal Language Model Fine-tuning for Text Classification</a> (2018)
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3"><a href="https://arxiv.org/abs/1606.05250">SQuAD: 100,000+ Questions for Machine Comprehension of Text</a> (2016)
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4"><a href="https://arxiv.org/abs/1408.5882">Convolutional Neural Networks for Sentence Classification</a> (2014)
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:5"><a href="https://arxiv.org/abs/1609.03499">WaveNet: A Generative Model for Raw Audio</a> (2016)
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+<li id="fn:6"><a href="https://arxiv.org/abs/1610.10099">Neural Machine Translation in Linear Time</a> (2016)
+ <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
+<li id="fn:7"><a href="https://arxiv.org/abs/1705.03122">Convolutional Sequence to Sequence Learning</a> (2017)
+ <a class="footnote-return" href="#fnref:7"><sup>[return]</sup></a></li>
+<li id="fn:8"><a href="http://www.aclweb.org/anthology/D13-1176">Recurrent Continuous Translation Models</a> (2013)
+ <a class="footnote-return" href="#fnref:8"><sup>[return]</sup></a></li>
+<li id="fn:9"><a href="https://arxiv.org/abs/1406.1078">Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation</a> (2014)
+ <a class="footnote-return" href="#fnref:9"><sup>[return]</sup></a></li>
+<li id="fn:10"><a href="https://arxiv.org/abs/1409.0473">Neural Machine Translation by Jointly Learning to Align and Translate</a> (2014)
+ <a class="footnote-return" href="#fnref:10"><sup>[return]</sup></a></li>
+<li id="fn:11"><a href="https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html">A Neural Network for Machine Translation, at Production Scale</a>
+ <a class="footnote-return" href="#fnref:11"><sup>[return]</sup></a></li>
+<li id="fn:12"><a href="https://arxiv.org/abs/1601.06733">Long Short-Term Memory-Networks for Machine Reading</a> (2016)
+ <a class="footnote-return" href="#fnref:12"><sup>[return]</sup></a></li>
+<li id="fn:13"><a href="https://arxiv.org/abs/1703.03130">A Structured Self-attentive Sentence Embedding</a> (2017)
+ <a class="footnote-return" href="#fnref:13"><sup>[return]</sup></a></li>
+<li id="fn:14"><a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a> (2017)
+ <a class="footnote-return" href="#fnref:14"><sup>[return]</sup></a></li>
+<li id="fn:15"><a href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf">Improving Language Understanding by Generative Pre-Training</a> (2017)
+ <a class="footnote-return" href="#fnref:15"><sup>[return]</sup></a></li>
+<li id="fn:16"><a href="https://arxiv.org/abs/1803.02893">An efficient framework for learning sentence representations</a>
+ <a class="footnote-return" href="#fnref:16"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/deep-learning/">deep learning</a>
+
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/nlp/">nlp</a>
+
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/transfer-learning/">transfer learning</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2019/08/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" data-tooltip="머신러닝 파이프라인 만들기">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/%EC%9D%B8%EA%B3%BC%EA%B4%80%EA%B3%84%EB%A5%BC-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B0%9D%ED%9E%90-%EC%88%98-%EC%9E%88%EB%8A%94%EA%B0%80/" data-tooltip="인과관계를 어떻게 밝힐 수 있는가">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2frosinality.github.io%2f2018%2f10%2fbert-pre-training-of-deep-bidirectional-transformers-for-language-understanding%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frosinality.github.io%2f2018%2f10%2fbert-pre-training-of-deep-bidirectional-transformers-for-language-understanding%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2frosinality.github.io%2f2018%2f10%2fbert-pre-training-of-deep-bidirectional-transformers-for-language-understanding%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Kim Seonghyeon. 
+  </span>
+</footer>
+
+      </div>
+      
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2frosinality.github.io%2f2018%2f10%2fbert-pre-training-of-deep-bidirectional-transformers-for-language-understanding%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frosinality.github.io%2f2018%2f10%2fbert-pre-training-of-deep-bidirectional-transformers-for-language-understanding%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2frosinality.github.io%2f2018%2f10%2fbert-pre-training-of-deep-bidirectional-transformers-for-language-understanding%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=110" alt="" />
+    
+    <h4 id="about-card-name">Kim Seonghyeon</h4>
+    
+      <div id="about-card-bio">Machine learning enthusiast</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Graduate student in HCCLab at Seoul National University
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Korea, Republic of
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2022/11/%ED%85%94-%EC%95%84%EB%B9%84%EB%B8%8C%EC%99%80-eccv-2022-%EC%97%AC%ED%96%89%EA%B8%B0-1/">
+                <h3 class="media-heading">텔 아비브와 ECCV 2022 여행기 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">생애 첫 해외 여행(은 아니고 출장이긴 하지만)을 이스라엘로 기념하게 됐다. 일단 여권부터 만들고. (이번에 만든 거라 신형 여권이다.) 인천국제공항에 입성. 사</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2021/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%97%90%EC%84%9C-%EC%84%A4%EC%A0%95-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0/">
+                <h3 class="media-heading">머신 러닝 시스템에서 설정 관리하기</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">머신 러닝 코드, 특히 실험적 목적이 강한 코드에서 가장 중요한 문제 중 하나가 설정을 관리하는 것이라고 본다. 머신 러닝 모델에는 수많은 하이퍼파라미터가 존재하고 그</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2021/04/%EC%A7%84%EA%B2%A9%EC%9D%98-%EA%B1%B0%EC%9D%B8/">
+                <h3 class="media-heading">진격의 거인</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">진격의 거인은 우익적 혹은 극우적인가? 보통 일본의 창작물이 극우적인가를 논하는 기준은 욱일기가 은근슬쩍 등장한다든지 혹은 대체역사물 같이 노골적으로 (유치한</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2020/06/the-last-of-us-part-ii/">
+                <h3 class="media-heading">The Last of Us Part II</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">과연 라스트 오브 어스 2는 증오와 적대에 대한 게임이다. (인터뷰) 게임에서 싸우는 것이 일상이고 증오와 적대가 게임에 등장하는 것이야 대수로운 일도 아니지 않을까</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2019/08/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">
+                <h3 class="media-heading">머신러닝 파이프라인 만들기</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘(Feature extractor)을 데이터를 통해 학습한다는 것이었</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/10/bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding/">
+                <h3 class="media-heading">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">프리트레이닝과 전이학습 모델을 프리트레이닝하는 것이, 혹은 프리트레이닝된 모델이 모듈로 쓰는 것이 성능에 큰 영향을 미칠 수 있다는 건 너무나 잘 알려진 사실이다.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/08/%EC%9D%B8%EA%B3%BC%EA%B4%80%EA%B3%84%EB%A5%BC-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B0%9D%ED%9E%90-%EC%88%98-%EC%9E%88%EB%8A%94%EA%B0%80/">
+                <h3 class="media-heading">인과관계를 어떻게 밝힐 수 있는가</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">우선 인과관계라는 것이 대체 무엇인가? 인과관계라는 것을 명확하게 정의하는 것은 복잡한 철학적 문제다. 그러나 실용적인 목적으로는 단순한 정의를 사용할 수 있다.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/05/%EB%B2%84%EB%8B%9D/">
+                <h3 class="media-heading">버닝</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">모호한 세상. 영화에서는 수수께끼 같다는 말로 직접적으로 표현한다. 세상을 명료하게 설명해서 글로 옮길 수 있다면 좋겠지만 영화는 시종일관 진실이 무엇인지 말해주</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2017/11/%EC%95%9E%EC%9C%BC%EB%A1%9C-%EC%9E%AC%EB%AF%B8%EC%9E%88%EC%9D%84%EC%A7%80%EB%8F%84-%EB%AA%A8%EB%A5%B4%EB%8A%94-%EC%A3%BC%EC%A0%9C%EB%93%A4/">
+                <h3 class="media-heading">앞으로 재미있을지도 모르는 주제들</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">LSTM을 대신할 RNN Cell을 설계한다거나 하는 식의 기존의 구조를 개선하는 방안을 고안하는 것은 분명히 중요한 일이기는 하지만 그 자체로는 이전에는 불가능하거</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         55 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/stair.jpg');"></div>
+  
+
+
+    
+<script>
+  (function (d) {
+    var config = {
+      kitId: 'vld6lxf',
+      scriptTimeout: 3000,
+      async: true
+    },
+      h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+  })(document);
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    preview: "none",
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+
+
+<script src="/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    hljs.configure({ classPrefix: '', useBR: false });
+    $('pre.code-highlight').each(function (i, block) {
+      var code = "";
+      hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function (line) {
+        code += "<span class=\"line\">" + line + "</span><br>";
+      });
+      if (code.length > 0) {
+        block.innerHTML = code;
+      }
+    });
+    $('pre > code').each(function (i, block) {
+      $(this).addClass('codeblock');
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = 'http:\/\/rosinality.github.io\/2018\/10\/bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding\/';
+    { { if .Params.disqusIdentifier } }
+    this.page.identifier = '';
+    { { else } }
+    this.page.identifier = '\/2018\/10\/bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding\/'
+    { { end } }
+  };
+  (function () {
+    
+    
+    if (window.location.hostname == "localhost") {
+      return;
+    }
+    var d = document, s = d.createElement('script');
+    var disqus_shortname = 'rosinality';
+    s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+
+
+
+
+    
+  </body>
+</html>
+

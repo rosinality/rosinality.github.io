@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/categories/</link>
+    <description>Recent content in Categories on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 03 Nov 2022 11:08:16 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>travel</title>
+      <link>http://rosinality.github.io/categories/travel/</link>
+      <pubDate>Thu, 03 Nov 2022 11:08:16 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/categories/travel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sorta informative</title>
+      <link>http://rosinality.github.io/categories/sorta-informative/</link>
+      <pubDate>Sat, 22 May 2021 20:27:53 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/categories/sorta-informative/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>thoughts</title>
+      <link>http://rosinality.github.io/categories/thoughts/</link>
+      <pubDate>Sat, 10 Apr 2021 14:51:22 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/categories/thoughts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>joke</title>
+      <link>http://rosinality.github.io/categories/joke/</link>
+      <pubDate>Thu, 20 Apr 2017 21:45:43 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/categories/joke/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>daily life</title>
+      <link>http://rosinality.github.io/categories/daily-life/</link>
+      <pubDate>Thu, 20 Apr 2017 14:04:26 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/categories/daily-life/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

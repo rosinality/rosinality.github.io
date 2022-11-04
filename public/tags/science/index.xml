@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>science on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/science/</link>
+    <description>Recent content in science on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 21 Apr 2017 15:59:53 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/science/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>과학의 조건</title>
+      <link>http://rosinality.github.io/2017/04/%EA%B3%BC%ED%95%99%EC%9D%98-%EC%A1%B0%EA%B1%B4/</link>
+      <pubDate>Fri, 21 Apr 2017 15:59:53 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EA%B3%BC%ED%95%99%EC%9D%98-%EC%A1%B0%EA%B1%B4/</guid>
+      <description>과학의 충분조건을 제안하기는 어려운 일이지만 과학의 필요조건을 선정하는 것은 쉽지 않을까? 예측을 포함하는 진술을 하고 그 진술의 예측 능력을 검증하는 프로세스가</description>
+    </item>
+    
+    <item>
+      <title>과학적 진술의 조건</title>
+      <link>http://rosinality.github.io/2017/04/%EA%B3%BC%ED%95%99%EC%A0%81-%EC%A7%84%EC%88%A0%EC%9D%98-%EC%A1%B0%EA%B1%B4/</link>
+      <pubDate>Fri, 21 Apr 2017 15:56:58 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EA%B3%BC%ED%95%99%EC%A0%81-%EC%A7%84%EC%88%A0%EC%9D%98-%EC%A1%B0%EA%B1%B4/</guid>
+      <description>어떤 진술이 과학적인가를 논하는 것보다는 많은 경우에 그렇듯 과학적이지 않은 진술의 조건을 찾는 것이 더 수월할 것이다. 즉 충분조건을 찾기보단 필요조건을 찾는 쪽이</description>
+    </item>
+    
+  </channel>
+</rss>

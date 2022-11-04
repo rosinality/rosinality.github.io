@@ -1,0 +1,674 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="ko-kr">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.73.0">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>옥자</title>
+    <meta name="author" content="Kim Seonghyeon">
+    <meta name="keywords" content="okja, appreciation, review, machine learning, deep learning, social science">
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+    <meta name="description" content="스포일러 다수 포함 2시간을 금방 보내기는 했는데 보고 나서 바로 든 생각은 어 이걸로 끝?에 가까웠다. 스토리는 굉장히 단순하고 예상 가능한 방식으로 움직인다. 너무">
+    <meta property="og:description" content="스포일러 다수 포함 2시간을 금방 보내기는 했는데 보고 나서 바로 든 생각은 어 이걸로 끝?에 가까웠다. 스토리는 굉장히 단순하고 예상 가능한 방식으로 움직인다. 너무">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="옥자">
+    <meta property="og:url" content="/2017/06/%EC%98%A5%EC%9E%90/">
+    <meta property="og:site_name" content="Nondifferentiable Log">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Nondifferentiable Log">
+    <meta name="twitter:description" content="스포일러 다수 포함 2시간을 금방 보내기는 했는데 보고 나서 바로 든 생각은 어 이걸로 끝?에 가까웠다. 스토리는 굉장히 단순하고 예상 가능한 방식으로 움직인다. 너무">
+    
+      <meta name="twitter:creator" content="@rosinality">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=640">
+    
+
+    
+    
+      <meta property="og:image" content="http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/okja">
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Nondifferentiable Log</a>
+  </div>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Kim Seonghyeon</h4>
+        
+          <h5 class="sidebar-profile-bio">Machine learning enthusiast</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/rosinality" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/okja')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      옥자
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-29T19:31:03&#43;09:00">
+      
+  June 29, 2017
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="/categories/thoughts">thoughts</a>
+    
+  
+
+
+</div>
+
+</div>
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>스포일러 다수 포함</p>
+<p>2시간을 금방 보내기는 했는데 보고 나서 바로 든 생각은 어 이걸로 끝?에 가까웠다. 스토리는 굉장히 단순하고 예상 가능한 방식으로 움직인다. 너무 예상하기 쉬운 내용이라 오히려 예상이 어긋나는 느낌이 있다. 여기서 스토리를 이렇게 비틀지 않을까? 하는 생각을 하면 스토리는 아무런 비틀림 없이 나아간다.</p>
+<p>예컨대 동물해방전선(ALF). 영화에서 이런 집단이 나오면 당연히 나름의 꿍꿍이와 어두운 면이 있을 것이라고 기대하게 되지만 옥자에서 ALF는 그냥 좀 얼이 빠진 인간들일 뿐 특별히 미자를 대단하게 이용하겠다거나 하는 생각을 할만한 위인들은 아니다. 오히려 현실에서 너무 진지하게 PC한 소리를 하는 부류에 가깝다. 제이는 진짜로 모든 생명을 존중해서 낸시 미란도가 악마적인 모습을 보일 때에나 너만은 생명으로서 존중하지 않겠다는 소리를 하는 위인이고, 미자의 말을 제대로 전달하지 못했다는 죄로 영화에 나온 모든 인간들 중에서 가장 많이 두들겨 맞고 영구 제명당하고 장비까지 뺏긴 케이는 그걸로 무슨 대단한 원한을 품고 배신하기보다는 오히려 절체절명의 순간에 제이와 미자를 구하러 나타난다. 팔뚝에 명백히 설국열차의 패러디인 것 같은 &lsquo;번역은 신성하다&rsquo;라는 문신을 새기고서. (물론 번역이라는 것이 갖는 철학적 무게를 생각하면 조금 더 의미심장하긴 하겠지만.) 사실 그런 식으로 비트는 것도 이젠 클리셰라고 할만큼 흔해졌기 때문에 그런 올곧은 서사가 오히려 더 바람직한 것인지도 모른다.</p>
+<p>스토리가 올곧은 것은 그렇다치고, 그냥 보면 영화는 단순히 동물과의 우애와 그에 대비되는 공장식 축산 등을 고발하고 있는 정도로 보인다. 물론 그런 것이 중요하지 않다는 의미는 아니다. 실제로 공장식 축산의 모습을 본 적이 없는 사람들이 꽤 있는지 상당히 충격을 받았다는 이들이 있는 것을 보면 꽤 효과적이었다고 할 수도 있겠다.</p>
+<p>사실 영화를 본 직후에는 떠올릴 수 있는 것이 별로 없었다. 조금 지나서 생각해보자면 떠오르는 것은 수많은 아이러니다. 루시 미란도의 악행이란 슈퍼 돼지가 유전자 조작 동물이라는 것을 숨겼다는 것 정도다. 그 외에 슈퍼 돼지는 실제로 적게 먹고 배설물도 적고 맛도 있었다. 꽤 환경친화적인 발명이었다고 할 수 있으며, 지극히 자아도취에 빠져있었던 덕에 오히려 대중에게 보여지는 이미지를 개선하기 위해 상당히 노력한다. 자본의 환경주의에 대한 타협이라고 할 수도 있고 상당부분 환경주의에 경도된 자본이었다고 할 수도 있다. ALF는 루시 미란도를 사이코패스로 간주하고 이미지를 추락시키는 것에는 성공했지만 결과적으로는 대중에 비치는 이미지 따위에는 아무런 관심도 없으며 오히려 대중을 조작하는 것에 능숙한 (&lsquo;어차피 싸면 다 사 먹어&rsquo;) 낸시 미란도로 루시 미란도를 대체해버리는데 일조하게 된다. 그렇다면 ALF에게 큰 잘못이 있었던 것인가? ALF에게 문제가 있었다면 루시 미란도가 그랬던 것처럼 유전자 조작 동물, 동물 학대 등의 이미지가 대중에게 심대한 영향을 미칠 수 있었을 것이라고 가정한 정도인 것이다.</p>
+<p>결과적으로 ALF는 옥자를 구해낸 것을 제외하고는 거의 아무 것도 바꾸지 못한다. 뭐 결과적으로는 한 마리의 슈퍼 돼지를 더 구해낼 수 있었지만.</p>
+<p>반대로 루시 미란도가 대중에 비치는 이미지와 프로모션을 중시했기 때문에 옥자는 미국에 가게 되었고 사건의 단초가 되게 되었다. 루시 미란도가 홍보에 집착했기 때문에 황금 돼지 정도의 값으로는 옥자를 살 수 없었고, 반대로 낸시 미란도는 지극히 비용과 이익에만 관심이 있는 비즈니스인이기에 옥자라는 슈퍼 돼지 한 마리 정도는 더 비싼 황금 돼지와 교환할 의사가 충분했다. 결국 옥자를 구해내는 정도가 전부라는 결말로 진행되면서 이런저런 아이러니가 발생했고, 그게 한 번 더 짚게 되는 것을 남겼다고 할 수 있다.</p>
+<p>그런 점에서는 감독의 전작 설국열차를 연상하게 한다. 주인공 커티스가 열차라는 세상과 사회이자 시스템이 돌아가는 원리를 직면하면서 압도되어 아무 것도 바꾸지 못하게 될뻔한 것처럼. 물론 커티스는 그 완벽해보이는 체계의 모순을 발견해내고 그 체계를 완전히 전복해버리는 것에 성공하지만 옥자의 반역자들에겐 그런 행운이 주어지지 않는다. 세상은 조금도 바뀌지 않았고, 유전자 조작 동물이라는 진실과 그 참상 정도는 대중이라는 체제에 완전히 압도당해버렸으며, 철저하게 PC했던 제이는 존중받을 필요가 없는 생명이 존재한다는 것을 인정해버리고, 마침내 마지막 장면에서는 ALF와 대규모 시위 같은 것에는 흥미를 잃어버린 뒤 미란도의 중역들이 오는가, 낸시 미란도가 오는가 하는 정도에만 관심을 보이는 음울한 모습으로 전락한다. 처음부터 불안정하고 다중인격적이었던 조니 박사는 생계에 대한 압박 속에서 동물을 사랑하는지 증오하는지 알 수 없는 위태한 모습을 보인다. (그리고 아마도 해고되었을 것이다.) ALF는 옥자 밖에 구해내지 못했고, 처음부터 옥자를 구해내는 것만이 목적이었던 미자에겐 결국 죽어가게 될 수많은 슈퍼 돼지의 울음소리들과 그 울음소리의 증거인 새끼 슈퍼 돼지가 남겨졌다.</p>
+<p>그러니까 설국열차가 압도적인 세상 속에서도 결국은 그 세상을 전복해내는 과거의 혁명담이었다면, 옥자는 그 압도적인 세상 속에서 발버둥쳐보지만 결국 아무 것도 바꾸지 못하는 오늘날의 혁명담에 가깝다.</p>
+<p>그래도 조금이나마 더 여운이 남는 것이라면, 미자와 옥자가 찍힌 사진을 보면서 동요하는 도축장 직원의 모습들 같은 것 정도인 듯 싶다.</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/okja/">okja</a>
+
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/appreciation/">appreciation</a>
+
+  <a class="tag tag--primary tag--small" href="http://rosinality.github.io//tags/review/">review</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/%EC%95%9E%EC%9C%BC%EB%A1%9C-%EC%9E%AC%EB%AF%B8%EC%9E%88%EC%9D%84%EC%A7%80%EB%8F%84-%EB%AA%A8%EB%A5%B4%EB%8A%94-%EC%A3%BC%EC%A0%9C%EB%93%A4/" data-tooltip="앞으로 재미있을지도 모르는 주제들">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/05/%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5%EC%97%90-%EB%8C%80%ED%95%B4/" data-tooltip="강화학습에 대해">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2frosinality.github.io%2f2017%2f06%2f%25EC%2598%25A5%25EC%259E%2590%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frosinality.github.io%2f2017%2f06%2f%25EC%2598%25A5%25EC%259E%2590%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2frosinality.github.io%2f2017%2f06%2f%25EC%2598%25A5%25EC%259E%2590%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 Kim Seonghyeon. 
+  </span>
+</footer>
+
+      </div>
+      
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2frosinality.github.io%2f2017%2f06%2f%25EC%2598%25A5%25EC%259E%2590%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2frosinality.github.io%2f2017%2f06%2f%25EC%2598%25A5%25EC%259E%2590%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2frosinality.github.io%2f2017%2f06%2f%25EC%2598%25A5%25EC%259E%2590%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/63eec5e671fc734bde45cd43cc156abc?s=110" alt="" />
+    
+    <h4 id="about-card-name">Kim Seonghyeon</h4>
+    
+      <div id="about-card-bio">Machine learning enthusiast</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Graduate student in HCCLab at Seoul National University
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Korea, Republic of
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2022/11/%ED%85%94-%EC%95%84%EB%B9%84%EB%B8%8C%EC%99%80-eccv-2022-%EC%97%AC%ED%96%89%EA%B8%B0-1/">
+                <h3 class="media-heading">텔 아비브와 ECCV 2022 여행기 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">생애 첫 해외 여행(은 아니고 출장이긴 하지만)을 이스라엘로 기념하게 됐다. 일단 여권부터 만들고. (이번에 만든 거라 신형 여권이다.) 인천국제공항에 입성. 사</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2021/05/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%97%90%EC%84%9C-%EC%84%A4%EC%A0%95-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0/">
+                <h3 class="media-heading">머신 러닝 시스템에서 설정 관리하기</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">머신 러닝 코드, 특히 실험적 목적이 강한 코드에서 가장 중요한 문제 중 하나가 설정을 관리하는 것이라고 본다. 머신 러닝 모델에는 수많은 하이퍼파라미터가 존재하고 그</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2021/04/%EC%A7%84%EA%B2%A9%EC%9D%98-%EA%B1%B0%EC%9D%B8/">
+                <h3 class="media-heading">진격의 거인</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2021
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">진격의 거인은 우익적 혹은 극우적인가? 보통 일본의 창작물이 극우적인가를 논하는 기준은 욱일기가 은근슬쩍 등장한다든지 혹은 대체역사물 같이 노골적으로 (유치한</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2020/06/the-last-of-us-part-ii/">
+                <h3 class="media-heading">The Last of Us Part II</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">과연 라스트 오브 어스 2는 증오와 적대에 대한 게임이다. (인터뷰) 게임에서 싸우는 것이 일상이고 증오와 적대가 게임에 등장하는 것이야 대수로운 일도 아니지 않을까</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2019/08/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">
+                <h3 class="media-heading">머신러닝 파이프라인 만들기</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">딥 러닝이 유행하기 시작할 무렵 딥 러닝의 장점으로 나왔던 것이 특징을 추출하는 알고리즘(Feature extractor)을 데이터를 통해 학습한다는 것이었</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/10/bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding/">
+                <h3 class="media-heading">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">프리트레이닝과 전이학습 모델을 프리트레이닝하는 것이, 혹은 프리트레이닝된 모델이 모듈로 쓰는 것이 성능에 큰 영향을 미칠 수 있다는 건 너무나 잘 알려진 사실이다.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/08/%EC%9D%B8%EA%B3%BC%EA%B4%80%EA%B3%84%EB%A5%BC-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B0%9D%ED%9E%90-%EC%88%98-%EC%9E%88%EB%8A%94%EA%B0%80/">
+                <h3 class="media-heading">인과관계를 어떻게 밝힐 수 있는가</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">우선 인과관계라는 것이 대체 무엇인가? 인과관계라는 것을 명확하게 정의하는 것은 복잡한 철학적 문제다. 그러나 실용적인 목적으로는 단순한 정의를 사용할 수 있다.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2018/05/%EB%B2%84%EB%8B%9D/">
+                <h3 class="media-heading">버닝</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">모호한 세상. 영화에서는 수수께끼 같다는 말로 직접적으로 표현한다. 세상을 명료하게 설명해서 글로 옮길 수 있다면 좋겠지만 영화는 시종일관 진실이 무엇인지 말해주</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://rosinality.github.io/2017/11/%EC%95%9E%EC%9C%BC%EB%A1%9C-%EC%9E%AC%EB%AF%B8%EC%9E%88%EC%9D%84%EC%A7%80%EB%8F%84-%EB%AA%A8%EB%A5%B4%EB%8A%94-%EC%A3%BC%EC%A0%9C%EB%93%A4/">
+                <h3 class="media-heading">앞으로 재미있을지도 모르는 주제들</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">LSTM을 대신할 RNN Cell을 설계한다거나 하는 식의 기존의 구조를 개선하는 방안을 고안하는 것은 분명히 중요한 일이기는 하지만 그 자체로는 이전에는 불가능하거</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         55 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://res.cloudinary.com/rosinality/image/upload/v1492734059/covers/stair.jpg');"></div>
+  
+
+
+    
+<script>
+  (function (d) {
+    var config = {
+      kitId: 'vld6lxf',
+      scriptTimeout: 3000,
+      async: true
+    },
+      h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+  })(document);
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+
+<script src="/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    hljs.configure({ classPrefix: '', useBR: false });
+    $('pre.code-highlight').each(function (i, block) {
+      var code = "";
+      hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function (line) {
+        code += "<span class=\"line\">" + line + "</span><br>";
+      });
+      if (code.length > 0) {
+        block.innerHTML = code;
+      }
+    });
+    $('pre > code').each(function (i, block) {
+      $(this).addClass('codeblock');
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = 'http:\/\/rosinality.github.io\/2017\/06\/%EC%98%A5%EC%9E%90\/';
+    { { if .Params.disqusIdentifier } }
+    this.page.identifier = '';
+    { { else } }
+    this.page.identifier = '\/2017\/06\/%EC%98%A5%EC%9E%90\/'
+    { { end } }
+  };
+  (function () {
+    
+    
+    if (window.location.hostname == "localhost") {
+      return;
+    }
+    var d = document, s = d.createElement('script');
+    var disqus_shortname = 'rosinality';
+    s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+
+
+
+
+    
+  </body>
+</html>
+

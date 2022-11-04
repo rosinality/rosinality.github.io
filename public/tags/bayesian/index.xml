@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bayesian on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/bayesian/</link>
+    <description>Recent content in bayesian on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 21 Apr 2017 01:03:34 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/bayesian/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>강한 사전 분포</title>
+      <link>http://rosinality.github.io/2017/04/%EA%B0%95%ED%95%9C-%EC%82%AC%EC%A0%84-%EB%B6%84%ED%8F%AC/</link>
+      <pubDate>Fri, 21 Apr 2017 01:03:34 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EA%B0%95%ED%95%9C-%EC%82%AC%EC%A0%84-%EB%B6%84%ED%8F%AC/</guid>
+      <description>균일 사전 분포 같은 정보가 없는 분포가 아닌 정보가 있는 사전 분포(이하 강한 사전 분포)를 사용한다고 할 때 왜 생리적인(?) 거부감 같은 것이 생기는 것일까? 그건 아</description>
+    </item>
+    
+  </channel>
+</rss>

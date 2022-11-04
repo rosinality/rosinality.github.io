@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dlib on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/dlib/</link>
+    <description>Recent content in dlib on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 20 Apr 2017 21:45:43 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/dlib/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>중도층 공략 전략</title>
+      <link>http://rosinality.github.io/2017/04/%EC%A4%91%EB%8F%84%EC%B8%B5-%EA%B3%B5%EB%9E%B5-%EC%A0%84%EB%9E%B5/</link>
+      <pubDate>Thu, 20 Apr 2017 21:45:43 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EC%A4%91%EB%8F%84%EC%B8%B5-%EA%B3%B5%EB%9E%B5-%EC%A0%84%EB%9E%B5/</guid>
+      <description>중도층 공략은 매 선거에서 양 정당이 들고나오는 전략인 듯 싶다. 과연 중도층 공략이 얼마나 효과적일 수 있을 것인가에 대해서 좀 정리해보고 싶어졌다. 일단 어떤 지역구</description>
+    </item>
+    
+    <item>
+      <title>일베와 두부</title>
+      <link>http://rosinality.github.io/2017/04/%EC%9D%BC%EB%B2%A0%EC%99%80-%EB%91%90%EB%B6%80/</link>
+      <pubDate>Thu, 20 Apr 2017 21:37:20 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EC%9D%BC%EB%B2%A0%EC%99%80-%EB%91%90%EB%B6%80/</guid>
+      <description>잘 아는 배우는 아니지만 얼핏 TV에서 본 듯한 배우가 돌바닥 사진을 뒤집어놓고 두부 심부름을 운운한 것 때문에 열성 일베 유저로 몰린 것 같다. 그 배우가 일베러인지 아닌</description>
+    </item>
+    
+  </channel>
+</rss>

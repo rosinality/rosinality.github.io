@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tensorflow on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/tensorflow/</link>
+    <description>Recent content in tensorflow on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Tue, 25 Apr 2017 15:23:34 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/tensorflow/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Caffe2와 딥 러닝 프레임워크</title>
+      <link>http://rosinality.github.io/2017/04/caffe2%EC%99%80-%EB%94%A5-%EB%9F%AC%EB%8B%9D-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC/</link>
+      <pubDate>Tue, 25 Apr 2017 15:23:34 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/caffe2%EC%99%80-%EB%94%A5-%EB%9F%AC%EB%8B%9D-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC/</guid>
+      <description>몰랐는데 Caffe2도 페이스북 쪽에서 기여한 모양(https://caffe2.ai 밑에 Facebook Open Source라고 큼직하게 박혀 있음.) PyTorch</description>
+    </item>
+    
+  </channel>
+</rss>

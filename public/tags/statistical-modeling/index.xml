@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>statistical modeling on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/statistical-modeling/</link>
+    <description>Recent content in statistical modeling on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 21 Apr 2017 01:09:27 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/statistical-modeling/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>인과적 구조</title>
+      <link>http://rosinality.github.io/2017/04/%EC%9D%B8%EA%B3%BC%EC%A0%81-%EA%B5%AC%EC%A1%B0/</link>
+      <pubDate>Fri, 21 Apr 2017 01:09:27 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/%EC%9D%B8%EA%B3%BC%EC%A0%81-%EA%B5%AC%EC%A1%B0/</guid>
+      <description>유디 펄(Judea Pearl)이 어디 초청받아 강연을 하러 가보니까 강연을 주최한 기관 이름이 데이터 사이언스 및 엔지니어링 연구소였다고 한다. 유디 펄이 이게</description>
+    </item>
+    
+  </channel>
+</rss>

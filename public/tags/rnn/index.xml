@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rnn on Nondifferentiable Log</title>
+    <link>http://rosinality.github.io/tags/rnn/</link>
+    <description>Recent content in rnn on Nondifferentiable Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 20 Apr 2017 21:16:13 +0900</lastBuildDate>
+    
+	<atom:link href="http://rosinality.github.io/tags/rnn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sequence to Sequence 모형</title>
+      <link>http://rosinality.github.io/2017/04/sequence-to-sequence-%EB%AA%A8%ED%98%95/</link>
+      <pubDate>Thu, 20 Apr 2017 21:16:13 +0900</pubDate>
+      
+      <guid>http://rosinality.github.io/2017/04/sequence-to-sequence-%EB%AA%A8%ED%98%95/</guid>
+      <description>기본적인 뉴럴 네트워크는 함수 $f(x)$를 근사하는 것이라고 보면 된다. 입력을 원하는 출력으로 매핑하는 것이다. 예컨대 입력이 이미지라면 입력 이미지가 개인</description>
+    </item>
+    
+  </channel>
+</rss>

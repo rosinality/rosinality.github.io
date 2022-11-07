@@ -41,7 +41,14 @@
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        {{ printf "%s" .Summary | markdownify }}
+        <!--{{ printf "%s" .Summary | markdownify }}-->
+        {{ $summarySplits := split .Content "<!--start-summary-->" }}
+        {{ if ge (len $summarySplits) 2 }}
+        <!-- If content has the comment "start-summary", start there -->
+        {{ index $summarySplits 1 | plainify | truncate 140 }}
+        {{ else }}
+        {{ printf "%s …" .Summary| markdownify}}
+        {{ end }}
         <br>
         <a href="{{ .Permalink }}" class="postShorten-excerpt_link link">{{ i18n "post.read_more" }}</a>
         {{ with .Params.readingtime }}

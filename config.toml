@@ -19,6 +19,8 @@ disqusShortname = "rosinality"
   archive = "archives"
 
 [markup]
+  [markup.goldmark.renderer]
+  unsafe = true
   [markup.highlight]
     # noClasses = true
     # codeFences = true

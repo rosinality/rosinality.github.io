@@ -122,6 +122,22 @@ ECCV 2022 최고 스타였던 Jingkang Yang (https://twitter.com/jingkangy)의 [
 
 점심 타임. 슈니첼과 가지와 빵. 슈니첼이 학회 단골 메뉴였다.
 
+![만난 한국인 1](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_121943.jpg)
+
+![만난 한국인 2](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_122602.jpg)
+
+![만난 한국인 3](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_122613.jpg)
+
+![만난 한국인 4](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_122912.jpg)
+
+![만난 한국인 5](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_123244.jpg)
+
+![만난 한국인 6](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_123247.jpg)
+
+![만난 한국인 7](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_123250.jpg)
+
+전 직장 동료라거나 같은 회사 분이라거나 혹은 대학 연구실의 연구자들 등등의 한국인들을 만나 뱃지 인증.
+
 ![Adaptive Token Sampling For Efficient Vision Transformers 1](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_135555.jpg)
 
 ![Adaptive Token Sampling For Efficient Vision Transformers 2](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_135636.jpg)

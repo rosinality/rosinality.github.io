@@ -15,7 +15,7 @@ title = "텔 아비브와 ECCV 2022 여행기 5"
 1. [텔 아비브와 ECCV 2022 여행기 1]( {{< ref "post/tel-aviv-1.md" >}})
 2. [텔 아비브와 ECCV 2022 여행기 2]( {{< ref "post/tel-aviv-2.md" >}})
 3. [텔 아비브와 ECCV 2022 여행기 3]( {{< ref "post/tel-aviv-3.md" >}})
-4. [텔 아비브와 ECCV 2022 여행기 4]( {{< ref "post/tel-aviv-3.md" >}})
+4. [텔 아비브와 ECCV 2022 여행기 4]( {{< ref "post/tel-aviv-4.md" >}})
 5. 텔 아비브와 ECCV 2022 여행기 5
 6. [텔 아비브와 ECCV 2022 여행기 6]( {{< ref "post/tel-aviv-6.md" >}})
 7. [텔 아비브와 ECCV 2022 여행기 7]( {{< ref "post/tel-aviv-7.md" >}})
@@ -112,4 +112,94 @@ title = "텔 아비브와 ECCV 2022 여행기 5"
 
 이 햇볕을 배경으로 ordinal regression을 연구하는 분과 depth estimation을 연구하는 분을 만나 잠깐 이야기를 했다.
 
+![EdgeViTs: Competing Light-weight CNNs on Mobile Devices with Vision Transformers](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_145433.jpg)
+
 [EdgeViTs: Competing Light-weight CNNs on Mobile Devices with Vision Transformers](https://arxiv.org/abs/2205.03436)
+
+모바일 지향 ViT. 기본적으로 depthwise conv + pooled attention + transposed conv 조합이다.
+
+![TokenMix: Rethinking Image Mixing for Data Augmentation in Vision Transformers](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_145602.jpg)
+
+[TokenMix: Rethinking Image Mixing for Data Augmentation in Vision Transformers](https://arxiv.org/abs/2207.08409). CutMix와 비슷한 느낌인데 하나의 사각형 영역을 잡는 대신 분리된 여러 영역을 잡도록 만들고 학습 타겟 레이블을 mixing ratio로 잡는 대신 teacher network의 activation map의 스코어를 사용해서 할당하는 방법. 다들 activation map을 왜 이렇게 좋아하지!?
+
+별개로 토큰 개념으로 생각하면 CutMix도 좀 특이한 방향으로의 응용을 생각해볼 수 있는 것 같다. 대표적으로 흥미롭다고 생각한 것은 MixMIM ([https://arxiv.org/abs/2205.13137](https://arxiv.org/abs/2205.13137)) 같은 방법.
+
+![What to Hide from Your Students: Attention-Guided Masked Image Modeling](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_150028.jpg)
+
+[What to Hide from Your Students: Attention-Guided Masked Image Modeling](https://arxiv.org/abs/2203.12719). teacher의 activation map를 활용하는 연구가 있는 것처럼 이렇게 teacher의 self attention을 사용해 masked image model의 mask를 생성하는 연구도 있었다.
+
+![JoJoGAN: One Shot Face Stylization](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_150946.jpg)
+
+[JoJoGAN: One Shot Face Stylization](https://arxiv.org/abs/2112.11641). 죠죠간까지.
+
+그 다음은 파워 리셉션 시간. 아무래도 리셉션이 학회마다 다르다보니 ECCV에서는 어떤 분위기일지가 화제였는데...대충 이랬다.
+
+![리셉션 시작 1](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_192154.jpg)
+
+![리셉션 시작 2](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_192157.jpg)
+
+![리셉션 슈니첼](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_192512.jpg)
+
+이젠 식빵에 끼운 슈니첼 바리에이션이 나왔다.
+
+![리셉션 음식](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_193718.jpg)
+
+맛있긴 했음.
+
+![리셉션에서 만난 메가스터디 연구자](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_195552.jpg)
+
+이렇게 메가스터디에서 ML을 연구하는 분도 만날 수 있었음. 리셉션에서 기대하는 것이 이렇게 쉽게 만나기 어려운 사람들 사이에 점프하듯 연결을 만들 수 있는 것 아닐까...싶었지만.
+
+![리셉션 공연 1](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_200635.jpg)
+
+![리셉션 공연 2](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_202829.jpg)
+
+본격적으로 공연 & 클럽 분위기로 전환됨.
+
+![리셉션 TARARAM 1](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_202946.jpg)
+
+![리셉션 TARARAM 2](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_203425.jpg)
+
+TARARAM이라는 이스라엘 난타(?)가 등장.
+
+![리셉션 ECCV Chair](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_204229.jpg)
+
+ECCV 체어의 짧은 멘트.
+
+![리셉션 ClearML CEO](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_204253.jpg)
+
+[ClearML](https://clear.ml/)이 ECCV 2022 스폰서여서인지 ClearML 대표가 나옴.
+
+![리셉션 TARARAM 3](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_205224.jpg)
+
+TARARAM이 한 번 더 나오고,
+
+![리셉션 클럽 1](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_210300.jpg)
+
+본격적으로 클럽 시작. 사실 처음에는 약간 민망한 느낌이 들 정도로 정적이었는데 점점 분위기가 바뀜.
+
+![리셉션 클럽 2](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_210815.jpg)
+
+분위기가 맞지 않는 사람들이 슬슬 나가고 혼모노들만 남아서인 듯.
+
+![리셉션 클럽 3](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_211856.jpg)
+
+ECCV 최고 스타와 그의 백팩이 등장.
+
+![리셉션 클럽 4](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_212058.jpg)
+
+![리셉션 클럽 츄러스](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_212316.jpg)
+
+중간에 츄러스를 하나 주길래 챙김.
+
+![리셉션 클럽 5](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_215610.jpg)
+
+![리셉션 클럽 6](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_215614.jpg)
+
+역시 스타는 아무나 되는 것이 아님. 백팩 하나 사는 것으로 흉내낼 수 있다고 생각했던 것을 반성합니다.
+
+![리셉션 클럽 7](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_215727.jpg)
+
+![리셉션 클럽 7](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221026_225913.jpg)
+
+마치고 나니 11시가 넘었던 것 같음. 이때 리셉션을 끝까지 보고 있었던 것이 후폭풍을 만들었는데...여하간 이 날은 이것으로 마무리. 호텔로 돌아와 어쩌다 만난 분과 VITON에 대한 성토를 잠깐 한 후 종료.

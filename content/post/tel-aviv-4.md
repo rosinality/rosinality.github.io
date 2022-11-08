@@ -166,7 +166,7 @@ ECCV 2022 최고 스타였던 Jingkang Yang (https://twitter.com/jingkangy)의 [
 
 ![PACTran: PAC-Bayesian Metrics for Estimating the Transferability of Pretrained Models to Classification Tasks](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_155912.jpg)
 
-[PACTran: PAC-Bayesian Metrics for Estimating the Transferability of Pretrained Models to Classification Tasks]. 파인튜닝을 해서 성능을 찍어보기 전에 모델 weight가 각 과제들에게 잘 transfer 될 수 있는지를 평가하는 메트릭을 만들 수 있을 것인가 하는 과제. 직관적인 레벨에서 다루자면 PACTran은 최종 레이어의 출력의 파인튜닝 데이터에 대한 학습 loss와 flatness/smoothness의 결합으로 transferability를 평가한다고 할 수 있는 것 같다. flatness는 generalizability에 대해 계속해서 유용하다는 사례들이 나오는 것 같다. 혹은 반대로 우리가 가지고 있는 척도가 그것 정도 밖에 없다는 의미일 수도 있겠고.
+[PACTran: PAC-Bayesian Metrics for Estimating the Transferability of Pretrained Models to Classification Tasks](https://arxiv.org/abs/2203.05126). 파인튜닝을 해서 성능을 찍어보기 전에 모델 weight가 각 과제들에게 잘 transfer 될 수 있는지를 평가하는 메트릭을 만들 수 있을 것인가 하는 과제. 직관적인 레벨에서 다루자면 PACTran은 최종 레이어의 출력의 파인튜닝 데이터에 대한 학습 loss와 flatness/smoothness의 결합으로 transferability를 평가한다고 할 수 있는 것 같다. flatness는 generalizability에 대해 계속해서 유용하다는 사례들이 나오는 것 같다. 혹은 반대로 우리가 가지고 있는 척도가 그것 정도 밖에 없다는 의미일 수도 있겠고.
 
 ![An Impartial Take to the CNN vs Transformer Robustness Contest](https://res.cloudinary.com/rosinality/image/upload/c_scale,h_0.5/v1667528721/tel-aviv/20221025_161725.jpg)
 

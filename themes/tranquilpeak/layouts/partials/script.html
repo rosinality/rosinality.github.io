@@ -60,11 +60,11 @@ MathJax.Hub.Config({
 <script>
   var disqus_config = function () {
     this.page.url = '{{ .Permalink }}';
-    { { if .Params.disqusIdentifier } }
+    {{ if .Params.disqusIdentifier }}
     this.page.identifier = '{{ .Params.disqusIdentifier }}';
-    { { else } }
+    {{ else }}
     this.page.identifier = '{{ .URL | relURL }}'
-    { { end } }
+    {{ end }}
   };
   (function () {
     // Don't ever inject Disqus on localhost--it creates unwanted

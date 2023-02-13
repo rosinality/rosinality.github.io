@@ -6,6 +6,7 @@ isCJKLanguage = true
 hasMath = false
 coverImage = "https://res.cloudinary.com/rosinality/image/upload/v1676255017/library_o3ltvp.jpg"
 coverSize = "partial"
+draft = true
 autoThumbnailImage = true
 thumbnailImagePosition = "top"
 date = 2023-02-13T11:20:37+09:00

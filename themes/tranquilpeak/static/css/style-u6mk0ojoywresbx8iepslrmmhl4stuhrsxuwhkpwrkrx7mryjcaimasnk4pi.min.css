@@ -49,9 +49,10 @@ hr {
     outline: 0
 }
 
+
+/*blockquote*/
 .caption,
-.pullquote,
-blockquote {
+.pullquote {
     font-style: italic
 }
 
@@ -256,22 +257,28 @@ blockquote>p:first-child {
 }
 
 @media only screen and (max-width:767px) {
+
     code,
     h6 {
         font-size: 1.4rem
     }
+
     h1 {
         font-size: 2.6rem
     }
+
     h2 {
         font-size: 2.2rem
     }
+
     h3 {
         font-size: 1.8rem
     }
+
     h4 {
         font-size: 1.6rem
     }
+
     h5 {
         font-size: 1.5rem
     }
@@ -281,18 +288,23 @@ blockquote>p:first-child {
     h1 {
         font-size: 2.65rem
     }
+
     h2 {
         font-size: 2.25rem
     }
+
     h3 {
         font-size: 1.85rem
     }
+
     h4 {
         font-size: 1.65rem
     }
+
     h5 {
         font-size: 1.55rem
     }
+
     h6 {
         font-size: 1.45rem
     }
@@ -379,24 +391,29 @@ blockquote>p:first-child {
     #about #about-card {
         width: 90%
     }
+
     #about #about-card #about-card-job,
     #about #about-card #about-card-location {
         display: block;
         width: calc(100% - 60px);
         padding: 0 30px
     }
+
     #about #about-card #about-card-picture {
         width: 90px;
         height: 90px;
         border-radius: 45px
     }
+
     #about #about-card #about-card-job {
         margin-bottom: 15px
     }
+
     #bottom-bar {
         width: calc(100% - 15px * 2);
         left: 0
     }
+
     #bottom-bar[data-behavior="4"].pushed,
     #bottom-bar[data-behavior="5"].pushed,
     #bottom-bar[data-behavior="1"].pushed,
@@ -405,6 +422,7 @@ blockquote>p:first-child {
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #bottom-bar[data-behavior="3"].pushed,
     #bottom-bar[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
@@ -417,19 +435,23 @@ blockquote>p:first-child {
     #about #about-card {
         width: 80%
     }
+
     #about #about-card #about-card-picture {
         width: 110px;
         height: 110px;
         border-radius: 55px
     }
+
     #about #about-card #about-card-job,
     #about #about-card #about-card-location {
         display: inline-block;
         width: calc((100% / 2) - 48px)
     }
+
     #about #about-card #about-card-job {
         padding: 0 15px 0 30px
     }
+
     #about #about-card #about-card-location {
         padding: 0 30px 0 15px
     }
@@ -459,18 +481,21 @@ blockquote>p:first-child {
 }
 
 @media only screen and (min-width:768px) and (max-width:1023px) {
+
     #bottom-bar[data-behavior="4"],
     #bottom-bar[data-behavior="5"],
     #bottom-bar[data-behavior="6"] {
         width: calc(100% - 15px * 2);
         left: 0
     }
+
     #bottom-bar[data-behavior="3"],
     #bottom-bar[data-behavior="1"],
     #bottom-bar[data-behavior="2"] {
         width: calc(100% - 75px - 15px * 2);
         left: 75px
     }
+
     #bottom-bar[data-behavior="3"].pushed,
     #bottom-bar[data-behavior="1"].pushed,
     #bottom-bar[data-behavior="2"].pushed {
@@ -478,12 +503,14 @@ blockquote>p:first-child {
         -moz-transform: translate3d(75px, 0, 0);
         transform: translate3d(75px, 0, 0)
     }
+
     #bottom-bar[data-behavior="4"].pushed,
     #bottom-bar[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #bottom-bar[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -492,38 +519,45 @@ blockquote>p:first-child {
 }
 
 @media only screen and (min-width:1024px) and (max-width:1279px) {
+
     #bottom-bar[data-behavior="4"],
     #bottom-bar[data-behavior="5"],
     #bottom-bar[data-behavior="6"] {
         width: calc(100% - 15px * 2);
         left: 0
     }
+
     #bottom-bar[data-behavior="1"],
     #bottom-bar[data-behavior="2"] {
         width: calc(100% - 250px - 15px * 2);
         left: 250px
     }
+
     #bottom-bar[data-behavior="1"].pushed,
     #bottom-bar[data-behavior="2"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #bottom-bar[data-behavior="3"] {
         width: calc(100% - 75px - 15px * 2);
         left: 75px
     }
+
     #bottom-bar[data-behavior="3"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
         transform: translate3d(75px, 0, 0)
     }
+
     #bottom-bar[data-behavior="4"].pushed,
     #bottom-bar[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #bottom-bar[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -532,49 +566,59 @@ blockquote>p:first-child {
 }
 
 @media only screen and (min-width:1280px) {
+
     #bottom-bar[data-behavior="4"],
     #bottom-bar[data-behavior="5"],
     #bottom-bar[data-behavior="6"] {
         width: calc(100% - 15px * 2);
         left: 0
     }
+
     #bottom-bar[data-behavior="1"] {
         width: calc(100% - 500px - 15px * 2);
         left: 500px
     }
+
     #bottom-bar[data-behavior="1"].pushed {
         -webkit-transform: translate3d(500px, 0, 0);
         -moz-transform: translate3d(500px, 0, 0);
         transform: translate3d(500px, 0, 0)
     }
+
     #bottom-bar[data-behavior="2"] {
         width: calc(100% - 250px - 15px * 2);
         left: 250px
     }
+
     #bottom-bar[data-behavior="2"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #bottom-bar[data-behavior="3"] {
         width: calc(100% - 75px - 15px * 2);
         left: 75px
     }
+
     #bottom-bar[data-behavior="3"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
         transform: translate3d(75px, 0, 0)
     }
+
     #bottom-bar[data-behavior="4"].pushed {
         -webkit-transform: translate3d(500px, 0, 0);
         -moz-transform: translate3d(500px, 0, 0);
         transform: translate3d(500px, 0, 0)
     }
+
     #bottom-bar[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #bottom-bar[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -670,6 +714,7 @@ blockquote>p:first-child {
 }
 
 @media only screen and (min-width:768px) {
+
     #header[data-behavior="3"],
     #header[data-behavior="1"],
     #header[data-behavior="2"] {
@@ -678,12 +723,14 @@ blockquote>p:first-child {
 }
 
 @media only screen and (min-width:1280px) {
+
     #header[data-behavior="4"].pushed,
     #header[data-behavior="1"].pushed {
         -webkit-transform: translate3d(500px, 0, 0);
         -moz-transform: translate3d(500px, 0, 0);
         transform: translate3d(500px, 0, 0)
     }
+
     #header[data-behavior="5"].pushed,
     #header[data-behavior="2"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
@@ -705,12 +752,12 @@ blockquote>p:first-child {
 
 #main.hasCover.hasCoverCaption,
 #main.hasCover.hasCoverMetaOut {
-    padding-top: 50px!important
+    padding-top: 50px !important
 }
 
 #main.hasCover.hasCoverMetaIn,
 #main.hasCover.hasCoverMetaOut.hasCoverCaption {
-    padding-top: 0!important
+    padding-top: 0 !important
 }
 
 @media only screen and (max-width:767px) {
@@ -719,6 +766,7 @@ blockquote>p:first-child {
         display: block;
         width: 100%
     }
+
     #main[data-behavior="4"].pushed,
     #main[data-behavior="5"].pushed,
     #main[data-behavior="1"].pushed,
@@ -727,6 +775,7 @@ blockquote>p:first-child {
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #main[data-behavior="3"].pushed,
     #main[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
@@ -736,6 +785,7 @@ blockquote>p:first-child {
 }
 
 @media only screen and (min-width:768px) and (max-width:1023px) {
+
     #main[data-behavior="4"],
     #main[data-behavior="5"],
     #main[data-behavior="6"] {
@@ -743,6 +793,7 @@ blockquote>p:first-child {
         display: block;
         width: 100%
     }
+
     #main[data-behavior="3"],
     #main[data-behavior="1"],
     #main[data-behavior="2"] {
@@ -750,12 +801,14 @@ blockquote>p:first-child {
         float: right;
         width: calc(100% - 75px)
     }
+
     #main[data-behavior="4"].pushed,
     #main[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #main[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -764,6 +817,7 @@ blockquote>p:first-child {
 }
 
 @media only screen and (min-width:1024px) and (max-width:1279px) {
+
     #main[data-behavior="4"],
     #main[data-behavior="5"],
     #main[data-behavior="6"] {
@@ -771,23 +825,27 @@ blockquote>p:first-child {
         display: block;
         width: 100%
     }
+
     #main[data-behavior="1"],
     #main[data-behavior="2"] {
         padding-top: 15px;
         float: right;
         width: calc(100% - 250px)
     }
+
     #main[data-behavior="3"] {
         padding-top: 15px;
         float: right;
         width: calc(100% - 75px)
     }
+
     #main[data-behavior="4"].pushed,
     #main[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #main[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -796,6 +854,7 @@ blockquote>p:first-child {
 }
 
 @media only screen and (min-width:1280px) {
+
     #main[data-behavior="4"],
     #main[data-behavior="5"],
     #main[data-behavior="6"] {
@@ -803,31 +862,37 @@ blockquote>p:first-child {
         display: block;
         width: 100%
     }
+
     #main[data-behavior="1"] {
         padding-top: 15px;
         float: right;
         width: calc(100% - 500px)
     }
+
     #main[data-behavior="2"] {
         padding-top: 15px;
         float: right;
         width: calc(100% - 250px)
     }
+
     #main[data-behavior="3"] {
         padding-top: 15px;
         float: right;
         width: calc(100% - 75px)
     }
+
     #main[data-behavior="4"].pushed {
         -webkit-transform: translate3d(500px, 0, 0);
         -moz-transform: translate3d(500px, 0, 0);
         transform: translate3d(500px, 0, 0)
     }
+
     #main[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #main[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -895,6 +960,7 @@ blockquote>p:first-child {
 }
 
 @media only screen and (max-width:767px) {
+
     #sidebar[data-behavior="4"],
     #sidebar[data-behavior="5"],
     #sidebar[data-behavior="1"],
@@ -902,6 +968,7 @@ blockquote>p:first-child {
         left: -250px;
         width: 250px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile,
     #sidebar[data-behavior="5"] .sidebar-profile,
     #sidebar[data-behavior="1"] .sidebar-profile,
@@ -910,6 +977,7 @@ blockquote>p:first-child {
         padding-top: 40px;
         padding-bottom: 7.5px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-picture,
     #sidebar[data-behavior="5"] .sidebar-profile .sidebar-profile-picture,
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-picture,
@@ -919,18 +987,21 @@ blockquote>p:first-child {
         border-radius: 90px;
         margin-bottom: 5px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-name,
     #sidebar[data-behavior="5"] .sidebar-profile .sidebar-profile-name,
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-name,
     #sidebar[data-behavior="2"] .sidebar-profile .sidebar-profile-name {
         font-size: 1.6rem
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button,
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button,
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button {
         text-align: left
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link,
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link,
@@ -940,6 +1011,7 @@ blockquote>p:first-child {
         padding-left: 23px;
         padding-top: 0
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon,
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon,
@@ -954,6 +1026,7 @@ blockquote>p:first-child {
         vertical-align: middle;
         margin-right: 15px
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc,
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc,
@@ -966,6 +1039,7 @@ blockquote>p:first-child {
         letter-spacing: .3px;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="4"].pushed,
     #sidebar[data-behavior="5"].pushed,
     #sidebar[data-behavior="1"].pushed,
@@ -974,11 +1048,13 @@ blockquote>p:first-child {
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #sidebar[data-behavior="3"],
     #sidebar[data-behavior="6"] {
         left: -75px;
         width: 75px
     }
+
     #sidebar[data-behavior="3"] .sidebar-profile .sidebar-profile-picture,
     #sidebar[data-behavior="6"] .sidebar-profile .sidebar-profile-picture {
         width: 30px;
@@ -987,19 +1063,23 @@ blockquote>p:first-child {
         vertical-align: middle;
         border-radius: 30px
     }
+
     #sidebar[data-behavior="3"] .sidebar-profile .sidebar-profile-name,
     #sidebar[data-behavior="6"] .sidebar-profile .sidebar-profile-name {
         display: none
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button,
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button {
         text-align: center
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link,
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: center;
         width: 100%
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon,
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
@@ -1011,10 +1091,12 @@ blockquote>p:first-child {
         padding-top: 0;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc,
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: none
     }
+
     #sidebar[data-behavior="3"].pushed,
     #sidebar[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
@@ -1024,11 +1106,13 @@ blockquote>p:first-child {
 }
 
 @media only screen and (min-width:768px) and (max-width:1023px) {
+
     #sidebar[data-behavior="3"],
     #sidebar[data-behavior="1"],
     #sidebar[data-behavior="2"] {
         width: 75px
     }
+
     #sidebar[data-behavior="3"] .sidebar-profile .sidebar-profile-picture,
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-picture,
     #sidebar[data-behavior="2"] .sidebar-profile .sidebar-profile-picture {
@@ -1038,22 +1122,26 @@ blockquote>p:first-child {
         vertical-align: middle;
         border-radius: 30px
     }
+
     #sidebar[data-behavior="3"] .sidebar-profile .sidebar-profile-name,
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-name,
     #sidebar[data-behavior="2"] .sidebar-profile .sidebar-profile-name {
         display: none
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button,
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button,
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button {
         text-align: center
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link,
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link,
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: center;
         width: 100%
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon,
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon,
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
@@ -1066,11 +1154,13 @@ blockquote>p:first-child {
         padding-top: 0;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc,
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc,
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: none
     }
+
     #sidebar[data-behavior="3"].pushed,
     #sidebar[data-behavior="1"].pushed,
     #sidebar[data-behavior="2"].pushed {
@@ -1078,17 +1168,20 @@ blockquote>p:first-child {
         -moz-transform: translate3d(75px, 0, 0);
         transform: translate3d(75px, 0, 0)
     }
+
     #sidebar[data-behavior="4"],
     #sidebar[data-behavior="5"] {
         left: -250px;
         width: 250px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile,
     #sidebar[data-behavior="5"] .sidebar-profile {
         height: 130px;
         padding-top: 40px;
         padding-bottom: 7.5px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-picture,
     #sidebar[data-behavior="5"] .sidebar-profile .sidebar-profile-picture {
         width: 90px;
@@ -1096,14 +1189,17 @@ blockquote>p:first-child {
         border-radius: 90px;
         margin-bottom: 5px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-name,
     #sidebar[data-behavior="5"] .sidebar-profile .sidebar-profile-name {
         font-size: 1.6rem
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button {
         text-align: left
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: left;
@@ -1111,6 +1207,7 @@ blockquote>p:first-child {
         padding-left: 23px;
         padding-top: 0
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
@@ -1123,6 +1220,7 @@ blockquote>p:first-child {
         vertical-align: middle;
         margin-right: 15px
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: inline-block;
@@ -1133,16 +1231,19 @@ blockquote>p:first-child {
         letter-spacing: .3px;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="4"].pushed,
     #sidebar[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #sidebar[data-behavior="6"] {
         left: -75px;
         width: 75px
     }
+
     #sidebar[data-behavior="6"] .sidebar-profile .sidebar-profile-picture {
         width: 30px;
         height: 30px;
@@ -1150,16 +1251,20 @@ blockquote>p:first-child {
         vertical-align: middle;
         border-radius: 30px
     }
+
     #sidebar[data-behavior="6"] .sidebar-profile .sidebar-profile-name {
         display: none
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button {
         text-align: center
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: center;
         width: 100%
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
         display: inline-block;
@@ -1170,9 +1275,11 @@ blockquote>p:first-child {
         padding-top: 0;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: none
     }
+
     #sidebar[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -1181,16 +1288,19 @@ blockquote>p:first-child {
 }
 
 @media only screen and (min-width:1024px) and (max-width:1279px) {
+
     #sidebar[data-behavior="1"],
     #sidebar[data-behavior="2"] {
         width: 250px
     }
+
     #sidebar[data-behavior="1"] .sidebar-profile,
     #sidebar[data-behavior="2"] .sidebar-profile {
         height: 130px;
         padding-top: 40px;
         padding-bottom: 7.5px
     }
+
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-picture,
     #sidebar[data-behavior="2"] .sidebar-profile .sidebar-profile-picture {
         width: 90px;
@@ -1198,14 +1308,17 @@ blockquote>p:first-child {
         border-radius: 90px;
         margin-bottom: 5px
     }
+
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-name,
     #sidebar[data-behavior="2"] .sidebar-profile .sidebar-profile-name {
         font-size: 1.6rem
     }
+
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button,
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button {
         text-align: left
     }
+
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link,
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: left;
@@ -1213,6 +1326,7 @@ blockquote>p:first-child {
         padding-left: 23px;
         padding-top: 0
     }
+
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon,
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
@@ -1225,6 +1339,7 @@ blockquote>p:first-child {
         vertical-align: middle;
         margin-right: 15px
     }
+
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc,
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: inline-block;
@@ -1235,15 +1350,18 @@ blockquote>p:first-child {
         letter-spacing: .3px;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="1"].pushed,
     #sidebar[data-behavior="2"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #sidebar[data-behavior="3"] {
         width: 75px
     }
+
     #sidebar[data-behavior="3"] .sidebar-profile .sidebar-profile-picture {
         width: 30px;
         height: 30px;
@@ -1251,16 +1369,20 @@ blockquote>p:first-child {
         vertical-align: middle;
         border-radius: 30px
     }
+
     #sidebar[data-behavior="3"] .sidebar-profile .sidebar-profile-name {
         display: none
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button {
         text-align: center
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: center;
         width: 100%
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
         display: inline-block;
@@ -1271,25 +1393,30 @@ blockquote>p:first-child {
         padding-top: 0;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: none
     }
+
     #sidebar[data-behavior="3"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
         transform: translate3d(75px, 0, 0)
     }
+
     #sidebar[data-behavior="4"],
     #sidebar[data-behavior="5"] {
         left: -250px;
         width: 250px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile,
     #sidebar[data-behavior="5"] .sidebar-profile {
         height: 130px;
         padding-top: 40px;
         padding-bottom: 7.5px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-picture,
     #sidebar[data-behavior="5"] .sidebar-profile .sidebar-profile-picture {
         width: 90px;
@@ -1297,14 +1424,17 @@ blockquote>p:first-child {
         border-radius: 90px;
         margin-bottom: 5px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-name,
     #sidebar[data-behavior="5"] .sidebar-profile .sidebar-profile-name {
         font-size: 1.6rem
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button {
         text-align: left
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: left;
@@ -1312,6 +1442,7 @@ blockquote>p:first-child {
         padding-left: 23px;
         padding-top: 0
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
@@ -1324,6 +1455,7 @@ blockquote>p:first-child {
         vertical-align: middle;
         margin-right: 15px
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc,
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: inline-block;
@@ -1334,16 +1466,19 @@ blockquote>p:first-child {
         letter-spacing: .3px;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="4"].pushed,
     #sidebar[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #sidebar[data-behavior="6"] {
         left: -75px;
         width: 75px
     }
+
     #sidebar[data-behavior="6"] .sidebar-profile .sidebar-profile-picture {
         width: 30px;
         height: 30px;
@@ -1351,16 +1486,20 @@ blockquote>p:first-child {
         vertical-align: middle;
         border-radius: 30px
     }
+
     #sidebar[data-behavior="6"] .sidebar-profile .sidebar-profile-name {
         display: none
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button {
         text-align: center
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: center;
         width: 100%
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
         display: inline-block;
@@ -1371,9 +1510,11 @@ blockquote>p:first-child {
         padding-top: 0;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: none
     }
+
     #sidebar[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -1387,6 +1528,7 @@ blockquote>p:first-child {
         box-sizing: border-box;
         padding: 0 80px
     }
+
     #sidebar[data-behavior="1"] .sidebar-container {
         position: relative;
         top: 50%;
@@ -1394,16 +1536,19 @@ blockquote>p:first-child {
         -webkit-transform: translateY(-50%);
         -moz-transform: translateY(-50%)
     }
+
     #sidebar[data-behavior="1"] .sidebar-profile {
         padding-top: 0;
         padding-bottom: 7.5px
     }
+
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-picture {
         width: 90px;
         height: 90px;
         border-radius: 90px;
         margin-bottom: 5px
     }
+
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-bio,
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-job,
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-location {
@@ -1411,27 +1556,32 @@ blockquote>p:first-child {
         font-size: 1.6rem;
         color: #ebebeb
     }
+
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-job,
     #sidebar[data-behavior="1"] .sidebar-profile .sidebar-profile-location {
         margin-top: 0;
         width: 49%;
         display: inline-block
     }
+
     #sidebar[data-behavior="1"] ul.sidebar-buttons {
         width: 49%;
         vertical-align: top;
         display: inline-block
     }
+
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button {
         text-align: left;
         box-sizing: border-box
     }
+
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: left;
         width: auto;
         padding-top: 0;
         white-space: nowrap
     }
+
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
         float: left;
@@ -1443,6 +1593,7 @@ blockquote>p:first-child {
         vertical-align: middle;
         margin-right: 15px
     }
+
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: block;
         width: auto;
@@ -1455,40 +1606,49 @@ blockquote>p:first-child {
         white-space: nowrap;
         text-overflow: ellipsis
     }
+
     #sidebar[data-behavior="1"] ul.sidebar-buttons li.sidebar-button:nth-child(odd) {
         padding-right: 20px
     }
+
     #sidebar[data-behavior="1"].pushed {
         -webkit-transform: translate3d(500px, 0, 0);
         -moz-transform: translate3d(500px, 0, 0);
         transform: translate3d(500px, 0, 0)
     }
+
     #sidebar[data-behavior="2"] {
         width: 250px
     }
+
     #sidebar[data-behavior="2"] .sidebar-profile {
         height: 130px;
         padding-top: 40px;
         padding-bottom: 7.5px
     }
+
     #sidebar[data-behavior="2"] .sidebar-profile .sidebar-profile-picture {
         width: 90px;
         height: 90px;
         border-radius: 90px;
         margin-bottom: 5px
     }
+
     #sidebar[data-behavior="2"] .sidebar-profile .sidebar-profile-name {
         font-size: 1.6rem
     }
+
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button {
         text-align: left
     }
+
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: left;
         width: auto;
         padding-left: 23px;
         padding-top: 0
     }
+
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
         display: inline-block;
@@ -1500,6 +1660,7 @@ blockquote>p:first-child {
         vertical-align: middle;
         margin-right: 15px
     }
+
     #sidebar[data-behavior="2"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: inline-block;
         width: auto;
@@ -1509,14 +1670,17 @@ blockquote>p:first-child {
         letter-spacing: .3px;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="2"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #sidebar[data-behavior="3"] {
         width: 75px
     }
+
     #sidebar[data-behavior="3"] .sidebar-profile .sidebar-profile-picture {
         width: 30px;
         height: 30px;
@@ -1524,16 +1688,20 @@ blockquote>p:first-child {
         vertical-align: middle;
         border-radius: 30px
     }
+
     #sidebar[data-behavior="3"] .sidebar-profile .sidebar-profile-name {
         display: none
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button {
         text-align: center
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: center;
         width: 100%
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
         display: inline-block;
@@ -1544,20 +1712,24 @@ blockquote>p:first-child {
         padding-top: 0;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="3"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: none
     }
+
     #sidebar[data-behavior="3"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
         transform: translate3d(75px, 0, 0)
     }
+
     #sidebar[data-behavior="4"] {
         left: -500px;
         width: 500px;
         box-sizing: border-box;
         padding: 0 80px
     }
+
     #sidebar[data-behavior="4"] .sidebar-container {
         position: relative;
         top: 50%;
@@ -1565,16 +1737,19 @@ blockquote>p:first-child {
         -webkit-transform: translateY(-50%);
         -moz-transform: translateY(-50%)
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile {
         padding-top: 0;
         padding-bottom: 7.5px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-picture {
         width: 90px;
         height: 90px;
         border-radius: 90px;
         margin-bottom: 5px
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-bio,
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-job,
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-location {
@@ -1582,27 +1757,32 @@ blockquote>p:first-child {
         font-size: 1.6rem;
         color: #ebebeb
     }
+
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-job,
     #sidebar[data-behavior="4"] .sidebar-profile .sidebar-profile-location {
         margin-top: 0;
         width: 49%;
         display: inline-block
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons {
         width: 49%;
         vertical-align: top;
         display: inline-block
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button {
         text-align: left;
         box-sizing: border-box
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: left;
         width: auto;
         padding-top: 0;
         white-space: nowrap
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
         float: left;
@@ -1614,6 +1794,7 @@ blockquote>p:first-child {
         vertical-align: middle;
         margin-right: 15px
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: block;
         width: auto;
@@ -1626,41 +1807,50 @@ blockquote>p:first-child {
         white-space: nowrap;
         text-overflow: ellipsis
     }
+
     #sidebar[data-behavior="4"] ul.sidebar-buttons li.sidebar-button:nth-child(odd) {
         padding-right: 20px
     }
+
     #sidebar[data-behavior="4"].pushed {
         -webkit-transform: translate3d(500px, 0, 0);
         -moz-transform: translate3d(500px, 0, 0);
         transform: translate3d(500px, 0, 0)
     }
+
     #sidebar[data-behavior="5"] {
         left: -250px;
         width: 250px
     }
+
     #sidebar[data-behavior="5"] .sidebar-profile {
         height: 130px;
         padding-top: 40px;
         padding-bottom: 7.5px
     }
+
     #sidebar[data-behavior="5"] .sidebar-profile .sidebar-profile-picture {
         width: 90px;
         height: 90px;
         border-radius: 90px;
         margin-bottom: 5px
     }
+
     #sidebar[data-behavior="5"] .sidebar-profile .sidebar-profile-name {
         font-size: 1.6rem
     }
+
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button {
         text-align: left
     }
+
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: left;
         width: auto;
         padding-left: 23px;
         padding-top: 0
     }
+
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
         display: inline-block;
@@ -1672,6 +1862,7 @@ blockquote>p:first-child {
         vertical-align: middle;
         margin-right: 15px
     }
+
     #sidebar[data-behavior="5"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-desc {
         display: inline-block;
         width: auto;
@@ -1681,15 +1872,18 @@ blockquote>p:first-child {
         letter-spacing: .3px;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     #sidebar[data-behavior="6"] {
         left: -75px;
         width: 75px
     }
+
     #sidebar[data-behavior="6"] .sidebar-profile .sidebar-profile-picture {
         width: 30px;
         height: 30px;
@@ -1697,16 +1891,20 @@ blockquote>p:first-child {
         vertical-align: middle;
         border-radius: 30px
     }
+
     #sidebar[data-behavior="6"] .sidebar-profile .sidebar-profile-name {
         display: none
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button {
         text-align: center
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
         text-align: center;
         width: 100%
     }
+
     #sidebar[data-behavior="6"] ul.sidebar-buttons li.sidebar-button .sidebar-button-link .sidebar-button-icon {
         font-size: 2rem;
         display: inline-block;
@@ -1717,6 +1915,7 @@ blockquote>p:first-child {
         padding-top: 0;
         vertical-align: middle
     }
+
     #sidebar[data-behavior="5"] .sidebar-profile-bio,
     #sidebar[data-behavior="3"] .sidebar-profile-bio,
     #sidebar[data-behavior="6"] .sidebar-profile-bio,
@@ -1724,6 +1923,7 @@ blockquote>p:first-child {
     #sidebar[data-behavior="2"] .sidebar-profile-bio {
         display: none
     }
+
     #sidebar[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -1877,49 +2077,49 @@ figure.highlight .gutter {
 
 .btn--disabled,
 .btn--disabled:hover {
-    color: #bbc4c9!important;
+    color: #bbc4c9 !important;
     border: 1px solid #bbc4c9;
     cursor: not-allowed;
     text-decoration: none
 }
 
 .btn--default {
-    color: #9eabb3!important;
+    color: #9eabb3 !important;
     border: 1px solid #9eabb3
 }
 
 .btn--default:hover {
-    color: #738691!important;
+    color: #738691 !important;
     border: 1px solid #738691
 }
 
 .btn--success {
-    color: #4dc657!important;
+    color: #4dc657 !important;
     border: 1px solid #4dc657
 }
 
 .btn--success:hover {
-    color: #309639!important;
+    color: #309639 !important;
     border: 1px solid #309639
 }
 
 .btn--primary {
-    color: #349ef3!important;
+    color: #349ef3 !important;
     border: 1px solid #349ef3
 }
 
 .btn--primary:hover {
-    color: #0c78ce!important;
+    color: #0c78ce !important;
     border: 1px solid #0c78ce
 }
 
 .btn--danger {
-    color: #f5311d!important;
+    color: #f5311d !important;
     border: 1px solid #f5311d
 }
 
 .btn--danger:hover {
-    color: #bd1908!important;
+    color: #bd1908 !important;
     border: 1px solid #bd1908
 }
 
@@ -2022,7 +2222,7 @@ figure.highlight .line {
 
 .codeblock--tabbed figcaption a,
 .codeblock--tabbed figcaption span {
-    float: left!important
+    float: left !important
 }
 
 .codeblock--tabbed figcaption .tabs {
@@ -2109,6 +2309,7 @@ figure.highlight .line {
 }
 
 @media only screen and (max-width:767px) {
+
     .fig-20 .caption,
     .fig-25 .caption,
     .fig-33 .caption {
@@ -2314,15 +2515,15 @@ figure.highlight .line {
 a.link-unstyled,
 a.link-unstyled:active,
 a.link-unstyled:hover {
-    cursor: pointer!important;
-    color: inherit!important;
-    text-decoration: none!important
+    cursor: pointer !important;
+    color: inherit !important;
+    text-decoration: none !important
 }
 
 a.link-unstyled a.link,
 a.link-unstyled a.link:active,
 a.link-unstyled a.link:hover {
-    text-decoration: underline!important
+    text-decoration: underline !important
 }
 
 .post .post-header .post-title:hover,
@@ -2339,7 +2540,7 @@ a.tag--success:hover {
 }
 
 a.fancybox {
-    cursor: zoom-in!important
+    cursor: zoom-in !important
 }
 
 .main-content-wrap {
@@ -2354,18 +2555,23 @@ a.fancybox {
     .markdown h1 {
         font-size: 3rem
     }
+
     .markdown h2 {
         font-size: 2.7rem
     }
+
     .markdown h3 {
         font-size: 2.4rem
     }
+
     .markdown h4 {
         font-size: 2.1rem
     }
+
     .markdown h5 {
         font-size: 1.9rem
     }
+
     .markdown h6 {
         font-size: 1.7rem
     }
@@ -2375,18 +2581,23 @@ a.fancybox {
     .markdown h1 {
         font-size: 2.65rem
     }
+
     .markdown h2 {
         font-size: 2.35rem
     }
+
     .markdown h3 {
         font-size: 2.05rem
     }
+
     .markdown h4 {
         font-size: 1.75rem
     }
+
     .markdown h5 {
         font-size: 1.55rem
     }
+
     .markdown h6 {
         font-size: 1.35rem
     }
@@ -2396,18 +2607,23 @@ a.fancybox {
     .markdown h1 {
         font-size: 2.8rem
     }
+
     .markdown h2 {
         font-size: 2.5rem
     }
+
     .markdown h3 {
         font-size: 2.2rem
     }
+
     .markdown h4 {
         font-size: 1.9rem
     }
+
     .markdown h5 {
         font-size: 1.7rem
     }
+
     .markdown h6 {
         font-size: 1.5rem
     }
@@ -2503,6 +2719,7 @@ a.fancybox {
         left: 50%;
         transform: translateX(-50%)
     }
+
     .modal {
         border-radius: 5px
     }
@@ -2659,6 +2876,7 @@ a.fancybox {
     .post-actions-wrap ul.post-action-nav {
         width: 25%
     }
+
     .post-actions-wrap ul.post-action-share {
         width: 75%
     }
@@ -2668,6 +2886,7 @@ a.fancybox {
     .post-actions-wrap ul.post-action-nav {
         width: 35%
     }
+
     .post-actions-wrap ul.post-action-share {
         width: 65%
     }
@@ -2742,7 +2961,7 @@ a.fancybox {
     max-width: 750px;
     font-family: source-han-serif-korean, serif;
     font-size: 1.6rem;
-    color: #fff!important;
+    color: #fff !important;
     font-weight: 500;
     letter-spacing: .05em;
     text-shadow: 1px 2px 1px rgba(0, 0, 0, .9);
@@ -2778,6 +2997,7 @@ a.fancybox {
         width: 100%;
         left: 0
     }
+
     .post-header-cover[data-behavior="4"].pushed,
     .post-header-cover[data-behavior="5"].pushed,
     .post-header-cover[data-behavior="1"].pushed,
@@ -2786,6 +3006,7 @@ a.fancybox {
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     .post-header-cover[data-behavior="3"].pushed,
     .post-header-cover[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
@@ -2799,24 +3020,28 @@ a.fancybox {
         font-size: 5.8rem;
         line-height: 1.3em
     }
+
     .post-header-cover[data-behavior="3"],
     .post-header-cover[data-behavior="1"],
     .post-header-cover[data-behavior="2"] {
         width: calc(100% - 75px);
         left: 75px
     }
+
     .post-header-cover[data-behavior="4"],
     .post-header-cover[data-behavior="5"],
     .post-header-cover[data-behavior="6"] {
         width: 100%;
         left: 0
     }
+
     .post-header-cover[data-behavior="4"].pushed,
     .post-header-cover[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     .post-header-cover[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -2829,27 +3054,32 @@ a.fancybox {
         font-size: 6.5rem;
         line-height: 1.3em
     }
+
     .post-header-cover[data-behavior="1"],
     .post-header-cover[data-behavior="2"] {
         width: calc(100% - 250px);
         left: 250px
     }
+
     .post-header-cover[data-behavior="3"] {
         width: calc(100% - 75px);
         left: 75px
     }
+
     .post-header-cover[data-behavior="4"],
     .post-header-cover[data-behavior="5"],
     .post-header-cover[data-behavior="6"] {
         width: 100%;
         left: 0
     }
+
     .post-header-cover[data-behavior="4"].pushed,
     .post-header-cover[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     .post-header-cover[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -2862,34 +3092,41 @@ a.fancybox {
         font-size: 6.5rem;
         line-height: 1.3em
     }
+
     .post-header-cover[data-behavior="1"] {
         width: calc(100% - 500px);
         left: 500px
     }
+
     .post-header-cover[data-behavior="2"] {
         width: calc(100% - 250px);
         left: 250px
     }
+
     .post-header-cover[data-behavior="3"] {
         width: calc(100% - 75px);
         left: 75px
     }
+
     .post-header-cover[data-behavior="4"],
     .post-header-cover[data-behavior="5"],
     .post-header-cover[data-behavior="6"] {
         width: 100%;
         left: 0
     }
+
     .post-header-cover[data-behavior="4"].pushed {
         -webkit-transform: translate3d(500px, 0, 0);
         -moz-transform: translate3d(500px, 0, 0);
         transform: translate3d(500px, 0, 0)
     }
+
     .post-header-cover[data-behavior="5"].pushed {
         -webkit-transform: translate3d(250px, 0, 0);
         -moz-transform: translate3d(250px, 0, 0);
         transform: translate3d(250px, 0, 0)
     }
+
     .post-header-cover[data-behavior="6"].pushed {
         -webkit-transform: translate3d(75px, 0, 0);
         -moz-transform: translate3d(75px, 0, 0);
@@ -2974,6 +3211,7 @@ a.fancybox {
 }
 
 @media only screen and (max-width:479px) {
+
     .postShorten .postShorten-thumbnailimg,
     .postShorten .postShorten-thumbnailimg img {
         display: none
@@ -2985,6 +3223,7 @@ a.fancybox {
         float: right;
         margin: 5px 0 30px 15px
     }
+
     .postShorten.postShorten--thumbnailimg-right .postShorten-thumbnailimg img {
         display: block;
         width: 140px;
@@ -2992,14 +3231,17 @@ a.fancybox {
         object-fit: cover;
         overflow: hidden
     }
+
     .postShorten.postShorten--thumbnailimg-right .postShorten-wrap {
         float: left;
         width: calc(100% - 140px - 20px)
     }
+
     .postShorten.postShorten--thumbnailimg-left .postShorten-thumbnailimg {
         float: left;
         margin: 5px 15px 30px 0
     }
+
     .postShorten.postShorten--thumbnailimg-left .postShorten-thumbnailimg img {
         display: block;
         width: 140px;
@@ -3007,10 +3249,12 @@ a.fancybox {
         object-fit: cover;
         overflow: hidden
     }
+
     .postShorten.postShorten--thumbnailimg-left .postShorten-wrap {
         float: right;
         width: calc(100% - 140px - 20px)
     }
+
     .postShorten.postShorten--thumbnailimg-top .postShorten-thumbnailimg {
         margin-top: 5px;
         height: 245px;
@@ -3031,15 +3275,18 @@ a.fancybox {
         display: block;
         width: 100%
     }
+
     .postShorten.postShorten--thumbnailimg-bottom .postShorten-excerpt>p {
         margin-bottom: 0
     }
+
     .postShorten.postShorten--thumbnailimg-bottom .postShorten-thumbnailimg {
         display: block;
         width: 100%;
         overflow: hidden;
         margin: 15px 0
     }
+
     .postShorten.postShorten--thumbnailimg-bottom .postShorten-thumbnailimg img {
         width: auto;
         height: auto
@@ -3107,12 +3354,14 @@ a.fancybox {
 }
 
 @media only screen and (min-width:768px) and (max-width:1023px) {
+
     .share-options-bar[data-behavior="3"],
     .share-options-bar[data-behavior="1"],
     .share-options-bar[data-behavior="2"] {
         width: calc(100% - 75px);
         left: 75px
     }
+
     .share-options-bar[data-behavior="4"],
     .share-options-bar[data-behavior="5"],
     .share-options-bar[data-behavior="6"] {
@@ -3121,15 +3370,18 @@ a.fancybox {
 }
 
 @media only screen and (min-width:1024px) {
+
     .share-options-bar[data-behavior="1"],
     .share-options-bar[data-behavior="2"] {
         width: calc(100% - 250px);
         left: 250px
     }
+
     .share-options-bar[data-behavior="3"] {
         width: calc(100% - 75px);
         left: 75px
     }
+
     .share-options-bar[data-behavior="4"],
     .share-options-bar[data-behavior="5"],
     .share-options-bar[data-behavior="6"] {
@@ -3151,7 +3403,7 @@ a.tag {
 
 .tag--default,
 a.tag--default {
-    color: #9eabb3!important;
+    color: #9eabb3 !important;
     border: 1px solid #9eabb3;
     font-size: 1.3rem;
     padding: 4.5px 15px
@@ -3159,44 +3411,44 @@ a.tag--default {
 
 .tag--default:hover,
 a.tag--default:hover {
-    color: #738691!important;
+    color: #738691 !important;
     border: 1px solid #738691;
     text-decoration: none
 }
 
 .tag--success,
 a.tag--success {
-    color: #4dc657!important;
+    color: #4dc657 !important;
     border: 1px solid #4dc657
 }
 
 .tag--success:hover,
 a.tag--success:hover {
-    color: #309639!important;
+    color: #309639 !important;
     border: 1px solid #309639
 }
 
 .tag--primary,
 a.tag--primary {
-    color: #349ef3!important;
+    color: #349ef3 !important;
     border: 1px solid #349ef3
 }
 
 .tag--primary:hover,
 a.tag--primary:hover {
-    color: #0c78ce!important;
+    color: #0c78ce !important;
     border: 1px solid #0c78ce
 }
 
 .tag--danger,
 a.tag--danger {
-    color: #f5311d!important;
+    color: #f5311d !important;
     border: 1px solid #f5311d
 }
 
 .tag--danger:hover,
 a.tag--danger:hover {
-    color: #bd1908!important;
+    color: #bd1908 !important;
     border: 1px solid #bd1908
 }
 
@@ -3207,92 +3459,92 @@ a.tag--small {
 }
 
 .text-left {
-    text-align: left!important
+    text-align: left !important
 }
 
 .text-right {
-    text-align: right!important
+    text-align: right !important
 }
 
 .text-center {
-    text-align: center!important
+    text-align: center !important
 }
 
 .text-justify {
-    text-align: justify!important
+    text-align: justify !important
 }
 
 .text-nowrap {
-    white-space: nowrap!important
+    white-space: nowrap !important
 }
 
 .text-lowercase {
-    text-transform: lowercase!important
+    text-transform: lowercase !important
 }
 
 .text-uppercase {
-    text-transform: uppercase!important
+    text-transform: uppercase !important
 }
 
 .text-capitalize {
-    text-transform: capitalize!important
+    text-transform: capitalize !important
 }
 
 .text-xsmall {
-    font-size: 1rem!important
+    font-size: 1rem !important
 }
 
 .text-small {
-    font-size: 1.3rem!important
+    font-size: 1.3rem !important
 }
 
 .text-medium {
-    font-size: 1.5rem!important
+    font-size: 1.5rem !important
 }
 
 .text-base {
-    font-size: 1.6rem!important
+    font-size: 1.6rem !important
 }
 
 .text-large {
-    font-size: 1.7rem!important
+    font-size: 1.7rem !important
 }
 
 .text-xlarge {
-    font-size: 1.8rem!important
+    font-size: 1.8rem !important
 }
 
 .text-strong {
-    font-weight: 700!important
+    font-weight: 700 !important
 }
 
 .text-regular {
-    font-weight: 500!important
+    font-weight: 500 !important
 }
 
 .text-light {
-    font-weight: 300!important
+    font-weight: 300 !important
 }
 
 .text-italic {
-    font-style: italic!important
+    font-style: italic !important
 }
 
 .text-underline,
 .text-underline-hover:hover {
-    text-decoration: underline!important
+    text-decoration: underline !important
 }
 
 .text-color-base {
-    color: #24292e!important
+    color: #24292e !important
 }
 
 .text-color-light {
-    color: #9eabb3!important
+    color: #9eabb3 !important
 }
 
 .text-color-link {
-    color: #349ef3!important
+    color: #349ef3 !important
 }
 
 .font-merryweather {

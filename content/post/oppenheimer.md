@@ -10,6 +10,7 @@ autoThumbnailImage = true
 thumbnailImagePosition = "left"
 date = 2023-11-04T22:25:40+09:00
 title = "오펜하이머"
+draft = true
 +++
 
 영화의 가장 중요한 질문. 청문회에서 오펜하이머가 본 환영. 왜 지금 후회하고 반대할 일들을 그 당시에는 예측하지 못했는가? 아니 사실 알고 있지 않았는가? 그런데 알고 있었으면서 왜 그때는 행동하지 않았는가?

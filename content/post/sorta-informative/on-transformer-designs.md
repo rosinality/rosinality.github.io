@@ -10,6 +10,7 @@ autoThumbnailImage = true
 thumbnailImagePosition = "top"
 date = 2023-11-03T18:27:16+09:00
 title = "트랜스포머 모델 선택의 기원에 대하여"
+draft = true
 +++
 
 트랜스포머는 이제 너무나 유명한 모델이고 아마 딥 러닝 모델 중에서 트랜스포머보다 많은 설명이 작성된 모델 또한 없을 것 같다. 그런 상황에서 트랜스포머의 디자인에 대한 글을 또 쓰는 것이 의미가 있을까?

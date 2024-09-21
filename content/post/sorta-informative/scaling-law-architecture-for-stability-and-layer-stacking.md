@@ -22,7 +22,7 @@ So if you are serious about builiding or understanding LLMs, you should be able 
 
 First I needed to get simple and hackable code base for training language models in jax. But also I should support at least FSDP to training interesting sized models. I have first considered MaxText (https://github.com/google/maxtext) but I found NanoDO (https://github.com/google-deepmind/nanodo) is more simple.
 
-NanoDO is minimal framework for training language models in jax with support of FSDP. I have modified it to support multi-host training. I have uploaded code that I have used for experiments.s (https://github.com/rosinality/nanodo, messy!)
+NanoDO is minimal framework for training language models in jax with support of FSDP. I have modified it to support multi-host training. I have uploaded code that I have used for experiments.s ([https://github.com/rosinality/nanodo](https://github.com/rosinality/nanodo), messy!)
 
 ### Caveats
 
